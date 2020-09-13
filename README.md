@@ -26,7 +26,7 @@ npm run start --env=<environment>
 
 To run in a development enviroment use the following command:
 
-npm run dev --dev=<enviroment>
+npm run dev --env=<enviroment>
 
 
 Possible environments:
