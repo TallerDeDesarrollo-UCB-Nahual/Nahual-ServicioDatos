@@ -1,12 +1,10 @@
-const Node = require('../models/node');
-const nodeService = {
+const NodeModel = require('../models/node');
+const NodeService = {
 	findAll: async (request, response) => {
-		response.statusCode = 200;
-		response.set('Content-type', 'application/json');
-		const allNodes = await Node.findAll();
-		response.json({ 'resultSet': allNodes});
-		return response;
+		let allNodes = await NodeModel.findAll();
+		allNodes = allNodes.map(x => x.dataValues);
+		return { 'resultSet': allNodes };
 	}
 }
 
-module.exports = nodeService;
+module.exports = NodeService;

@@ -5,7 +5,9 @@ const routeNames = require('../resources/routeNames');
 const nodeService = require('../app/services/node');
 
 router.get(routeNames.emptyUrl, async (request, response) => {
-	response.send(await nodeService.findAll(request, response));
+	const allNodes = await nodeService.findAll(request, response);
+	response.set('Content-type', 'application/json');
+	response.end(JSON.stringify(allNodes));
 });
 
 module.exports = router;
