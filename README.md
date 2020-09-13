@@ -20,9 +20,14 @@ npx sequelize-cli db:seed:all
 
 ## 💻 Run Project
 
-To run project use the following command:
+To run project use the following command inside the folder Nahual-ServicioDatos:
 
 npm run start --env=<Environment>
+
+To run in a development enviroment use the following command:
+
+npm run dev --dev=<enviroment>
+
 
 Possible environments:
 

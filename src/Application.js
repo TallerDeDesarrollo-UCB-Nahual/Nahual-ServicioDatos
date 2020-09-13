@@ -17,6 +17,7 @@ class Application {
 	}
 
 	setUpExpress() {
+		this.express.use(bodyParser.json())
 		this.express.use(bodyParser.urlencoded({ extended: false }));
 	}
 
