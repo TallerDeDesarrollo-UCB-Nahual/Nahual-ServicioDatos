@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "doms",
+    "database": "nahual",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "define": {
+      "schema": "public",
+      "timestamps": false
+    }
+  },
+  "test": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": null,
+    "dialect": null
+  },
+  "production": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": null,
+    "dialect": null
+  }
+}

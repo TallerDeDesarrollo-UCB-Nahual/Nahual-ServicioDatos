@@ -1,0 +1,28 @@
+{
+  "name": "nahual-serviciodatos",
+  "version": "1.0.0",
+  "description": "data service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TallerDeDesarrollo-UCB/Nahual-ServicioDatos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TallerDeDesarrollo-UCB/Nahual-ServicioDatos/issues"
+  },
+  "homepage": "https://github.com/TallerDeDesarrollo-UCB/Nahual-ServicioDatos#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pg": "^8.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}
