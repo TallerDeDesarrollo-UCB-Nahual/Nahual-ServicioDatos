@@ -1,4 +1,3 @@
-
 const Node = require('../models/node');
 const nodeService = {
 	findAll: async (request, response) => {
