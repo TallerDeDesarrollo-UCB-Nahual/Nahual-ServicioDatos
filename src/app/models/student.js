@@ -17,6 +17,6 @@ const Student = sequelize.define('Student', {
 	'firstJobName': DataTypes.STRING,
 	'linkedin': DataTypes.STRING,
 	'isEmployed': DataTypes.BOOLEAN,
-    'moduleCourse': DataTypes.STRING
+    'module': DataTypes.STRING
 });
 module.exports = Student;
