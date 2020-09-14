@@ -10,4 +10,13 @@ router.get(routeNames.emptyUrl, async (request, response) => {
 	response.end(JSON.stringify(allGraduates));
 });
 
+router.put('/:id',async (request,response)=>{
+    try {
+        const result = await studentService.updateStudent(request,response);
+        response.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 module.exports = router;

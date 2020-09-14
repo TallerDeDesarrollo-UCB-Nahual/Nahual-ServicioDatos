@@ -15,7 +15,7 @@ module.exports = {
 		graduated: {
 			url: '/graduateds',
 		},
-		students:{
+		student:{
 			url:'/students'
 		}
 	}
