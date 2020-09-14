@@ -10,5 +10,10 @@ module.exports = {
 	},
 	englishLevels: {
 		url: '/english-levels'
+	},
+	students: {
+		graduated: {
+			url: '/graduateds'
+		}
 	}
 };
