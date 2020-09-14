@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "<your username>",
-    "password": "<your password>",
+    "username": "postgres",
+    "password": "password",
     "database": "nahual",
     "host": "127.0.0.1",
+    "port":"5433",
     "dialect": "postgres",
     "define": {
       "schema": "public",

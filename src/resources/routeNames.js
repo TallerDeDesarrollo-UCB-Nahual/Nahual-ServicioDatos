@@ -13,7 +13,10 @@ module.exports = {
 	},
 	students: {
 		graduated: {
-			url: '/graduateds'
+			url: '/graduateds',
+		},
+		students:{
+			url:'/students'
 		}
 	}
 };
