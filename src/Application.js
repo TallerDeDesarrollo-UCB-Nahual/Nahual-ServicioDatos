@@ -14,6 +14,7 @@ class Application {
 
 	setUpRoutes() {
 		this.express.use(routeNames.nodes.url, require('./routes/nodes'));
+		this.express.use(routeNames.englishLevels.url, require('./routes/englishLevel'));
 	}
 
 	setUpExpress() {

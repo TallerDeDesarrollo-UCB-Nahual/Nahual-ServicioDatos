@@ -7,5 +7,8 @@ module.exports = {
 	},
 	nodes: {
 		url: '/nodes'
+	},
+	englishLevels: {
+		url: '/english-levels'
 	}
 };
