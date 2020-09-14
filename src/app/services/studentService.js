@@ -11,9 +11,12 @@ const StudentService = {
 	},
 
 	filterStudentsByEnglishLevel: async (request, response) => {
+		console.log("------------",request.query)
 		let allStudents = await StudentModel.findAll({
 			where: {
-				englishLevel: request.query.level
+				englishLevel: request.query.englishLevel,
+				statusName: request.query.statusName,
+				isEmployed: request.query.isEmployed
 			}
 		});
 		allStudents = allStudents.map(x => x.dataValues);
