@@ -11,7 +11,6 @@ const StudentService = {
 	},
 
 	filterStudentsByEnglishLevel: async (request, response) => {
-		console.log("------------",request.query)
 		let allStudents = await StudentModel.findAll({
 			where: {
 				englishLevel: request.query.englishLevel,
