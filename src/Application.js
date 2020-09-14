@@ -17,7 +17,7 @@ class Application {
 	}
 
 	setUpRoutes() {
-		this.express.use("/nodes",nodes);
+		this.express.use("/nodes", nodes);
 		this.express.use("/englisLevel", englishLevel);
 		this.express.use('/student', students);
 	}
