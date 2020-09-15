@@ -14,9 +14,6 @@ module.exports = {
       },
       {
           name: 'Alfabetizacion digital',
-      },
-      {
-          name: 'Testing para C++',
       }
   ]);
   },

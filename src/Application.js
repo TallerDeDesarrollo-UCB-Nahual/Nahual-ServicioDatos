@@ -6,7 +6,7 @@ const routeNames = require('./resources/routeNames');
 var nodes =  require('./routes/nodes');
 var englishLevel =  require('./routes/englishLevel');
 var students = require('./routes/students');
-var modules = require('./routes/modules');
+const modules = require('./routes/modules');
 
 class Application {
 	constructor() {
