@@ -3,6 +3,14 @@ const express = require('express');
 const router = express.Router();
 const routeNames = require('../resources/routeNames');
 const studentService = require('../app/services/studentService');
+const { response } = require('express');
+
+router.get('/:id', async (request, response) => {
+	const allGraduates = await studentService.findGraduatedById(request, response);
+	console.log(request.params);
+	response.set('Content-type', 'application/json');
+	response.end(JSON.stringify(allGraduates));
+});
 
 router.get(routeNames.emptyUrl, async (request, response) => {
 	const allGraduates = await studentService.findGraduatedStudents(request, response);
