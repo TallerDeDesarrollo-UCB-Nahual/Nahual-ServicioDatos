@@ -10,6 +10,17 @@ const StudentService = {
 		return { 'resultSet': allStudents };
 	},
 
+	findUnemployedGraduatedStudents: async (request, response) => {
+		let allUnemployedGraduates = await StudentModel.findAll({
+			where: {
+				statusName: 'Egresade',
+				isEmployed: false
+			}
+		});
+		allUnemployedGraduates = allUnemployedGraduates.map(x => x.dataValues);
+		return { 'resultSet': allUnemployedGraduates };
+	},
+
 	filterStudentsByEnglishLevel: async (request, response) => {
 		let allStudents = await StudentModel.findAll({
 			where: {
