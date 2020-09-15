@@ -8,6 +8,18 @@ const StudentService = {
 		});
 		allStudents = allStudents.map(x => x.dataValues);
 		return { 'resultSet': allStudents };
+	},
+
+	filterStudentsByEnglishLevel: async (request, response) => {
+		let allStudents = await StudentModel.findAll({
+			where: {
+				englishLevel: request.query.englishLevel,
+				statusName: request.query.statusName,
+				isEmployed: request.query.isEmployed
+			}
+		});
+		allStudents = allStudents.map(x => x.dataValues);
+		return { 'resultSet': allStudents };
 	}
 }
 
