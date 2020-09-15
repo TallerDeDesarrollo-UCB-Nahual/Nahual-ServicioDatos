@@ -16,4 +16,10 @@ router.get("/filterByEnglishLevel", async (request, response) => {
 	response.end(JSON.stringify(studentsByEnglishLevel));
 });
 
+router.get("/filterByModule", async (request, response) => {
+	const studentsByModule = await studentService.filterStudentsByModule(request, response);
+	response.set('Content-type', 'application/json');
+	response.end(JSON.stringify(studentsByModule));
+});
+
 module.exports = router;
