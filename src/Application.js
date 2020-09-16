@@ -16,10 +16,10 @@ class Application {
 	constructor() {
 		this.express = express();
 		this.setUpRoutes();
+		this.setUpSwagger();
 		this.setUpNotFoundRoute();
 		this.setUpExpress();
 		this.setUpPort();
-		this.setUpSwagger();
 	}
 
 	setUpRoutes() {
@@ -46,7 +46,7 @@ class Application {
 			next(error);
 		});
 	}
-	
+
 	setUpSwagger() {
 		this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}
