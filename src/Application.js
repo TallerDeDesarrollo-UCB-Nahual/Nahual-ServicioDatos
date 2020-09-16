@@ -10,6 +10,8 @@ const students = require('./routes/students')
 const modules = require('./routes/modules');
 const ROUTE_URL = '/api';
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 class Application {
 	constructor() {
 		this.express = express();
@@ -17,6 +19,7 @@ class Application {
 		this.setUpNotFoundRoute();
 		this.setUpExpress();
 		this.setUpPort();
+		this.setUpSwagger();
 	}
 
 	setUpRoutes() {
@@ -42,6 +45,10 @@ class Application {
 			error.status = 404;
 			next(error);
 		});
+	}
+	
+	setUpSwagger() {
+		this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}
 }
 
