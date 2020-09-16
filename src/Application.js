@@ -11,7 +11,7 @@ const modules = require('./routes/modules');
 const ROUTE_URL = '/api';
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('./config/swagger.json');
 class Application {
 	constructor() {
 		this.express = express();
