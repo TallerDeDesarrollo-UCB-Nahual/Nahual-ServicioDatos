@@ -1,5 +1,10 @@
 const StudentModel = require('../models/student');
 const StudentService = {
+	findStudents: async (request, response) => {
+		let allStudents = await StudentModel.findAll();
+		allStudents = allStudents.map(x => x.dataValues);
+		return { 'resultSet': allStudents };
+	},
 	findGraduateStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll({
 			where: {
