@@ -11,12 +11,21 @@ module.exports = {
 	englishLevels: {
 		url: '/english-levels'
 	},
+	modules: {
+		url: '/modules'
+	},
 	students: {
 		graduated: {
 			url: '/graduateds',
 			unemployeds: {
 				url: '/unemployeds'
-			}
+			},
+			filterByEnglishLevel: {
+				url: '/filterByEnglishLevel'
+			},
+			filterByModule: {
+				url: '/filterByModule'
+			},
 		}
 	}
 };

@@ -3,9 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
 
-var nodes =  require('./routes/nodes');
-var englishLevel =  require('./routes/englishLevel');
-var students = require('./routes/students');
+const nodes =  require('./routes/nodes');
+const englishLevel =  require('./routes/englishLevel');
+const students = require('./routes/students');
 const modules = require('./routes/modules');
 
 class Application {
@@ -18,10 +18,10 @@ class Application {
 	}
 
 	setUpRoutes() {
-		this.express.use("/nodes", nodes);
-		this.express.use("/englishLevel", englishLevel);
-		this.express.use('/student', students);
-		this.express.use("/modules",modules)
+		this.express.use(routeNames.nodes.url, nodes);
+		this.express.use(routeNames.englishLevels.url, englishLevel);
+		this.express.use(routeNames.students.graduated.url, students);
+		this.express.use(routeNames.modules.url, modules);
 	}
 
 	setUpExpress() {
