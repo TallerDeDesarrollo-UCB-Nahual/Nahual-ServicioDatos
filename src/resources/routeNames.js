@@ -14,6 +14,10 @@ module.exports = {
 	students: {
 		graduates: {
 			url: '/graduates'
+		
+		},
+		student:{
+			url:'/students'
 		}
 	}
 };

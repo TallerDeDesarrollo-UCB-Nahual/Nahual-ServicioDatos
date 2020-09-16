@@ -6,16 +6,20 @@ const routeNames = require('./resources/routeNames');
 class Application {
 	constructor() {
 		this.express = express();
+		this.setUpExpress();
 		this.setUpRoutes();
 		this.setUpNotFoundRoute();
-		this.setUpExpress();
 		this.setUpPort();
 	}
 
 	setUpRoutes() {
 		this.express.use(routeNames.nodes.url, require('./routes/nodes'));
 		this.express.use(routeNames.englishLevels.url, require('./routes/englishLevel'));
+
 		this.express.use(routeNames.students.graduates.url, require('./routes/students'));
+
+		this.express.use(routeNames.students.student.url, require('./routes/students'));
+
 	}
 
 	setUpExpress() {
