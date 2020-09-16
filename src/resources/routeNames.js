@@ -7,17 +7,17 @@ module.exports = {
 		url: '/headquarters',
 	},
 	nodes: {
-		url: api+'/nodes'
+		url: api + '/nodes'
 	},
 	englishLevels: {
-		url: api+'/english-levels'
+		url: api + '/english-levels'
 	},
 	modules: {
-		url: api+'/modules'
+		url: api + '/modules'
 	},
 	students: {
 		graduated: {
-			url: api+'/graduateds',
+			url: api + '/graduateds',
 			unemployeds: {
 				url: '/unemployeds'
 			},

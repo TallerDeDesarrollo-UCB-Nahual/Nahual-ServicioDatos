@@ -10,7 +10,7 @@ const StudentService = {
 		allStudents = allStudents.map(x => x.dataValues);
 		return { 'resultSet': allStudents };
 	},
-	
+
 	findUnemployedGraduatedStudents: async (request, response) => {
 		let allUnemployedGraduates = await StudentModel.findAll({
 			where: {
@@ -18,7 +18,7 @@ const StudentService = {
 				isEmployed: false
 			}
 		});
-		allUnemployedGraduates = allUnemployedGraduates.map(x =>  new StudentDTO(x.dataValues));
+		allUnemployedGraduates = allUnemployedGraduates.map(x => new StudentDTO(x.dataValues));
 		return { 'resultSet': allUnemployedGraduates };
 	},
 
