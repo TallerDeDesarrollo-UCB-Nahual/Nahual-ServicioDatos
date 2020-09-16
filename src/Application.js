@@ -3,8 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
 
-const nodes =  require('./routes/nodes');
-const englishLevel =  require('./routes/englishLevel');
+const nodes = require('./routes/nodes');
+const englishLevel = require('./routes/englishLevel');
 const students = require('./routes/students');
 const modules = require('./routes/modules');
 
