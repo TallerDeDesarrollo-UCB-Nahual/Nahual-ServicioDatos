@@ -11,21 +11,12 @@ router.get(routeNames.emptyUrl, async (request, response) => {
 });
 
 router.get(routeNames.students.graduated.unemployeds.url, async (request, response) => {
-	const allUnemployedGraduates = await studentService.findUnemployedGraduatedStudents(request, response);
+	let parameters = request.query;
+	parameters.statusName = 'Egresade';
+	parameters.isEmployed = false
+  const result = await studentService.findUnemployedGraduatedStudents(parameters);
 	response.set('Content-type', 'application/json');
-	response.end(JSON.stringify(allUnemployedGraduates));
-});
-
-router.get(routeNames.students.graduated.filterByEnglishLevel.url, async (request, response) => {
-	const studentsByEnglishLevel = await studentService.filterStudentsByEnglishLevel(request, response);
-	response.set('Content-type', 'application/json');
-	response.end(JSON.stringify(studentsByEnglishLevel));
-});
-
-router.get(routeNames.students.graduated.filterByModule.url, async (request, response) => {
-	const studentsByModule = await studentService.filterStudentsByModule(request, response);
-	response.set('Content-type', 'application/json');
-	response.end(JSON.stringify(studentsByModule));
+	response.end(JSON.stringify(result));
 });
 
 module.exports = router;
