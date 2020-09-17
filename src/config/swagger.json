@@ -34,6 +34,14 @@
                 ],
                 "summary": "Get all unemployes graduates",
                 "description": "Get all unemployes graduates",
+                "parameters": [
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "description": "Filter by module",
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
