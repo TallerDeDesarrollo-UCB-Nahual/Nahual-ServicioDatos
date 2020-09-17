@@ -5,7 +5,8 @@ const routeNames = require('./resources/routeNames');
 
 const nodes = require('./routes/nodes');
 const englishLevel = require('./routes/englishLevel');
-const students = require('./routes/students');
+const graduates = require('./routes/graduates');
+const students = require('./routes/students')
 const modules = require('./routes/modules');
 const ROUTE_URL = '/api';
 
@@ -21,7 +22,8 @@ class Application {
 	setUpRoutes() {
 		this.express.use(ROUTE_URL + routeNames.nodes.url, nodes);
 		this.express.use(ROUTE_URL + routeNames.englishLevels.url, englishLevel);
-		this.express.use(ROUTE_URL + routeNames.students.graduated.url, students);
+		this.express.use(ROUTE_URL + routeNames.students.graduated.url, graduates);
+		this.express.use(ROUTE_URL + routeNames.students.url, students);
 		this.express.use(ROUTE_URL + routeNames.modules.url, modules);
 	}
 

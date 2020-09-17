@@ -20,6 +20,7 @@ module.exports = {
 			unemployeds: {
 				url: '/unemployes'
 			}
-		}
+    },
+    url: '/students'
 	}
 };
