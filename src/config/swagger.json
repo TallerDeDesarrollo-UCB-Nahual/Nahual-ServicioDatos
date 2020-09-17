@@ -15,6 +15,10 @@
         {
             "name": "Graduates",
             "description": "API for graduates in the system"
+        },
+        {
+            "name": "Students",
+            "description": "API for students in the system"
         }
     ],
     "schemes": [
@@ -57,6 +61,32 @@
                     }
                 }
             }
+        },
+        "/students/{id}": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get all information of a student",
+                "description": "Get all information of a student",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of a student",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Student"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -76,6 +106,53 @@
                     "type": "string"
                 },
                 "node": {
+                    "type": "string"
+                }
+            }
+        },
+        "Student": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "statusName": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "mail": {
+                    "type": "string"
+                },
+                "cellphone": {
+                    "type": "integer"
+                },
+                "nodeName": {
+                    "type": "string"
+                },
+                "graduationYear": {
+                    "type": "integer"
+                },
+                "quarter": {
+                    "type": "integer"
+                },
+                "englishLevel": {
+                    "type": "string"
+                },
+                "firstJobName": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "isEmployed": {
+                    "type": "boolean"
+                },
+                "module": {
                     "type": "string"
                 }
             }
