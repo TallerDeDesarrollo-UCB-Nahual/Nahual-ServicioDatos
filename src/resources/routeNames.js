@@ -18,7 +18,7 @@ module.exports = {
 		graduated: {
 			url: '/graduates',
 			unemployeds: {
-				url: '/unemployeds'
+				url: '/unemployes'
 			}
 		}
 	}
