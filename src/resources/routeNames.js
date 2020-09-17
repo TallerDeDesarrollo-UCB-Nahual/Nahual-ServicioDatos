@@ -16,16 +16,10 @@ module.exports = {
 	},
 	students: {
 		graduated: {
-			url: '/graduateds',
+			url: '/graduates',
 			unemployeds: {
 				url: '/unemployeds'
-			},
-			filterByEnglishLevel: {
-				url: '/filterByEnglishLevel'
-			},
-			filterByModule: {
-				url: '/filterByModule'
-			},
+			}
 		}
 	}
 };
