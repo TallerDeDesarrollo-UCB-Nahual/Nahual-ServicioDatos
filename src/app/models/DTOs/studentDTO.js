@@ -3,9 +3,9 @@ class StudentDTO {
 	constructor(student) {
 		this.id = student.id;
 		this.fullName = student.fullName;
-		this.module = student.module;
+		this.finishedCourses = student.module;
 		this.englishLevel = student.englishLevel;
-		this.nodeName = student.nodeName;
+		this.node = student.nodeName;
 	}
 }
 

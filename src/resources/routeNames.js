@@ -1,5 +1,4 @@
 'use strict';
-const api = '/api';
 
 module.exports = {
 	emptyUrl: '',
@@ -7,17 +6,17 @@ module.exports = {
 		url: '/headquarters',
 	},
 	nodes: {
-		url: api + '/nodes'
+		url: '/nodes'
 	},
 	englishLevels: {
-		url: api + '/english-levels'
+		url: '/english-levels'
 	},
 	modules: {
-		url: api + '/modules'
+		url: '/modules'
 	},
 	students: {
 		graduated: {
-			url: api + '/graduateds',
+			url: '/graduateds',
 			unemployeds: {
 				url: '/unemployeds'
 			},
