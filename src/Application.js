@@ -3,10 +3,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
 
-var nodes =  require('./routes/nodes');
-var englishLevel =  require('./routes/englishLevel');
-var students = require('./routes/students');
+const nodes = require('./routes/nodes');
+const englishLevel = require('./routes/englishLevel');
+const students = require('./routes/students');
 const modules = require('./routes/modules');
+const ROUTE_URL = '/api';
 
 class Application {
 	constructor() {
@@ -18,10 +19,10 @@ class Application {
 	}
 
 	setUpRoutes() {
-		this.express.use("/nodes", nodes);
-		this.express.use("/englishLevel", englishLevel);
-		this.express.use('/student', students);
-		this.express.use("/modules",modules)
+		this.express.use(ROUTE_URL + routeNames.nodes.url, nodes);
+		this.express.use(ROUTE_URL + routeNames.englishLevels.url, englishLevel);
+		this.express.use(ROUTE_URL + routeNames.students.graduated.url, students);
+		this.express.use(ROUTE_URL + routeNames.modules.url, modules);
 	}
 
 	setUpExpress() {
@@ -30,7 +31,7 @@ class Application {
 	}
 
 	setUpPort() {
-		this.express.set('port', process.env.PORT || 3000);
+		this.express.set('port', process.env.PORT || 8000);
 	}
 
 	setUpNotFoundRoute() {
