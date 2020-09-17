@@ -1,0 +1,165 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Nahual API",
+        "description": "Nahual API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Graduates",
+            "description": "API for graduates in the system"
+        },
+        {
+            "name": "Students",
+            "description": "API for students in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/graduates/unemployes": {
+            "get": {
+                "tags": [
+                    "Graduates"
+                ],
+                "summary": "Get all unemployes graduates",
+                "description": "Get all unemployes graduates",
+                "parameters": [
+                    {
+                        "name": "module",
+                        "in": "query",
+                        "description": "Filter by module",
+                        "type": "string"
+                    },
+                    {
+                        "name": "englishLevel",
+                        "in": "query",
+                        "description": "Filter by English level",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/unemployesGraduates"
+                        }
+                    }
+                }
+            }
+        },
+        "/students/{id}": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get all information of a student",
+                "description": "Get all information of a student",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of a student",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Student"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "StudentDTO": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "finishedCourses": {
+                    "type": "string"
+                },
+                "englishLevel": {
+                    "type": "string"
+                },
+                "node": {
+                    "type": "string"
+                }
+            }
+        },
+        "Student": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "statusName": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "mail": {
+                    "type": "string"
+                },
+                "cellphone": {
+                    "type": "integer"
+                },
+                "nodeName": {
+                    "type": "string"
+                },
+                "graduationYear": {
+                    "type": "integer"
+                },
+                "quarter": {
+                    "type": "integer"
+                },
+                "englishLevel": {
+                    "type": "string"
+                },
+                "firstJobName": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "isEmployed": {
+                    "type": "boolean"
+                },
+                "module": {
+                    "type": "string"
+                }
+            }
+        },
+        "unemployesGraduates": {
+            "type": "array",
+            "$ref": "#/definitions/StudentDTO"
+        }
+    }
+}
