@@ -27,7 +27,6 @@ const StudentService = {
 		allUnemployedGraduates = allUnemployedGraduates.map(x => new StudentDTO(x.dataValues));
 		return { 'resultSet': allUnemployedGraduates };
 	}
-	
 }
 
 module.exports = StudentService;
