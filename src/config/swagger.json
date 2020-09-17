@@ -40,6 +40,12 @@
                         "in": "query",
                         "description": "Filter by module",
                         "type": "string"
+                    },
+                    {
+                        "name": "englishLevel",
+                        "in": "query",
+                        "description": "Filter by English level",
+                        "type": "string"
                     }
                 ],
                 "responses": {
