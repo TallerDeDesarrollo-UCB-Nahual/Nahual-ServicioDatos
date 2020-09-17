@@ -11,6 +11,12 @@
     },
     "host": "localhost:8000",
     "basePath": "/api",
+    "tags": [
+        {
+            "name": "Graduates",
+            "description": "API for graduates in the system"
+        }
+    ],
     "schemes": [
         "http"
     ],
@@ -19,5 +25,50 @@
     ],
     "produces": [
         "application/json"
-    ]
+    ],
+    "paths": {
+        "/graduates/unemployes": {
+            "get": {
+                "tags": [
+                    "Graduates"
+                ],
+                "summary": "Get all unemployes graduates",
+                "description": "Get all unemployes graduates",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/unemployesGraduates"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "StudentDTO": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "finishedCourses": {
+                    "type": "string"
+                },
+                "englishLevel": {
+                    "type": "string"
+                },
+                "node": {
+                    "type": "string"
+                }
+            }
+        },
+        "unemployesGraduates": {
+            "type": "array",
+            "$ref": "#/definitions/StudentDTO"
+        }
+    }
 }
