@@ -3,20 +3,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
 
+const nodes = require('./routes/nodes');
+const englishLevel = require('./routes/englishLevel');
+const graduates = require('./routes/graduates');
+const students = require('./routes/students')
+const modules = require('./routes/modules');
+const ROUTE_URL = '/api';
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/swagger.json');
 class Application {
 	constructor() {
 		this.express = express();
 		this.setUpExpress();
 		this.setUpRoutes();
+		this.setUpSwagger();
 		this.setUpNotFoundRoute();
 		this.setUpPort();
 	}
 
 	setUpRoutes() {
-		this.express.use(routeNames.nodes.url, require('./routes/nodes'));
-		this.express.use(routeNames.englishLevels.url, require('./routes/englishLevel'));
-		this.express.use(routeNames.students.graduates.url, require('./routes/graduates'));
-		this.express.use(routeNames.students.student.url, require('./routes/students'));
+		this.express.use(ROUTE_URL + routeNames.nodes.url, nodes);
+		this.express.use(ROUTE_URL + routeNames.englishLevels.url, englishLevel);
+		this.express.use(ROUTE_URL + routeNames.students.graduates.url, graduates);
+		this.express.use(ROUTE_URL + routeNames.students.url, students);
+		this.express.use(ROUTE_URL + routeNames.modules.url, modules);
 	}
 
 	setUpExpress() {
@@ -34,6 +45,10 @@ class Application {
 			error.status = 404;
 			next(error);
 		});
+	}
+
+	setUpSwagger() {
+		this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}
 }
 

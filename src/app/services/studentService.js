@@ -1,11 +1,17 @@
 const StudentModel = require('../models/student');
+const StudentDTO = require('../models/DTOs/studentDTO');
 const StudentService = {
 	findStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll();
 		allStudents = allStudents.map(x => x.dataValues);
 		return { 'resultSet': allStudents };
 	},
-	findGraduateStudents: async (request, response) => {
+	
+	findGraduatedById: async (studentId) => {
+		let graduate = await StudentModel.findByPk(studentId)
+		return graduate;
+	},
+	findGraduatedStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll({
 			where: {
 				statusName: 'Egresade'
@@ -63,7 +69,15 @@ const StudentService = {
             return {message : "Student was deleted successfully.",result};
         } catch (error) {
            throw error;
-        }
+		}
+	},
+
+	findUnemployedGraduatedStudents: async (parameters) => {
+		let allUnemployedGraduates = await StudentModel.findAll({
+			where: parameters
+		});
+		allUnemployedGraduates = allUnemployedGraduates.map(x => new StudentDTO(x.dataValues));
+		return { 'resultSet': allUnemployedGraduates };
 	}
 }
 

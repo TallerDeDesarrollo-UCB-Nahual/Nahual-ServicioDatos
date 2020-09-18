@@ -1,13 +1,19 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const routeNames = require('../resources/routeNames');
 const studentService = require('../app/services/studentService');
+const routeNames = require('../../src/resources/routeNames')
 
 router.get(routeNames.emptyUrl, async (request, response) => {
 	const allGraduates = await studentService.findStudents(request, response);
 	response.set('Content-type', 'application/json');
-	response.end(JSON.stringify(allGraduates));
+    response.end(JSON.stringify(allGraduates));
+});
+
+router.get('/:id', async (request, response) => {
+  const allGraduates = await studentService.findGraduatedById(request.params.id);
+  response.set('Content-type', 'application/json');
+  response.end(JSON.stringify(allGraduates));
 });
 
 router.put('/:id',async (request,response)=>{

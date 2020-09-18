@@ -11,13 +11,19 @@ module.exports = {
 	englishLevels: {
 		url: '/english-levels'
 	},
+	modules: {
+		url: '/modules'
+	},
 	students: {
 		graduates: {
-			url: '/graduates'
-		
+			url: '/graduates',
+			unemployes: {
+				url: '/unemployes'
+			}
 		},
 		student:{
 			url:'/students'
-		}
-	}
+		},
+	},
+   
 };

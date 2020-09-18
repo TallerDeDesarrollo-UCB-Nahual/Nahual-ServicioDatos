@@ -15,7 +15,16 @@ router.get(routeNames.emptyUrl, async (request, response) => {
 
 router.post(routeNames.emptyUrl, jsonParser, async (request, response) => {
 	const status = await studentService.registerGradutateStudents(request, response);
-	response.status(status).send("SUCCESS")
+  response.status(status).send("SUCCESS");
+});
+
+router.get(routeNames.students.graduates.unemployes.url, async (request, response) => {
+  let parameters = request.query;
+  parameters.statusName = 'Egresade';
+  parameters.isEmployed = false
+  const result = await studentService.findUnemployedGraduatedStudents(parameters);
+  response.set('Content-type', 'application/json');
+  response.end(JSON.stringify(result));
 });
 
 module.exports = router;
