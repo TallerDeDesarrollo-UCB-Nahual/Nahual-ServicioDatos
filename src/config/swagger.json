@@ -89,6 +89,33 @@
             }
         },
 
+        "/api/graduates": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Post all information of many student",
+                "description": "Post all information of many student",
+                "parameters": [
+                    {
+                        "name": "List of students {student#1},{student#2},{student#3}",
+                        "in": "body",
+                        "description": "All information of many student",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/StudentWithoutId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success, Students were created successfully"
+                        
+                    }
+                }
+            }
+        },
+
         "/api/students": {
             "post": {
                 "tags": [
