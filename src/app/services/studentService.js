@@ -7,11 +7,11 @@ const StudentService = {
 		return { 'resultSet': allStudents };
 	},
 	
-	findGraduatedById: async (studentId) => {
+	findGraduateById: async (studentId) => {
 		let graduate = await StudentModel.findByPk(studentId)
 		return graduate;
 	},
-	findGraduatedStudents: async (request, response) => {
+	findGraduateStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll({
 			where: {
 				statusName: 'Egresade'
@@ -72,7 +72,7 @@ const StudentService = {
 		}
 	},
 
-	findUnemployedGraduatedStudents: async (parameters) => {
+	findUnemployeGraduateStudents: async (parameters) => {
 		let allUnemployedGraduates = await StudentModel.findAll({
 			where: parameters
 		});

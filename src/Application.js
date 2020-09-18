@@ -36,7 +36,7 @@ class Application {
 	}
 
 	setUpPort() {
-		this.express.set('port', process.env.PORT || 3000);
+		this.express.set('port', process.env.PORT || 8000);
 	}
 
 	setUpNotFoundRoute() {
