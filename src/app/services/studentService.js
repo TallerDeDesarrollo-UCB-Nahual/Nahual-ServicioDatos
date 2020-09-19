@@ -49,7 +49,7 @@ const StudentService = {
         try {
             const result = await StudentModel.update(request.body,
             {where:{id:request.params.id}});
-            return {message : "Student pesonal information was updated successfully.", student:request.body };
+            return {message : "Student information was updated successfully.", student:request.body };
         } catch (error) {
            throw error;
         }
