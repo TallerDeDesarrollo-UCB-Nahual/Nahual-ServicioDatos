@@ -3,7 +3,8 @@ const DataTypes = require('../../config/sequelizeconfiguration').datatype;
 const Student = sequelize.define('Student', {
 	'id': {
 		type: DataTypes.INTEGER,
-		primaryKey: true
+		primaryKey: true,
+		autoIncrement: true
 	},
 	'fullName': DataTypes.STRING,
 	'statusName': DataTypes.STRING,

@@ -15,17 +15,17 @@ const swaggerDocument = require('./config/swagger.json');
 class Application {
 	constructor() {
 		this.express = express();
+		this.setUpExpress();
 		this.setUpRoutes();
 		this.setUpSwagger();
 		this.setUpNotFoundRoute();
-		this.setUpExpress();
 		this.setUpPort();
 	}
 
 	setUpRoutes() {
 		this.express.use(ROUTE_URL + routeNames.nodes.url, nodes);
 		this.express.use(ROUTE_URL + routeNames.englishLevels.url, englishLevel);
-		this.express.use(ROUTE_URL + routeNames.students.graduated.url, graduates);
+		this.express.use(ROUTE_URL + routeNames.students.graduates.url, graduates);
 		this.express.use(ROUTE_URL + routeNames.students.url, students);
 		this.express.use(ROUTE_URL + routeNames.modules.url, modules);
 	}

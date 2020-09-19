@@ -87,7 +87,128 @@
                     }
                 }
             }
+        },
+
+        "/api/graduates": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Post all information of many student",
+                "description": "Post all information of many student",
+                "parameters": [
+                    {
+                        "name": "List of students [{student#1},{student#2},{student#3}]",
+                        "in": "body",
+                        "description": "All information of many student",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/StudentWithoutId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                        
+                    }
+                }
+            }
+        },
+
+        "/api/students": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Post all information of a student",
+                "description": "Post all information of a student",
+                "parameters": [
+                    {
+                        "name": "student",
+                        "in": "body",
+                        "description": "All information of a student",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/StudentWithoutId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/Student"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/api/students/{id}": {
+            "put": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Edit all information of a specific student",
+                "description": "Edit all information of a specific student",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of a student",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "student",
+                        "in": "body",
+                        "description": "All information updated of a student",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/StudentWithoutId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student information was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/StudentWithoutId"
+                        }
+                    }
+                }
+            },
+
+            "delete": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Delete all information of a specific student",
+                "description": "Delete all information of a specific student",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of a student",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student was deleted successfully."
+                        
+                    }
+                }
+            }
+
+
         }
+
+        
+
+
     },
     "definitions": {
         "StudentDTO": {
@@ -116,6 +237,49 @@
                     "type": "integer",
                     "uniqueItems": true
                 },
+                "fullName": {
+                    "type": "string"
+                },
+                "statusName": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "mail": {
+                    "type": "string"
+                },
+                "cellphone": {
+                    "type": "integer"
+                },
+                "nodeName": {
+                    "type": "string"
+                },
+                "graduationYear": {
+                    "type": "integer"
+                },
+                "quarter": {
+                    "type": "integer"
+                },
+                "englishLevel": {
+                    "type": "string"
+                },
+                "firstJobName": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "isEmployed": {
+                    "type": "boolean"
+                },
+                "module": {
+                    "type": "string"
+                }
+            }
+        },
+        "StudentWithoutId": {
+            "properties": {
                 "fullName": {
                     "type": "string"
                 },

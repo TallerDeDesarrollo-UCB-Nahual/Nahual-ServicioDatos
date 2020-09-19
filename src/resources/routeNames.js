@@ -15,12 +15,13 @@ module.exports = {
 		url: '/modules'
 	},
 	students: {
-		graduated: {
+		url:'/students',
+		graduates: {
 			url: '/graduates',
-			unemployeds: {
+			unemployes: {
 				url: '/unemployes'
 			}
-    },
-    url: '/students'
-	}
+		}
+	},
+   
 };
