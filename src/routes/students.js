@@ -11,7 +11,7 @@ router.get(routeNames.emptyUrl, async (request, response) => {
 });
 
 router.get('/:id', async (request, response) => {
-  const allGraduates = await studentService.findGraduatedById(request.params.id);
+  const allGraduates = await studentService.findGraduateById(request.params.id);
   response.set('Content-type', 'application/json');
   response.end(JSON.stringify(allGraduates));
 });
