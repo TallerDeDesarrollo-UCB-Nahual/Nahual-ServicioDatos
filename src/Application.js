@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
-
+const cors = require('cors');
 const nodes = require('./routes/nodes');
 const englishLevel = require('./routes/englishLevel');
 const graduates = require('./routes/graduates');
@@ -15,6 +15,7 @@ const swaggerDocument = require('./config/swagger.json');
 class Application {
 	constructor() {
 		this.express = express();
+		this.setUpCors();
 		this.setUpExpress();
 		this.setUpRoutes();
 		this.setUpSwagger();
@@ -50,6 +51,11 @@ class Application {
 	setUpSwagger() {
 		this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}
+
+	setUpCors() {
+		this.express.use(cors());
+	}
+
 }
 
 module.exports = new Application().express;
