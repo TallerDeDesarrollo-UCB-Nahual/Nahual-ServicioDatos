@@ -4,12 +4,12 @@ const StudentService = {
 	findStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll();
 		allStudents = allStudents.map(x => x.dataValues);
-		return { 'resultSet': allStudents };
+		return { 'response': allStudents };
 	},
 	
 	findGraduateById: async (studentId) => {
 		let graduate = await StudentModel.findByPk(studentId)
-		return graduate;
+		return { 'response': graduate };
 	},
 	findGraduateStudents: async (request, response) => {
 		let allStudents = await StudentModel.findAll({
@@ -18,7 +18,7 @@ const StudentService = {
 			}
 		});
 		allStudents = allStudents.map(x => x.dataValues);
-		return { 'resultSet': allStudents };
+		return { 'response': allStudents };
 	},
 	registerGradutateStudents: async (request, response) => {
 		var students = request.body
@@ -77,7 +77,7 @@ const StudentService = {
 			where: parameters
 		});
 		allUnemployedGraduates = allUnemployedGraduates.map(x => new StudentDTO(x.dataValues));
-		return { 'resultSet': allUnemployedGraduates };
+		return { 'response': allUnemployedGraduates };
 	}
 }
 
