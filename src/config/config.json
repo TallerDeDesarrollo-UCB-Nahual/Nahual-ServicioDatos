@@ -1,0 +1,35 @@
+{
+  "development": {
+    "username": "<username>",
+    "password": "<password>",
+    "database": "nahual",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "define": {
+      "schema": "public",
+      "timestamps": false
+    }
+  },
+  "test": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": null,
+    "dialect": null,
+    "define": {
+      "schema": "public",
+      "timestamps": false
+    }
+  },
+  "production": {
+    "username": "hxolizihehoiak",
+    "password": "0e33b9b76a2de3cec04f0559381cae26143475118361e57c49c9cedd4cd59002",
+    "database": "d8g3abcrjmgv0a",
+    "host": "ec2-54-236-146-234.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "define": {
+      "schema": "public",
+      "timestamps": false
+    }
+  }
+}
