@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "test": "jest",
     "create-schema": "npx sequelize-cli db:migrate",
     "seeder": "npx sequelize-cli db:seed:all",
     "heroku-postbuild": "npm run -s create-schema && npm run -s seeder"
@@ -29,7 +30,9 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^4.0.2"
   }
 }
