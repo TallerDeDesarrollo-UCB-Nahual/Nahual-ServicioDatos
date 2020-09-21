@@ -2,16 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
-
 const nodes = require('./routes/nodes');
 const englishLevel = require('./routes/englishLevel');
 const graduates = require('./routes/graduates');
 const students = require('./routes/students')
 const modules = require('./routes/modules');
 const ROUTE_URL = '/api';
-
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/swagger.json');
+
 class Application {
 	constructor() {
 		this.express = express();
