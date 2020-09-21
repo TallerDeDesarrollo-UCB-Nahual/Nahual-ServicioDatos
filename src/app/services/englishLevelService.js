@@ -3,7 +3,7 @@ const EnglishLevelService = {
 	findAll: async (request, response) => {
 		let allEnglishLevels = await EnglishLevelModel.findAll();
 		allEnglishLevels = allEnglishLevels.map(x => x.dataValues);
-		return { 'resultSet': allEnglishLevels };
+		return { 'response': allEnglishLevels };
 	}
 }
 

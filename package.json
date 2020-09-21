@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "create-schema": "npx sequelize-cli db:migrate",
+    "seeder": "npx sequelize-cli db:seed:all",
+    "heroku-postbuild": "npm run -s create-schema && npm run -s seeder"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
   "homepage": "https://github.com/TallerDeDesarrollo-UCB/Nahual-ServicioDatos#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "pg": "^8.3.3",
     "sequelize": "^6.3.5",
