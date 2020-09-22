@@ -11,11 +11,11 @@
     }
   },
   "test": {
-    "username": null,
-    "password": null,
-    "database": null,
-    "host": null,
-    "dialect": null,
+    "username": "nwahrzfi",
+    "password": "ZFBt51NRMUttZEbSdzpDq9Ci_qKvZdBo",
+    "database": "nwahrzfi",
+    "host": "lallah.db.elephantsql.com",
+    "dialect": "postgres",
     "define": {
       "schema": "public",
       "timestamps": false
