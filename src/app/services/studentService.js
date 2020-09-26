@@ -11,7 +11,8 @@ const StudentService = {
 		let graduate = await Student.findByPk(studentId)
 		return { 'response': graduate };
 	},
-	findGraduateStudents: async (request, response) => {
+	
+	findGraduateStudents: async () => {
 		let allStudents = await Student.findAll({
 			where: {
 				statusName: 'Egresade'

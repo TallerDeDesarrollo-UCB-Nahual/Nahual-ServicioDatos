@@ -12,14 +12,12 @@ router.get(routeNames.students.graduates.unemployes.url, async (request, respons
   parameters.statusName = 'Egresade';
   parameters.isEmployed = false;
   const result = await studentService.findUnemployeGraduateStudents(parameters);
-  response.set('Content-type', 'application/json');
-  response.end(JSON.stringify(result));
+  response.send(result);
 });
 
 router.get(routeNames.emptyUrl, async (request, response) => {
-	const allGraduates = await studentService.findGraduateStudents(request, response);
-	response.set('Content-type', 'application/json');
-	response.end(JSON.stringify(allGraduates));
+	const allGraduates = await studentService.findGraduateStudents();
+	response.send(allGraduates);
 });
 
 router.post(routeNames.emptyUrl, jsonParser, async (request, response) => {
@@ -29,8 +27,7 @@ router.post(routeNames.emptyUrl, jsonParser, async (request, response) => {
 
 router.get('/:id', async (request, response) => {
   const allGraduates = await studentService.findGraduateById(request.params.id);
-  response.set('Content-type', 'application/json');
-  response.end(JSON.stringify(allGraduates));
+  response.send(allGraduates);
 });
 
 module.exports = router;
