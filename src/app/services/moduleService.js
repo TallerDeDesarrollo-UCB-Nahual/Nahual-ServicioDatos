@@ -1,7 +1,7 @@
-const ModuleModel = require('../models/module');
+const { Module } = require('../models');
 const ModuleService = {
 	findAll: async (request, response) => {
-		let allModules = await ModuleModel.findAll();
+		let allModules = await Module.findAll();
 		allModules = allModules.map(x => x.dataValues);
 		return { 'response': allModules };
 	}

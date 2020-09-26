@@ -1,18 +1,18 @@
-const StudentModel = require('../models/student');
+const { Student } = require('../models');
 const StudentDTO = require('../models/DTOs/studentDTO');
 const StudentService = {
 	findStudents: async (request, response) => {
-		let allStudents = await StudentModel.findAll();
+		let allStudents = await Student.findAll();
 		allStudents = allStudents.map(x => x.dataValues);
 		return { 'response': allStudents };
 	},
 	
 	findGraduateById: async (studentId) => {
-		let graduate = await StudentModel.findByPk(studentId)
+		let graduate = await Student.findByPk(studentId)
 		return { 'response': graduate };
 	},
 	findGraduateStudents: async (request, response) => {
-		let allStudents = await StudentModel.findAll({
+		let allStudents = await Student.findAll({
 			where: {
 				statusName: 'Egresade'
 			}
@@ -24,9 +24,9 @@ const StudentService = {
 		var students = request.body
 		
 		students.forEach(async student => {
-			await StudentModel.count({where:{fullName:student.fullName}}).then(async count=>{
+			await Student.count({where:{fullName:student.fullName}}).then(async count=>{
 				if(count!=0){
-					await StudentModel.update(student, {
+					await Student.update(student, {
 						where:{
 							fullName:student.fullName,
 							statusName:'Egresade' 
@@ -34,7 +34,7 @@ const StudentService = {
 					})
 				}
 				else{
-					await StudentModel.create(student, {
+					await Student.create(student, {
 						where:{
 							statusName:'Egresade' 
 						}
@@ -47,7 +47,7 @@ const StudentService = {
 
 	updateStudent: async (request, response) => {
         try {
-            const result = await StudentModel.update(request.body,
+            const result = await Student.update(request.body,
             {where:{id:request.params.id}});
             return {message : "Student information was updated successfully.", student:request.body };
         } catch (error) {
@@ -56,7 +56,7 @@ const StudentService = {
 	},
 	createStudent: async (request, response) => {
         try {
-            const result = await StudentModel.create(request.body);
+            const result = await Student.create(request.body);
             return {message : "Student was created successfully.",result};
         } catch (error) {
            throw error;
@@ -64,7 +64,7 @@ const StudentService = {
 	},
 	deleteStudent: async (request, response) => {
         try {
-            const result = await StudentModel.destroy(
+            const result = await Student.destroy(
             {where:{id:request.params.id}});
             return {message : "Student was deleted successfully.",result};
         } catch (error) {
@@ -73,7 +73,7 @@ const StudentService = {
 	},
 
 	findUnemployeGraduateStudents: async (parameters) => {
-		let allUnemployedGraduates = await StudentModel.findAll({
+		let allUnemployedGraduates = await Student.findAll({
 			where: parameters
 		});
 		allUnemployedGraduates = allUnemployedGraduates.map(x => new StudentDTO(x.dataValues));
