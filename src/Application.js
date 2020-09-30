@@ -3,58 +3,59 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeNames = require('./resources/routeNames');
 const cors = require('cors');
-const nodes = require('./routes/nodes');
-const englishLevel = require('./routes/englishLevel');
-const graduates = require('./routes/graduates');
-const students = require('./routes/students')
-const modules = require('./routes/modules');
+const nodos = require('./routes/nodos');
+const nivelIngles = require('./routes/nivelIngles');
+const egresades = require('./routes/egresades');
+const estudiantes = require('./routes/estudiantes')
+const modulos = require('./routes/modulos');
 const ROUTE_URL = '/api';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/swagger.json');
 
 class Application {
-	constructor() {
-		this.express = express();
-		this.setUpCors();
-		this.setUpExpress();
-		this.setUpRoutes();
-		this.setUpSwagger();
-		this.setUpNotFoundRoute();
-		this.setUpPort();
-	}
+    constructor() {
+        this.express = express();
+        this.setUpCors();
+        this.setUpExpress();
+        this.setUpRoutes();
+        this.setUpSwagger();
+        this.setUpNotFoundRoute();
+        this.setUpPort();
+    }
 
-	setUpRoutes() {
-		this.express.use(ROUTE_URL + routeNames.nodes.url, nodes);
-		this.express.use(ROUTE_URL + routeNames.englishLevels.url, englishLevel);
-		this.express.use(ROUTE_URL + routeNames.students.graduates.url, graduates);
-		this.express.use(ROUTE_URL + routeNames.students.url, students);
-		this.express.use(ROUTE_URL + routeNames.modules.url, modules);
-	}
+    setUpRoutes() {
+        this.express.use(ROUTE_URL + routeNames.nodos.url, nodos);
+        this.express.use(ROUTE_URL + routeNames.nivelIngles.url, nivelIngles);
+        this.express.use(ROUTE_URL + routeNames.estudiantes.egresades.url, egresades);
+        this.express.use(ROUTE_URL + routeNames.estudiantes.url, estudiantes);
+        this.express.use(ROUTE_URL + routeNames.modulos.url, modulos);
 
-	setUpExpress() {
-		this.express.use(bodyParser.json())
-		this.express.use(bodyParser.urlencoded({ extended: false }));
-	}
+    }
 
-	setUpPort() {
-		this.express.set('port', process.env.PORT || 8000);
-	}
+    setUpExpress() {
+        this.express.use(bodyParser.json())
+        this.express.use(bodyParser.urlencoded({ extended: false }));
+    }
 
-	setUpNotFoundRoute() {
-		this.express.use((request, response, next) => {
-			const error = new Error("Resource not found");
-			error.status = 404;
-			next(error);
-		});
-	}
+    setUpPort() {
+        this.express.set('port', process.env.PORT || 8000);
+    }
 
-	setUpSwagger() {
-		this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-	}
+    setUpNotFoundRoute() {
+        this.express.use((request, response, next) => {
+            const error = new Error("Resource not found");
+            error.status = 404;
+            next(error);
+        });
+    }
 
-	setUpCors() {
-		this.express.use(cors());
-	}
+    setUpSwagger() {
+        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    }
+
+    setUpCors() {
+        this.express.use(cors());
+    }
 
 }
 
