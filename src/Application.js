@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-const routeNames = require('./resources/routeNames');
+const routeNames = require('./resources/nombresRutas');
 const cors = require('cors');
 const nodos = require('./routes/nodos');
 const nivelIngles = require('./routes/nivelIngles');

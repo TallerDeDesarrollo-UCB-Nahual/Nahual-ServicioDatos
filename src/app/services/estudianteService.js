@@ -1,17 +1,17 @@
 const EstudianteModel = require('../models/estudiante');
 const EstudianteDTO = require('../models/DTOs/estudianteDTO');
 const EstudianteService = {
-    findStudents: async(request, response) => {
+    encontrarEstudiantes: async(request, response) => {
         let todosLosEstudiantes = await EstudianteModel.findAll();
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
 
-    findGraduateById: async(estudianteId) => {
+    encontrarEgresadePorId: async(estudianteId) => {
         let egresade = await EstudianteModel.findByPk(estudianteId)
         return { 'response': egresade };
     },
-    findGraduateStudents: async(request, response) => {
+    encontrarEstudiantesEgresades: async(request, response) => {
         let todosLosEstudiantes = await EstudianteModel.findAll({
             where: {
                 nombreEstado: 'Egresade'
@@ -20,7 +20,7 @@ const EstudianteService = {
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
-    registerGradutateStudents: async(request, response) => {
+    registrarEstudiantesEgresades: async(request, response) => {
         var estudiantes = request.body
 
         estudiantes.forEach(async estudiante => {
@@ -44,33 +44,33 @@ const EstudianteService = {
         return 200
     },
 
-    updateStudent: async(request, response) => {
+    actualizarEstudiante: async(request, response) => {
         try {
-            const result = await EstudianteModel.update(request.body, { where: { id: request.params.id } });
-            let Student = await EstudianteModel.findByPk(request.params.id);
-            return { message: "El estudiante fue actualizado exitosamente", Student };
+            const resultado = await EstudianteModel.update(request.body, { where: { id: request.params.id } });
+            let estudiante = await EstudianteModel.findByPk(request.params.id);
+            return { message: "El estudiante fue actualizado exitosamente", Estudiante: estudiante };
         } catch (error) {
             throw error;
         }
     },
-    createStudent: async(request, response) => {
+    crearEstudiante: async(request, response) => {
         try {
-            const result = await EstudianteModel.create(request.body);
-            return { message: "El estudiante fue creado exitosamente", result };
+            const resultado = await EstudianteModel.create(request.body);
+            return { message: "El estudiante fue creado exitosamente", result: resultado };
         } catch (error) {
             throw error;
         }
     },
-    deleteStudent: async(request, response) => {
+    eliminarEstudiante: async(request, response) => {
         try {
-            const result = await EstudianteModel.destroy({ where: { id: request.params.id } });
-            return { message: "El Estudiante  fue eliminado exitosamente", result };
+            const resultado = await EstudianteModel.destroy({ where: { id: request.params.id } });
+            return { message: "El Estudiante  fue eliminado exitosamente", result: resultado };
         } catch (error) {
             throw error;
         }
     },
 
-    findUnemployeGraduateStudents: async(parameters) => {
+    encontrarEstudiantesEgresadesDesempleados: async(parameters) => {
         let todosLosEgresadesDesempleados = await EstudianteModel.findAll({
             where: parameters
         });
