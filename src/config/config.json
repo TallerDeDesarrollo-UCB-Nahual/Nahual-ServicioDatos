@@ -1,16 +1,9 @@
 {
     "development": {
-        "username": "nlebbqxhlaisvz",
-        "password": "b3b0531ba96615174ddf16e4bbff2135f1f81c5d6651a5d4ba8701017026e8a7",
-        "database": "d8e3hsj7nnh61r",
-        "host": "ec2-34-197-188-147.compute-1.amazonaws.com",
-        "dialectOptions": {
-            "ssl": {
-                "require": true,
-                "rejectUnauthorized": false
-            }
-        },
-        "port": "5432",
+        "username": "<username>",
+        "password": "<password>",
+        "database": "nahual",
+        "host": "127.0.0.1",
         "dialect": "postgres",
         "define": {
             "schema": "public",
