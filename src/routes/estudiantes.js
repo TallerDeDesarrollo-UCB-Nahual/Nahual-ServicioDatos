@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const estudianteService = require('../app/services/estudianteService');
-const routeNames = require('../resources/nombresRutas')
+const nombresRutas = require('../resources/nombresRutas')
 
-router.get(routeNames.emptyUrl, async(request, response) => {
+router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEstudiantes(request, response);
     response.set('Content-type', 'application/json');
     response.end(JSON.stringify(todosLosEgresades));
@@ -24,7 +24,7 @@ router.put('/:id', async(request, response) => {
         console.log(error);
     }
 });
-router.post(routeNames.emptyUrl, async(request, response) => {
+router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await estudianteService.crearEstudiante(request, response);
         response.status(200).send(result);

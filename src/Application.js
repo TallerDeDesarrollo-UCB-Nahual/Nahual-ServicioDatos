@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-const routeNames = require('./resources/nombresRutas');
+const nombresRutas = require('./resources/nombresRutas');
 const cors = require('cors');
 const nodos = require('./routes/nodos');
 const nivelIngles = require('./routes/nivelIngles');
@@ -24,11 +24,11 @@ class Application {
     }
 
     setUpRoutes() {
-        this.express.use(ROUTE_URL + routeNames.nodos.url, nodos);
-        this.express.use(ROUTE_URL + routeNames.nivelIngles.url, nivelIngles);
-        this.express.use(ROUTE_URL + routeNames.estudiantes.egresades.url, egresades);
-        this.express.use(ROUTE_URL + routeNames.estudiantes.url, estudiantes);
-        this.express.use(ROUTE_URL + routeNames.modulos.url, modulos);
+        this.express.use(ROUTE_URL + nombresRutas.nodos.url, nodos);
+        this.express.use(ROUTE_URL + nombresRutas.nivelIngles.url, nivelIngles);
+        this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
+        this.express.use(ROUTE_URL + nombresRutas.estudiantes.url, estudiantes);
+        this.express.use(ROUTE_URL + nombresRutas.modulos.url, modulos);
 
     }
 
