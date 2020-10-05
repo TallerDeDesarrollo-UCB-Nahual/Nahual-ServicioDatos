@@ -74,7 +74,7 @@ const EstudianteService = {
         let todosLosEgresadesDesempleados = await EstudianteModel.findAll({
             where: parameters
         });
-        todosLosEgresadesDesempleados = todosLosEgresadesDesempleados.map(x => new EstudianteDTO(x.dataValues));
+        //todosLosEgresadesDesempleados = todosLosEgresadesDesempleados.map(x => new EstudianteModel(x.dataValues));
         return { 'response': todosLosEgresadesDesempleados };
     }
 }
