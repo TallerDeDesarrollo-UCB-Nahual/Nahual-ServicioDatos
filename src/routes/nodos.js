@@ -6,8 +6,7 @@ const nodoService = require('../app/services/nodoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosNodos = await nodoService.encontrarTodosLosNodos(request, response);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosNodos));
+    response.send(todosLosNodos)
 });
 
 module.exports = router;

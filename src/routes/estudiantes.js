@@ -6,14 +6,12 @@ const nombresRutas = require('../resources/nombresRutas')
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEstudiantes(request, response);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosEgresades));
+    response.send(todosLosEgresades)
 });
 
 router.get('/:id', async(request, response) => {
     const egresade = await estudianteService.encontrarEgresadePorId(request.params.id);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(egresade));
+    response.send(egresade);
 });
 
 router.put('/:id', async(request, response) => {
@@ -24,6 +22,7 @@ router.put('/:id', async(request, response) => {
         console.log(error);
     }
 });
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await estudianteService.crearEstudiante(request, response);

@@ -1,18 +1,19 @@
-const EstudianteModel = require('../models/estudiante');
+const { Estudiante } = require('../models');
 const EstudianteDTO = require('../models/DTOs/estudianteDTO');
 const EstudianteService = {
     encontrarEstudiantes: async(request, response) => {
-        let todosLosEstudiantes = await EstudianteModel.findAll();
+        let todosLosEstudiantes = await Estudiante.findAll();
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
 
     encontrarEgresadePorId: async(estudianteId) => {
-        let egresade = await EstudianteModel.findByPk(estudianteId)
+        let egresade = await Estudiante.findByPk(estudianteId)
         return { 'response': egresade };
     },
+
     encontrarEstudiantesEgresades: async(request, response) => {
-        let todosLosEstudiantes = await EstudianteModel.findAll({
+        let todosLosEstudiantes = await Estudiante.findAll({
             where: {
                 nombreEstado: 'Egresade'
             }
@@ -20,20 +21,21 @@ const EstudianteService = {
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
+
     registrarEstudiantesEgresades: async(request, response) => {
         var estudiantes = request.body
 
         estudiantes.forEach(async estudiante => {
-            await EstudianteModel.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
                 if (count != 0) {
-                    await EstudianteModel.update(estudiante, {
+                    await Estudiante.update(estudiante, {
                         where: {
                             nombreCompleto: estudiante.nombreCompleto,
                             nombreEstado: 'Egresade'
                         }
                     })
                 } else {
-                    await EstudianteModel.create(estudiante, {
+                    await Estudiante.create(estudiante, {
                         where: {
                             nombreEstado: 'Egresade'
                         }
@@ -46,24 +48,26 @@ const EstudianteService = {
 
     actualizarEstudiante: async(request, response) => {
         try {
-            const resultado = await EstudianteModel.update(request.body, { where: { id: request.params.id } });
-            let estudiante = await EstudianteModel.findByPk(request.params.id);
+            const resultado = await Estudiante.update(request.body, { where: { id: request.params.id } });
+            let estudiante = await Estudiante.findByPk(request.params.id);
             return { message: "El estudiante fue actualizado exitosamente", Estudiante: estudiante };
         } catch (error) {
             throw error;
         }
     },
+
     crearEstudiante: async(request, response) => {
         try {
-            const resultado = await EstudianteModel.create(request.body);
+            const resultado = await Estudiante.create(request.body);
             return { message: "El estudiante fue creado exitosamente", result: resultado };
         } catch (error) {
             throw error;
         }
     },
+    
     eliminarEstudiante: async(request, response) => {
         try {
-            const resultado = await EstudianteModel.destroy({ where: { id: request.params.id } });
+            const resultado = await Estudiante.destroy({ where: { id: request.params.id } });
             return { message: "El Estudiante  fue eliminado exitosamente", result: resultado };
         } catch (error) {
             throw error;
@@ -71,7 +75,7 @@ const EstudianteService = {
     },
 
     encontrarEstudiantesEgresadesDesempleados: async(parameters) => {
-        let todosLosEgresadesDesempleados = await EstudianteModel.findAll({
+        let todosLosEgresadesDesempleados = await Estudiante.findAll({
             where: parameters
         });
         //todosLosEgresadesDesempleados = todosLosEgresadesDesempleados.map(x => new EstudianteModel(x.dataValues));

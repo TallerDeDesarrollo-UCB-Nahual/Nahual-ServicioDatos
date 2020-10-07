@@ -1,10 +1,9 @@
-const sequelize = require('../../config/sequelizeconfiguration').sequelize;
-const DataTypes = require('../../config/sequelizeconfiguration').datatype;
-const Estudiante = sequelize.define('Estudiante', {
+module.exports = (sequelize, DataTypes) => {
+  const Estudiante = sequelize.define('Estudiante', {
     'id': {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
     'nombreCompleto': DataTypes.STRING,
     'nombreEstado': DataTypes.STRING,
@@ -19,5 +18,6 @@ const Estudiante = sequelize.define('Estudiante', {
     'linkedin': DataTypes.STRING,
     'esEmpleado': DataTypes.BOOLEAN,
     'modulo': DataTypes.STRING
-});
-module.exports = Estudiante;
+  });
+  return Estudiante;
+}

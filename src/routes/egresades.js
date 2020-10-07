@@ -12,14 +12,12 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
     parameters.nombreEstado = 'Egresade';
     parameters.esEmpleado = false;
     const result = await estudianteService.encontrarEstudiantesEgresadesDesempleados(parameters);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(result));
+    response.send(result);
 });
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresades(request, response);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosEgresades));
+    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresades();
+    response.send(todosLosEgresades);
 });
 
 router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {
@@ -29,8 +27,7 @@ router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {
 
 router.get('/:id', async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEgresadePorId(request.params.id);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosEgresades));
+    response.send(todosLosEgresades);
 });
 
 module.exports = router;

@@ -6,8 +6,7 @@ const moduloService = require('../app/services/moduloService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosModulos = await moduloService.encontrarTodosLosModulos(request, response);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosModulos));
+    response.send(todosLosModulos);
 });
 
 module.exports = router;

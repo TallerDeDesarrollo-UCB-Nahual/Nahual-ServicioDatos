@@ -1,10 +1,13 @@
-const sequelize = require('../../config/sequelizeconfiguration').sequelize;
-const DataTypes = require('../../config/sequelizeconfiguration').datatype;
-const Modulo = sequelize.define('Modulo', {
+const { DataTypes } = require("sequelize/types");
+const { sequelize } = require(".");
+
+module.exports = (sequelize, DataTypes) => {
+  const Modulo = sequelize.define('Modulo', {
     'id': {
-        type: DataTypes.INTEGER,
-        primaryKey: true
+      type: DataTypes.INTEGER,
+      primaryKey: true
     },
     'nombre': DataTypes.STRING
-});
-module.exports = Modulo;
+  });
+  return Modulo;
+}

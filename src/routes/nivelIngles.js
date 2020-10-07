@@ -6,8 +6,7 @@ const nivelInglesService = require('../app/services/nivelInglesService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosNivelesIngles = await nivelInglesService.encontrarTodosLosNivelesIngles(request, response);
-    response.set('Content-type', 'application/json');
-    response.end(JSON.stringify(todosLosNivelesIngles));
+    response.send(todosLosNivelesIngles);
 });
 
 module.exports = router;

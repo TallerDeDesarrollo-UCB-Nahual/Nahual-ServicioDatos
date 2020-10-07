@@ -1,7 +1,7 @@
-const NodoModel = require('../models/nodo');
+const { Nodo } = require('../models');
 const NodoService = {
     encontrarTodosLosNodos: async(request, response) => {
-        let todosLosNodos = await NodoModel.findAll();
+        let todosLosNodos = await Nodo.findAll();
         todosLosNodos = todosLosNodos.map(x => x.dataValues);
         return { 'response': todosLosNodos };
     }
