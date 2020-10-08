@@ -1,5 +1,7 @@
 const { Estudiante } = require('../models');
 const EstudianteDTO = require('../models/DTOs/estudianteDTO');
+const Sequelize = require('sequelize');
+
 const EstudianteService = {
     encontrarEstudiantes: async(request, response) => {
         let todosLosEstudiantes = await Estudiante.findAll();
@@ -80,7 +82,26 @@ const EstudianteService = {
         });
         //todosLosEgresadesDesempleados = todosLosEgresadesDesempleados.map(x => new EstudianteModel(x.dataValues));
         return { 'response': todosLosEgresadesDesempleados };
+    },
+
+    
+    encontrarEstudiantesEgresadesPorNombre: async(parameters) => {
+        const Op = Sequelize.Op;
+        console.log(parameters)
+        let todosLosEgresadesPorNombre = await Estudiante.findAll({
+            where: {
+                nombreCompleto: {
+                  [Op.startsWith]: parameters.nombreCompleto
+                }
+              }
+            //where:{ nombreCompleto: {
+            //    [Op.startsWith]: parameters.nombreCompleto
+            //  }}
+        });
+        
+        return { 'response': todosLosEgresadesPorNombre };
     }
+
 }
 
 module.exports = EstudianteService;

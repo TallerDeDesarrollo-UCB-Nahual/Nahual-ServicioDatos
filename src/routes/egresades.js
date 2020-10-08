@@ -7,6 +7,15 @@ const estudianteService = require('../app/services/estudianteService');
 
 var jsonParser = bodyParser.json()
 
+router.get(nombresRutas.emptyUrl, async(request, response) => {
+    let parameters = request.query;
+    parameters.nombreEstado = 'Egresade';
+    const result = await estudianteService.encontrarEstudiantesEgresadesPorNombre(parameters);
+    response.set('Content-type', 'application/json');
+    response.end(JSON.stringify(result));
+});
+
+
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
     parameters.nombreEstado = 'Egresade';
