@@ -87,12 +87,13 @@ const EstudianteService = {
     
     encontrarEstudiantesEgresadesPorNombre: async(parameters) => {
         const Op = Sequelize.Op;
-        console.log(parameters)
+        //console.log(parameters)
         let todosLosEgresadesPorNombre = await Estudiante.findAll({
             where: {
                 nombreCompleto: {
-                  [Op.startsWith]: parameters.nombreCompleto
-                }
+                  [Op.startsWith]: parameters.nombreCompleto ||""
+                },
+                nombreEstado: 'Egresade'
               }
             //where:{ nombreCompleto: {
             //    [Op.startsWith]: parameters.nombreCompleto

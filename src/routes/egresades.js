@@ -9,7 +9,7 @@ var jsonParser = bodyParser.json()
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    //parameters.nombreEstado = 'Egresade';
     const result = await estudianteService.encontrarEstudiantesEgresadesPorNombre(parameters);
     response.set('Content-type', 'application/json');
     response.end(JSON.stringify(result));
