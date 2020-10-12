@@ -16,6 +16,15 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 
+router.get('/DTO', async(request, response) => {
+    let parameters = request.query;
+    //parameters.nombreEstado = 'Egresade';
+    const result = await estudianteService.encontrarEstudiantesEgresadesPorNombreDTO(parameters);
+    response.set('Content-type', 'application/json');
+    response.end(JSON.stringify(result));
+});
+
+
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
     parameters.nombreEstado = 'Egresade';
@@ -24,8 +33,21 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
     response.send(result);
 });
 
+router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
+    let parameters = request.query;
+    parameters.nombreEstado = 'Egresade';
+    parameters.esEmpleado = false;
+    const result = await estudianteService.encontrarEstudiantesEgresadesDesempleadosDTO(parameters);
+    response.send(result);
+});
+
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresades();
+    response.send(todosLosEgresades);
+});
+
+router.get('/DTO', async(request, response) => {
+    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresadesDTO();
     response.send(todosLosEgresades);
 });
 
@@ -36,6 +58,11 @@ router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {
 
 router.get('/:id', async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEgresadePorId(request.params.id);
+    response.send(todosLosEgresades);
+});
+
+router.get('/:id/DTO', async(request, response) => {
+    const todosLosEgresades = await estudianteService.encontrarEgresadePorIdDTO(request.params.id);
     response.send(todosLosEgresades);
 });
 

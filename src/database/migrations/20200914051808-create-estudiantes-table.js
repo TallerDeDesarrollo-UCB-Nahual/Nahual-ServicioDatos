@@ -29,8 +29,12 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true
             },
-            nombreNodo: {
-                type: Sequelize.STRING,
+            sedeId: {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            nodoId: {
+                type: Sequelize.INTEGER,
                 allowNull: true
             },
             añoGraduacion: {
@@ -41,8 +45,8 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true
             },
-            nivelIngles: {
-                type: Sequelize.STRING,
+            nivelInglesId: {
+                type: Sequelize.INTEGER,
                 allowNull: true
             },
             nombrePrimerTrabajo: {

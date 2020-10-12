@@ -8,6 +8,9 @@ module.exports = {
     nodos: {
         url: '/nodos'
     },
+    sedes: {
+        url: '/sedes'
+    },
     nivelIngles: {
         url: '/nivel-ingles'
     },

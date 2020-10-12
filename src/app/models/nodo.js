@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    'nombre': DataTypes.STRING
+    'nombre': DataTypes.STRING,
+    'SedeId': DataTypes.INTEGER
   });
+  Nodo.associate = function(models){
+    Nodo.belongsTo(models.Sede, {foreignKey: 'SedeId', as: 'sede'})
+};
   return Nodo;
 }

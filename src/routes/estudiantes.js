@@ -9,8 +9,18 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosEgresades)
 });
 
+router.get('/DTO', async(request, response) => {
+    const todosLosEgresades = await estudianteService.encontrarEstudiantesDTO(request, response);
+    response.send(todosLosEgresades)
+});
+
 router.get('/:id', async(request, response) => {
-    const egresade = await estudianteService.encontrarEgresadePorId(request.params.id);
+    const egresade = await estudianteService.encontrarEstudiantePorId(request.params.id);
+    response.send(egresade);
+});
+
+router.get('/:id/DTO', async(request, response) => {
+    const egresade = await estudianteService.encontrarEstudianteDTOPorId(request.params.id);
     response.send(egresade);
 });
 
