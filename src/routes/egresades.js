@@ -9,8 +9,10 @@ var jsonParser = bodyParser.json()
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parameters = request.query;
-    //parameters.nombreEstado = 'Egresade';
-    const result = await estudianteService.encontrarEstudiantesEgresadesPorNombre(parameters);
+    parameters.nombreEstado = 'Egresade';
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
     response.set('Content-type', 'application/json');
     response.end(JSON.stringify(result));
 });
@@ -20,13 +22,10 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
     let parameters = request.query;
     parameters.nombreEstado = 'Egresade';
     parameters.esEmpleado = false;
-    const result = await estudianteService.encontrarEstudiantesEgresadesDesempleados(parameters);
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
     response.send(result);
-});
-
-router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresades();
-    response.send(todosLosEgresades);
 });
 
 router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {

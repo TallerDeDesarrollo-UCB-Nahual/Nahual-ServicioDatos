@@ -3,8 +3,12 @@ const EstudianteDTO = require('../models/DTOs/estudianteDTO');
 const Sequelize = require('sequelize');
 
 const EstudianteService = {
-    encontrarEstudiantes: async(request, response) => {
-        let todosLosEstudiantes = await Estudiante.findAll();
+    encontrarEstudiantes: async(parameters) => {
+        const pagina = parameters.pagina - 1;
+        let todosLosEstudiantes = await Estudiante.findAll({
+            offset: pagina * 10,
+            limit: 10
+        });
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
@@ -12,16 +16,6 @@ const EstudianteService = {
     encontrarEgresadePorId: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId)
         return { 'response': egresade };
-    },
-
-    encontrarEstudiantesEgresades: async(request, response) => {
-        let todosLosEstudiantes = await Estudiante.findAll({
-            where: {
-                nombreEstado: 'Egresade'
-            }
-        });
-        todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
-        return { 'response': todosLosEstudiantes };
     },
 
     registrarEstudiantesEgresades: async(request, response) => {
@@ -75,31 +69,18 @@ const EstudianteService = {
             throw error;
         }
     },
-
-    encontrarEstudiantesEgresadesDesempleados: async(parameters) => {
-        let todosLosEgresadesDesempleados = await Estudiante.findAll({
+ 
+    encontrarEstudiantesEgresades: async(parameters) => {
+        const Op = Sequelize.Op;
+        const pagina = parameters.pagina-1;
+        delete parameters.pagina;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        let todosLosEgresadesPorNombre = await Estudiante.findAll({
+            offset: pagina * 10,
+            limit: 10,
             where: parameters
         });
-        //todosLosEgresadesDesempleados = todosLosEgresadesDesempleados.map(x => new EstudianteModel(x.dataValues));
-        return { 'response': todosLosEgresadesDesempleados };
-    },
-
-    
-    encontrarEstudiantesEgresadesPorNombre: async(parameters) => {
-        const Op = Sequelize.Op;
-        //console.log(parameters)
-        let todosLosEgresadesPorNombre = await Estudiante.findAll({
-            where: {
-                nombreCompleto: {
-                  [Op.startsWith]: parameters.nombreCompleto ||""
-                },
-                nombreEstado: 'Egresade'
-              }
-            //where:{ nombreCompleto: {
-            //    [Op.startsWith]: parameters.nombreCompleto
-            //  }}
-        });
-        
         return { 'response': todosLosEgresadesPorNombre };
     }
 
