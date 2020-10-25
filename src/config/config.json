@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "<username>",
-        "password": "<password>",
-        "database": "nahual",
-        "host": "127.0.0.1",
+        "username": "nwahrzfi",
+        "password": "ZFBt51NRMUttZEbSdzpDq9Ci_qKvZdBo",
+        "database": "nwahrzfi",
+        "host": "lallah.db.elephantsql.com",
         "dialect": "postgres",
         "define": {
             "schema": "public",

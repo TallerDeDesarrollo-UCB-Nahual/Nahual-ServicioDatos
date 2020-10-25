@@ -74,12 +74,18 @@ const EstudianteService = {
         const Op = Sequelize.Op;
         const pagina = parameters.pagina-1;
         delete parameters.pagina;
+        const criterioDeOrden = parameters.ordenarPor || 'id';
+        delete parameters.ordenarPor;
+        const sentidoDeOrden = criterioDeOrden ==='añoGraduacion' ? 'DESC':'ASC';
         if('nombreCompleto' in parameters)
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEgresadesPorNombre = await Estudiante.findAll({
             offset: pagina * 10,
             limit: 10,
-            where: parameters
+            where: parameters,
+            order: [
+                [criterioDeOrden, sentidoDeOrden]
+              ]
         });
         return { 'response': todosLosEgresadesPorNombre };
     }
