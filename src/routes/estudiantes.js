@@ -6,7 +6,6 @@ const nombresRutas = require('../resources/nombresRutas')
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parameters = request.query;
-    console.log(parameters);
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const todosLosEgresades = await estudianteService.encontrarEstudiantes(parameters);
@@ -14,7 +13,10 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 router.get('/DTO', async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantesDTO(request, response);
+    let parameters = request.query;
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const todosLosEgresades = await estudianteService.encontrarEstudiantesDTO(parameters);
     response.send(todosLosEgresades)
 });
 

@@ -20,8 +20,10 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 
 router.get('/DTO', async(request, response) => {
     let parameters = request.query;
-    //parameters.nombreEstado = 'Egresade';
-    const result = await estudianteService.encontrarEstudiantesEgresadesPorNombreDTO(parameters);
+    parameters.nombreEstado = 'Egresade';
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
     response.set('Content-type', 'application/json');
     response.end(JSON.stringify(result));
 });
@@ -41,7 +43,9 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(r
     let parameters = request.query;
     parameters.nombreEstado = 'Egresade';
     parameters.esEmpleado = false;
-    const result = await estudianteService.encontrarEstudiantesEgresadesDesempleadosDTO(parameters);
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
     response.send(result);
 });
 

@@ -24,6 +24,13 @@ class EstudianteDTO {
     obtenerEstudianteDTO() {
         return this.estudianteDTO;
     }
+
+    static obtenerEstudiantesDTO(listaEstudiantes) {
+        return listaEstudiantes.map((estudiante) => {
+            const estudianteDTO = new EstudianteDTO(estudiante).obtenerEstudianteDTO();
+            return estudianteDTO;
+        });
+    }
 }
 
 module.exports = EstudianteDTO;
