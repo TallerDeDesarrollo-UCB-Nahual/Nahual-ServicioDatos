@@ -2,16 +2,16 @@
 const express = require('express');
 const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
-const nodoService = require('../app/services/nodoService');
+const sedeService = require('../app/services/sedeService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosNodos = await nodoService.encontrarTodosLosNodos(request, response);
-    response.send(todosLosNodos)
+    const sedes = await sedeService.encontrarTodasLasSedes(request, response);
+    response.send(sedes)
 });
 
 router.put(nombresRutas.emptyUrl, async(request, response) => {
     try {
-        const result = await nodoService.actualizarNodo(request, response);
+        const result = await sedeService.actualizarSede(request, response);
         response.status(200).send(result);
     } catch (error) {
         console.log(error);
@@ -20,7 +20,7 @@ router.put(nombresRutas.emptyUrl, async(request, response) => {
 
 router.delete(nombresRutas.emptyUrl, async(request, response) => {
     try {
-        const result = await nodoService.eliminarNodo(request, response);
+        const result = await sedeService.eliminarSede(request, response);
         response.status(200).send(result);
     } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ router.delete(nombresRutas.emptyUrl, async(request, response) => {
 
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
-        const result = await nodoService.crearNodo(request, response);
+        const result = await sedeService.crearSede(request, response);
         response.status(200).send(result);
     } catch (error) {
         console.log(error);

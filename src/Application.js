@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nombresRutas = require('./resources/nombresRutas');
 const cors = require('cors');
+const sedes = require('./routes/sedes');
 const nodos = require('./routes/nodos');
 const nivelIngles = require('./routes/nivelIngles');
 const egresades = require('./routes/egresades');
@@ -24,6 +25,7 @@ class Application {
     }
 
     setUpRoutes() {
+        this.express.use(ROUTE_URL + nombresRutas.sedes.url, sedes);
         this.express.use(ROUTE_URL + nombresRutas.nodos.url, nodos);
         this.express.use(ROUTE_URL + nombresRutas.nivelIngles.url, nivelIngles);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
