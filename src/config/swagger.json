@@ -11,14 +11,13 @@
     },
     "host": "localhost:8000",
     "basePath": "/api",
-    "tags": [
-        {
-            "name": "Graduates",
-            "description": "API for graduates in the system"
+    "tags": [{
+            "name": "Egresades",
+            "description": "API para egresades en el sistema"
         },
         {
-            "name": "Students",
-            "description": "API for students in the system"
+            "name": "Estudiantes",
+            "description": "API para estudiantes en el sistema"
         }
     ],
     "schemes": [
@@ -31,24 +30,23 @@
         "application/json"
     ],
     "paths": {
-        "/graduates/unemployes": {
+        "/egresades/desempleados": {
             "get": {
                 "tags": [
-                    "Graduates"
+                    "Egresades"
                 ],
-                "summary": "Get all unemployes graduates",
-                "description": "Get all unemployes graduates",
-                "parameters": [
-                    {
-                        "name": "module",
+                "summary": "Obtener todos los egresades desempleades",
+                "description": "Obtener todos los egresades desempleades",
+                "parameters": [{
+                        "name": "modulo",
                         "in": "query",
-                        "description": "Filter by module",
+                        "description": "Filtrar por modulo",
                         "type": "string"
                     },
                     {
-                        "name": "englishLevel",
+                        "name": "nivelIngles",
                         "in": "query",
-                        "description": "Filter by English level",
+                        "description": "Filtrar por nivel de ingles",
                         "type": "string"
                     }
                 ],
@@ -56,125 +54,118 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/unemployesGraduates"
+                            "$ref": "#/definitions/egresadesDesempleados"
                         }
                     }
                 }
             }
         },
-        "/students/{id}": {
+        "/estudiantes/{id}": {
             "get": {
                 "tags": [
-                    "Students"
+                    "Estudiantes"
                 ],
-                "summary": "Get all information of a student",
-                "description": "Get all information of a student",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of a student",
-                        "type": "integer"
-                    }
-                ],
+                "summary": "Obtener toda la informacion de un estudiante",
+                "description": "Obtener toda la informacion de un estudiante",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID de un estudiante",
+                    "type": "integer"
+                }],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Student"
+                            "$ref": "#/definitions/Estudiante"
                         }
                     }
                 }
             }
         },
 
-        "/api/graduates": {
+        "/egresades": {
             "post": {
                 "tags": [
-                    "Students"
+                    "Estudiantes"
                 ],
-                "summary": "Post all information of many student",
-                "description": "Post all information of many student",
-                "parameters": [
-                    {
-                        "name": "List of students [{student#1},{student#2},{student#3}]",
-                        "in": "body",
-                        "description": "All information of many student",
-                        "type": "string",
-                        "schema": {
-                            "$ref": "#/definitions/StudentWithoutId"
-                        }
+                "summary": "Enviar la informacion de muchos estudiantes",
+                "description": "Enviar la informacion de muchos estudiantes",
+                "parameters": [{
+                    "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
+                    "in": "body",
+                    "description": "Toda la informacion de muchos estudiantes",
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/EstudianteSinId"
                     }
-                ],
+                }],
                 "responses": {
                     "200": {
-                        "description": "Success"
-                        
+                        "description": "Exitoso"
+
                     }
                 }
             }
         },
 
-        "/api/students": {
+        "/estudiantes": {
             "post": {
                 "tags": [
-                    "Students"
+                    "Estudiantes"
                 ],
-                "summary": "Post all information of a student",
-                "description": "Post all information of a student",
-                "parameters": [
-                    {
-                        "name": "student",
-                        "in": "body",
-                        "description": "All information of a student",
-                        "type": "string",
-                        "schema": {
-                            "$ref": "#/definitions/StudentWithoutId"
-                        }
+                "summary": "Enviar toda la informacion de un estudiante",
+                "description": "Enviar toda la informacion de un estudiante",
+                "parameters": [{
+                    "name": "estudiante",
+                    "in": "body",
+                    "description": "Toda la informacion de un estudiante",
+                    "type": "string",
+                    "schema": {
+                        "$ref": "#/definitions/EstudianteSinId"
                     }
-                ],
+                }],
                 "responses": {
                     "200": {
-                        "description": "Student was created successfully",
+                        "description": "El estudiante fue creado exitosamente",
                         "schema": {
-                            "$ref": "#/definitions/Student"
+                            "$ref": "#/definitions/Estudiante"
                         }
                     }
                 }
             }
         },
 
-        "/api/students/{id}": {
+        "/estudiantes/{id}": {
             "put": {
                 "tags": [
-                    "Students"
+                    "Estudiantes"
                 ],
-                "summary": "Edit all information of a specific student",
-                "description": "Edit all information of a specific student",
-                "parameters": [
-                    {
+                "summary": "Editar toda la informacion de un estudiante especifico",
+                "description": "Editar toda la informacion de un estudiante especifico",
+                "parameters": [{
                         "name": "id",
                         "in": "path",
                         "required": true,
-                        "description": "ID of a student",
+                        "description": "ID del estudiante",
                         "type": "integer"
                     },
                     {
-                        "name": "student",
+                        "name": "estudiante",
                         "in": "body",
-                        "description": "All information updated of a student",
+                        "description": "Toda la informacion actualizada de un estudiante",
                         "type": "string",
                         "schema": {
-                            "$ref": "#/definitions/StudentWithoutId"
+                            "$ref": "#/definitions/EstudianteSinId"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Student information was updated successfully",
+                        "description": "La informacion del estudiante fue actualizada exitosamente",
                         "schema": {
-                            "$ref": "#/definitions/StudentWithoutId"
+                            "$ref": "#/definitions/EstudianteSinId"
                         }
                     }
                 }
@@ -182,23 +173,21 @@
 
             "delete": {
                 "tags": [
-                    "Students"
+                    "Estudiantes"
                 ],
-                "summary": "Delete all information of a specific student",
-                "description": "Delete all information of a specific student",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID of a student",
-                        "type": "integer"
-                    }
-                ],
+                "summary": "Elimina a un estudiante especifico",
+                "description": "Elimina a un estudiante especifico",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID del estudiante",
+                    "type": "integer"
+                }],
                 "responses": {
                     "200": {
-                        "description": "Student was deleted successfully."
-                        
+                        "description": "Estudiante fue eliminado exitosamente."
+
                     }
                 }
             }
@@ -206,124 +195,124 @@
 
         }
 
-        
+
 
 
     },
     "definitions": {
-        "StudentDTO": {
+        "EstudianteDTO": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "fullName": {
+                "nombreCompleto": {
                     "type": "string"
                 },
-                "finishedCourses": {
+                "cursosTerminados": {
                     "type": "string"
                 },
-                "englishLevel": {
+                "nivelIngles": {
                     "type": "string"
                 },
-                "node": {
+                "nodo": {
                     "type": "string"
                 }
             }
         },
-        "Student": {
+        "Estudiante": {
             "properties": {
                 "id": {
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "fullName": {
+                "nombreCompleto": {
                     "type": "string"
                 },
-                "statusName": {
+                "nombreEstado": {
                     "type": "string"
                 },
-                "birthDate": {
+                "fechaNacimiento": {
                     "type": "string"
                 },
-                "mail": {
+                "correo": {
                     "type": "string"
                 },
-                "cellphone": {
+                "celular": {
                     "type": "integer"
                 },
-                "nodeName": {
+                "nombreNodo": {
                     "type": "string"
                 },
-                "graduationYear": {
+                "añoGraduacion": {
                     "type": "integer"
                 },
-                "quarter": {
+                "cuatrimestre": {
                     "type": "integer"
                 },
-                "englishLevel": {
+                "nivelIngles": {
                     "type": "string"
                 },
-                "firstJobName": {
+                "nombrePrimerTrabajo": {
                     "type": "string"
                 },
                 "linkedin": {
                     "type": "string"
                 },
-                "isEmployed": {
+                "esEmpleado": {
                     "type": "boolean"
                 },
-                "module": {
+                "modulo": {
                     "type": "string"
                 }
             }
         },
-        "StudentWithoutId": {
+        "EstudianteSinId": {
             "properties": {
-                "fullName": {
+                "nombreCompleto": {
                     "type": "string"
                 },
-                "statusName": {
+                "nombreEstado": {
                     "type": "string"
                 },
-                "birthDate": {
+                "fechaNacimiento": {
                     "type": "string"
                 },
-                "mail": {
+                "correo": {
                     "type": "string"
                 },
-                "cellphone": {
+                "celular": {
                     "type": "integer"
                 },
-                "nodeName": {
+                "nombreNodo": {
                     "type": "string"
                 },
-                "graduationYear": {
+                "añoGraduacion": {
                     "type": "integer"
                 },
-                "quarter": {
+                "cuatrimestre": {
                     "type": "integer"
                 },
-                "englishLevel": {
+                "nivelIngles": {
                     "type": "string"
                 },
-                "firstJobName": {
+                "nombrePrimerTrabajo": {
                     "type": "string"
                 },
                 "linkedin": {
                     "type": "string"
                 },
-                "isEmployed": {
+                "esEmpleado": {
                     "type": "boolean"
                 },
-                "module": {
+                "modulo": {
                     "type": "string"
                 }
             }
         },
-        "unemployesGraduates": {
+        "egresadesDesempleados": {
             "type": "array",
-            "$ref": "#/definitions/StudentDTO"
+            "$ref": "#/definitions/EstudianteDTO"
         }
     }
 }
