@@ -7,7 +7,9 @@ const Sequelize = require('sequelize');
 const { nivelIngles } = require('../../resources/nombresRutas');
 
 const EstudianteService = {
-    encontrarEstudiantes: async(request, response) => {
+
+    encontrarEstudiantes: async(parameters) => {
+        const pagina = parameters.pagina - 1;
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -28,7 +30,9 @@ const EstudianteService = {
             {
                 model: NivelIngles,
                 as: 'nivelIngles',
-            }]
+            }],
+            offset: pagina * 10,
+            limit: 10
         });
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
@@ -177,36 +181,6 @@ const EstudianteService = {
         return { 'response': estudianteDTO.obtenerEstudianteDTO() };
     },
 
-    encontrarEstudiantesEgresades: async(request, response) => {
-        let todosLosEstudiantes = await Estudiante.findAll({
-            where: {
-                nombreEstado: 'Egresade'
-            },
-            attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
-            include: [
-            {
-                model: Sede,
-                as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
-            },
-            {
-                model: Nodo,
-                as: 'nodo',
-                attributes: {exclude: ['SedeId']}
-            },
-            {
-                model: NivelIngles,
-                as: 'nivelIngles',
-            }]
-        });
-        todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
-        return { 'response': todosLosEstudiantes };
-    },
-
     encontrarEstudiantesEgresadesDTO: async(request, response) => {
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
@@ -240,7 +214,7 @@ const EstudianteService = {
         });
         return { 'response': todosLosEstudiantes };
     },
-
+  
     registrarEstudiantesEgresades: async(request, response) => {
         var estudiantes = request.body
 
@@ -352,18 +326,17 @@ const EstudianteService = {
         });
         return { 'response': todosLosEgresadesDesempleados };
     },
-
-    
-    encontrarEstudiantesEgresadesPorNombre: async(parameters) => {
+ 
+    encontrarEstudiantesEgresades: async(parameters) => {
         const Op = Sequelize.Op;
-        //console.log(parameters)
+        const pagina = parameters.pagina-1;
+        delete parameters.pagina;
+        const criterioDeOrden = parameters.ordenarPor || 'id';
+        delete parameters.ordenarPor;
+        const sentidoDeOrden = criterioDeOrden ==='añoGraduacion' ? 'DESC':'ASC';
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEgresadesPorNombre = await Estudiante.findAll({
-            where: {
-                nombreCompleto: {
-                  [Op.startsWith]: parameters.nombreCompleto ||""
-                },
-                nombreEstado: 'Egresade'
-            },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
             {
@@ -383,16 +356,16 @@ const EstudianteService = {
             {
                 model: NivelIngles,
                 as: 'nivelIngles',
-            }]
-            //where:{ nombreCompleto: {
-            //    [Op.startsWith]: parameters.nombreCompleto
-            //  }}
+            }],
+            offset: pagina * 10,
+            limit: 10,
+            where: parameters,
+            order: [
+                [criterioDeOrden, sentidoDeOrden]
+              ]
         });
-
-        
-        
         return { 'response': todosLosEgresadesPorNombre };
-    },
+    }
 
     encontrarEstudiantesEgresadesPorNombreDTO: async(parameters) => {
         const Op = Sequelize.Op;
@@ -434,8 +407,6 @@ const EstudianteService = {
             estudianteDTO = new EstudianteDTO(estudiante).obtenerEstudianteDTO();
             return estudianteDTO;
         });
-        return { 'response': todosLosEgresadesPorNombre };
-    }
 
 }
 

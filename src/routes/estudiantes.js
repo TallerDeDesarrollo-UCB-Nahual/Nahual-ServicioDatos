@@ -5,7 +5,11 @@ const estudianteService = require('../app/services/estudianteService');
 const nombresRutas = require('../resources/nombresRutas')
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantes(request, response);
+    let parameters = request.query;
+    console.log(parameters);
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const todosLosEgresades = await estudianteService.encontrarEstudiantes(parameters);
     response.send(todosLosEgresades)
 });
 
