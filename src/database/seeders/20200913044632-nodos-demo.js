@@ -7,6 +7,12 @@ module.exports = {
             },
             {
                 nombre: 'Santa Fe',
+            },
+            {
+                nombre: 'Banfield',
+            },
+            {
+                nombre: 'Ituzaingó'
             }
         ]);
     },

@@ -1,9 +1,9 @@
 {
     "development": {
-        "username": "postgres",
-        "password": "root",
-        "database": "nahual",
-        "host": "localhost",
+        "username": "nwahrzfi",
+        "password": "ZFBt51NRMUttZEbSdzpDq9Ci_qKvZdBo",
+        "database": "nwahrzfi",
+        "host": "lallah.db.elephantsql.com",
         "dialect": "postgres",
         "define": {
             "schema": "public",
