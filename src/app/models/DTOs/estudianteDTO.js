@@ -1,4 +1,8 @@
 'use strict';
+
+const { Estudiante } = require("../estudiante");
+const { Sede } = require("../sede");
+
 class EstudianteDTO {
     
     constructor(estudiante) {
@@ -21,15 +25,32 @@ class EstudianteDTO {
         }
     }
 
-    obtenerEstudianteDTO() {
+    obtenerDtoDeEstudiante() {
         return this.estudianteDTO;
     }
 
-    static obtenerEstudiantesDTO(listaEstudiantes) {
+    static obtenerDtoDeListaEstudiantes(listaEstudiantes) {
         return listaEstudiantes.map((estudiante) => {
-            const estudianteDTO = new EstudianteDTO(estudiante).obtenerEstudianteDTO();
+            const estudianteDTO = new EstudianteDTO(estudiante).obtenerDtoDeEstudiante();
             return estudianteDTO;
         });
+    }
+
+    static obtenerEstudianteDeDTO(estudianteDTO) {
+        const nivelInglesId = Estudiante.findOne({
+            where: {
+                nombre: estudianteDTO.nivelIngles,
+            }
+        }).id;
+        const sedeEncontrado = Sede.findOne({
+            where: {
+                nombre: estudianteDTO.sede,
+            }
+        });
+        const sedeId = sedeEncontrado.id;
+        const nodoId = sedeEncontrado.NodoId;
+        const { nivelIngles, sede, nodo, ...estudianteInfo} = estudianteDTO;
+        return { ...estudianteInfo, nivelInglesId, sedeId, nodoId };
     }
 }
 

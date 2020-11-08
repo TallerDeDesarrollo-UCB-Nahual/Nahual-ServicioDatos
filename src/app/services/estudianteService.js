@@ -73,7 +73,7 @@ const EstudianteService = {
             offset: pagina * 10,
             limit: 10
         });
-        todosLosEstudiantes = EstudianteDTO.obtenerEstudiantesDTO(todosLosEstudiantes);
+        todosLosEstudiantes = EstudianteDTO.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
     },
 
@@ -141,7 +141,7 @@ const EstudianteService = {
             }]
         })
         let estudianteDTO = new EstudianteDTO(egresade);
-        return { 'response': estudianteDTO.obtenerEstudianteDTO() };
+        return { 'response': estudianteDTO.obtenerDtoDeEstudiante() };
     },
 
     encontrarEstudiantePorId: async(estudianteId) => {
@@ -202,13 +202,37 @@ const EstudianteService = {
             }]
         })
         let estudianteDTO = new EstudianteDTO(egresade);
-        return { 'response': estudianteDTO.obtenerEstudianteDTO() };
+        return { 'response': estudianteDTO.obtenerDtoDeEstudiante() };
     },
   
     registrarEstudiantesEgresades: async(request, response) => {
         var estudiantes = request.body
 
         estudiantes.forEach(async estudiante => {
+            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+                if (count != 0) {
+                    await Estudiante.update(estudiante, {
+                        where: {
+                            nombreCompleto: estudiante.nombreCompleto,
+                            estadoId: 4
+                        }
+                    })
+                } else {
+                    await Estudiante.create(estudiante, {
+                        where: {
+                            estadoId: 4
+                        }
+                    })
+                }
+            })
+        })
+        return 200
+    },
+
+    registrarEstudiantesEgresadesDTO: async(request, response) => {
+        var estudiantesDTO = request.body;
+        estudiantesDTO.forEach(async estudianteDTO => {
+            const estudiante = EstudianteDTO.obtenerEstudianteDeDTO(estudianteDTO); 
             await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
                 if (count != 0) {
                     await Estudiante.update(estudiante, {
@@ -345,7 +369,7 @@ const EstudianteService = {
                 [criterioDeOrden, sentidoDeOrden]
               ]
         });
-        todosLosEstudiantes = EstudianteDTO.obtenerEstudiantesDTO(todosLosEstudiantes);
+        todosLosEstudiantes = EstudianteDTO.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
     },
 }
