@@ -3,20 +3,22 @@
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Cursos', [{
-                nodo: 'Caba-Kleer',
                 horarioInicio: '10:00:00',
                 horarioFin: '15:00:00',
                 profesores: 'Hector Hidalgo',
                 notas: 'Es basico',
-                PeriodoId: 1
+                PeriodoId: 1,
+                NodoId: 1,
+                SedeId: 1
             },
             {
-                nodo: 'Caba-Kleer',
                 horarioInicio: '12:00:00',
                 horarioFin: '15:00:00',
                 profesores: 'Hector Hidalgo',
                 notas: 'Es dificil',
-                PeriodoId: 2
+                PeriodoId: 2,
+                NodoId: 1,
+                SedeId: 1
             }
         ]);
     },

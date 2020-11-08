@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      'nodo': DataTypes.STRING,
+      'NodoId': DataTypes.INTEGER,
+      'SedeId': DataTypes.INTEGER,
       'horarioInicio': DataTypes.TIME,
       'horarioFin': DataTypes.TIME,
       'profesores': DataTypes.STRING,
@@ -13,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       'PeriodoId': DataTypes.INTEGER,
     }, {});
     Curso.associate = function(models){
-      Curso.belongsTo(models.Periodo, {foreignKey: 'PeriodoId', as: 'periodo'})
+      Curso.belongsTo(models.Periodo, {foreignKey: 'PeriodoId', as: 'periodo'}),
+      Curso.belongsTo(models.Nodo, { foreignKey: 'NodoId', as: 'nodo' }),
+      Curso.belongsTo(models.Sede, { foreignKey: 'SedeId', as: 'sede' }),
     };
     return Curso;
 }

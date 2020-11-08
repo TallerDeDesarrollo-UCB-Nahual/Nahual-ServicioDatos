@@ -9,10 +9,6 @@ module.exports = {
                 autoIncrement: true,
                 allowNull: false
             },
-            nodo: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
             horarioInicio: {
                 type: Sequelize.TIME,
                 allowNull: true
@@ -30,6 +26,14 @@ module.exports = {
                 allowNull: true
             },
             PeriodoId: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
+            NodoId: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
+            SedeId: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             }

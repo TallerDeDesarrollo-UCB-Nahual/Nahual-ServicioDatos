@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     'nombre': DataTypes.STRING
   });
   Nodo.associate = function(models){
-    Nodo.hasMany(models.Sede, {as: 'sedes'})
+    Nodo.hasMany(models.Sede, {as: 'sedes'});
+    Nodo.hasMany(models.Curso, { as: 'cursos' });
   };
   return Nodo;
 }
