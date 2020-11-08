@@ -9,7 +9,7 @@ var jsonParser = bodyParser.json()
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
@@ -20,7 +20,7 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 
 router.get('/DTO', async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
@@ -31,7 +31,7 @@ router.get('/DTO', async(request, response) => {
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.esEmpleado = false;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
@@ -41,7 +41,7 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.esEmpleado = false;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;

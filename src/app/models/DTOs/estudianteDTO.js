@@ -5,7 +5,7 @@ class EstudianteDTO {
         this.estudianteDTO = {
             'id': estudiante.id,
             'nombreCompleto': estudiante.nombreCompleto,
-            'nombreEstado': estudiante.nombreEstado,
+            'Estado': estudiante.estado.nombre,
             'fechaNacimiento': estudiante.fechaNacimiento,
             'correo': estudiante.correo,
             'celular': estudiante.celular,

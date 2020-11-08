@@ -1,6 +1,7 @@
 const { Estudiante } = require('../models');
 const { Sede } = require('../models');
 const { Nodo } = require('../models');
+const { Estado } = require('../models');
 const { NivelIngles } = require('../models');
 const EstudianteDTO = require('../models/DTOs/estudianteDTO');
 const Sequelize = require('sequelize');
@@ -26,6 +27,10 @@ const EstudianteService = {
                     as: 'sedes',
                     attributes: {exclude: ['NodoId']}
                 }
+            },
+            {
+                model: Estado,
+                as: 'estado',
             },
             {
                 model: NivelIngles,
@@ -58,6 +63,10 @@ const EstudianteService = {
                 }
             },
             {
+                model: Estado,
+                as: 'estado',
+            },
+            {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
@@ -71,7 +80,7 @@ const EstudianteService = {
     encontrarEgresadePorId: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                nombreEstado: 'Egresade'
+                estadoId: 4
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -88,6 +97,10 @@ const EstudianteService = {
                     as: 'sedes',
                     attributes: {exclude: ['NodoId']}
                 }
+            },
+            {
+                model: Estado,
+                as: 'estado',
             },
             {
                 model: NivelIngles,
@@ -100,7 +113,7 @@ const EstudianteService = {
     encontrarEgresadePorIdDTO: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                nombreEstado: 'Egresade'
+                estadoId: 4
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -117,6 +130,10 @@ const EstudianteService = {
                     as: 'sedes',
                     attributes: {exclude: ['NodoId']}
                 }
+            },
+            {
+                model: Estado,
+                as: 'estado',
             },
             {
                 model: NivelIngles,
@@ -146,6 +163,10 @@ const EstudianteService = {
                 }
             },
             {
+                model: Estado,
+                as: 'estado',
+            },
+            {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }]
@@ -172,6 +193,10 @@ const EstudianteService = {
                 }
             },
             {
+                model: Estado,
+                as: 'estado',
+            },
+            {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }]
@@ -189,13 +214,13 @@ const EstudianteService = {
                     await Estudiante.update(estudiante, {
                         where: {
                             nombreCompleto: estudiante.nombreCompleto,
-                            nombreEstado: 'Egresade'
+                            estadoId: 4
                         }
                     })
                 } else {
                     await Estudiante.create(estudiante, {
                         where: {
-                            nombreEstado: 'Egresade'
+                            estadoId: 4
                         }
                     })
                 }
@@ -259,6 +284,10 @@ const EstudianteService = {
                 }
             },
             {
+                model: Estado,
+                as: 'estado',
+            },
+            {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
@@ -283,7 +312,7 @@ const EstudianteService = {
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
-                nombreEstado: 'Egresade'
+                estadoId: 4
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -300,6 +329,10 @@ const EstudianteService = {
                     as: 'sedes',
                     attributes: {exclude: ['NodoId']}
                 }
+            },
+            {
+                model: Estado,
+                as: 'estado',
             },
             {
                 model: NivelIngles,

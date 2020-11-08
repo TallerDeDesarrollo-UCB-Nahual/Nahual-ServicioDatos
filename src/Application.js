@@ -6,6 +6,7 @@ const cors = require('cors');
 const sedes = require('./routes/sedes');
 const nodos = require('./routes/nodos');
 const nivelIngles = require('./routes/nivelIngles');
+const estados = require('./routes/estados');
 const egresades = require('./routes/egresades');
 const estudiantes = require('./routes/estudiantes')
 const modulos = require('./routes/modulos');
@@ -27,6 +28,7 @@ class Application {
     setUpRoutes() {
         this.express.use(ROUTE_URL + nombresRutas.sedes.url, sedes);
         this.express.use(ROUTE_URL + nombresRutas.nodos.url, nodos);
+        this.express.use(ROUTE_URL + nombresRutas.estados.url, estados);
         this.express.use(ROUTE_URL + nombresRutas.nivelIngles.url, nivelIngles);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.url, estudiantes);

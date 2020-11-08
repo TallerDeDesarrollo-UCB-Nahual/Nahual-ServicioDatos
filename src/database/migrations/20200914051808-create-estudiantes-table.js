@@ -13,8 +13,8 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            nombreEstado: {
-                type: Sequelize.STRING,
+            estadoId: {
+                type: Sequelize.INTEGER,
                 allowNull: false
             },
             fechaNacimiento: {
