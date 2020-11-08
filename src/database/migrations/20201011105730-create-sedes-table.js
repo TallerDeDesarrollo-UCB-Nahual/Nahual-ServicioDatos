@@ -12,6 +12,10 @@ module.exports = {
             nombre: {
                 type: Sequelize.STRING,
                 allowNull: false
+            },
+            NodoId: {
+                type: Sequelize.INTEGER,
+                allowNull: true
             }
         })
     },

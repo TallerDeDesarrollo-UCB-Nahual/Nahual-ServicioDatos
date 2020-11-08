@@ -16,16 +16,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -46,16 +46,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -78,16 +78,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -107,16 +107,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -134,16 +134,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -160,16 +160,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -247,16 +247,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,
@@ -290,16 +290,16 @@ const EstudianteService = {
             {
                 model: Sede,
                 as: 'sede',
-                include: {
-                    model: Nodo,
-                    as: 'nodos',
-                    attributes: {exclude: ['SedeId']}
-                }
+                attributes: {exclude: ['NodoId']}
             },
             {
                 model: Nodo,
                 as: 'nodo',
-                attributes: {exclude: ['SedeId']}
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
             },
             {
                 model: NivelIngles,

@@ -12,10 +12,6 @@ module.exports = {
             nombre: {
                 type: Sequelize.STRING,
                 allowNull: false
-            },
-            SedeId: {
-                type: Sequelize.INTEGER,
-                allowNull: false
             }
         })
     },
