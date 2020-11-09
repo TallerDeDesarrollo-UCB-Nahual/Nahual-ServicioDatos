@@ -1,11 +1,12 @@
 const { Estudiante } = require('../models');
 const { Sede } = require('../models');
-const { Nodo } = require('../models');
 const { Estado } = require('../models');
 const { NivelIngles } = require('../models');
 const EstudianteDTO = require('../models/DTOs/estudianteDTO');
 const Sequelize = require('sequelize');
 const { nivelIngles } = require('../../resources/nombresRutas');
+const EstudianteMapper = require('../models/mappers/estudianteMapper');
+const { Nodo } = require('../models');
 
 const EstudianteService = {
 
@@ -73,7 +74,7 @@ const EstudianteService = {
             offset: pagina * 10,
             limit: 10
         });
-        todosLosEstudiantes = EstudianteDTO.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
+        todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
     },
 
@@ -232,7 +233,27 @@ const EstudianteService = {
     registrarEstudiantesEgresadesDTO: async(request, response) => {
         var estudiantesDTO = request.body;
         estudiantesDTO.forEach(async estudianteDTO => {
-            const estudiante = EstudianteDTO.obtenerEstudianteDeDTO(estudianteDTO); 
+            const estudiante = await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
+            if(!estudiante.nodoId) {
+                const nodoCreado = await Nodo.create({
+                    nombre: estudianteDTO.nodo,
+                });
+                const sedeCreada = await nodoCreado.createSede({
+                    nombre: estudianteDTO.sede,
+                });
+                estudiante.nodoId = nodoCreado.id;
+                estudiante.sedeId = sedeCreada.id;
+            } else {
+                if(!estudiante.sedeId) {
+                    const sedeCreada = await Sede.create({
+                        nombre: estudianteDTO.sede,
+                        NodoId: estudiante.nodoId,
+                    });
+                    estudiante.sedeId = sedeCreada.id;
+                }
+            }
+            estudiante.estadoId = 4;
+            
             await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
                 if (count != 0) {
                     await Estudiante.update(estudiante, {
@@ -250,7 +271,7 @@ const EstudianteService = {
                 }
             })
         })
-        return 200
+        return 200;
     },
 
     actualizarEstudiante: async(request, response) => {
@@ -369,7 +390,79 @@ const EstudianteService = {
                 [criterioDeOrden, sentidoDeOrden]
               ]
         });
-        todosLosEstudiantes = EstudianteDTO.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
+        todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
+        return { 'response': todosLosEstudiantes };
+    },
+
+    encontrarEgresadesSinPaginacion: async (parameters) => {
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        let todosLosEgresadesPorNombre = await Estudiante.findAll({
+            attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
+            include: [
+            {
+                model: Sede,
+                as: 'sede',
+                attributes: {exclude: ['NodoId']}
+            },
+            {
+                model: Nodo,
+                as: 'nodo',
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
+            },
+            {
+                model: Estado,
+                as: 'estado',
+            },
+            {
+                model: NivelIngles,
+                as: 'nivelIngles',
+            }],
+            where: parameters,
+        });
+        return { 'response': todosLosEgresadesPorNombre };
+    },
+
+    encontrarEgresadesSinPaginacionDTO: async(parameters) => {
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        let todosLosEstudiantes = await Estudiante.findAll({
+            where: {
+                estadoId: 4
+            },
+            attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
+            include: [
+            {
+                model: Sede,
+                as: 'sede',
+                attributes: {exclude: ['NodoId']}
+            },
+            {
+                model: Nodo,
+                as: 'nodo',
+                include: {
+                    model: Sede,
+                    as: 'sedes',
+                    attributes: {exclude: ['NodoId']}
+                }
+            },
+            {
+                model: Estado,
+                as: 'estado',
+            },
+            {
+                model: NivelIngles,
+                as: 'nivelIngles',
+            }],
+            where: parameters,
+        });
+        todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
     },
 }
