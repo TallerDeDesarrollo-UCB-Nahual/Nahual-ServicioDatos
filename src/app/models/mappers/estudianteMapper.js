@@ -20,23 +20,23 @@ class EstudianteMapper {
         let nivelInglesId = null;
         const nivelInglesEncontrado = await NivelIngles.findOne({
             where: {
-                nombre: estudianteDTO.nivelIngles,
+                nombre: estudianteDTO.nivelIngles || null,
             }
         });
         nivelInglesId = nivelInglesEncontrado ? nivelInglesEncontrado.id : null;
         const nodoEncontrado = await Nodo.findOne({
             where: {
-                nombre: estudianteDTO.nodo,
+                nombre: estudianteDTO.nodo || null,
             }
         });
         if(nodoEncontrado){
             const sedeEncontrada = await nodoEncontrado.getSedes({
                 where: {
-                    nombre: estudianteDTO.sede,
+                    nombre: estudianteDTO.sede || null,
                 }
             });
             nodoId = nodoEncontrado.id;
-            sedeId = sedeEncontrada[0].id;
+            sedeId = sedeEncontrada ? sedeEncontrada[0].id : null;
         }
         const { nivelIngles, sede, nodo, ...estudianteInfo} = estudianteDTO;
         return { ...estudianteInfo, nivelInglesId, sedeId, nodoId };
