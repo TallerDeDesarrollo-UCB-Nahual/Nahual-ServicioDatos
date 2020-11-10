@@ -2,7 +2,7 @@ const { Nodo } = require('../models');
 const NodoService = {
     encontrarTodosLosNodos: async(request, response) => {
         let todosLosNodos = await Nodo.findAll({
-            attributes: {exclude: ['SedeId']},
+            attributes: {exclude: ['NodoId']},
             include: 'sedes'
         });
         todosLosNodos = todosLosNodos.map(x => x.dataValues);

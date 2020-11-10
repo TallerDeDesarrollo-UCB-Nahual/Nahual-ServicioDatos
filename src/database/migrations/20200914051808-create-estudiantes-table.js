@@ -64,6 +64,10 @@ module.exports = {
             modulo: {
                 type: Sequelize.STRING,
                 allowNull: true
+            },
+            zona: {
+                type: Sequelize.STRING,
+                allowNull: true,
             }
         })
     },

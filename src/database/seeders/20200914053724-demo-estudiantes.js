@@ -16,7 +16,8 @@ module.exports = {
                 'nombrePrimerTrabajo': 'Tsoft',
                 'linkedin': 'https://linkedin/clodomiro',
                 'esEmpleado': false,
-                'modulo': 'Testing funcional'
+                'modulo': 'Testing funcional',
+                'zona': 'El prado BA',
             },
             {
                 'nombreCompleto': 'Diego Figueroa',
