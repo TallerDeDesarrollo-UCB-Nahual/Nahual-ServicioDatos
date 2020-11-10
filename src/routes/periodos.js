@@ -6,7 +6,7 @@ const periodoService = require('../app/services/periodoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosPeriodos = await periodoService.encontrarTodosLosPeriodos(request, response);
-    response.send(todosLosNodos)
+    response.send(todosLosPeriodos)
 });
 
 router.post(nombresRutas.emptyUrl, async(request, response) => {

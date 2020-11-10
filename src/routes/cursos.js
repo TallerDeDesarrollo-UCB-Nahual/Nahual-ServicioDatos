@@ -6,7 +6,7 @@ const cursoService = require('../app/services/cursoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     const todosLosCursos = await cursoService.encontrarTodosCursos(request, response);
-    response.send(todosLosNodos)
+    response.send(todosLosCursos)
 });
 
 router.post(nombresRutas.emptyUrl, async(request, response) => {
