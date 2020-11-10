@@ -233,7 +233,7 @@ const EstudianteService = {
     registrarEstudiantesEgresadesDTO: async(request, response) => {
         var estudiantesDTO = request.body;
         estudiantesDTO.forEach(async estudianteDTO => {
-            const dtoTieneNodo = 'node' in estudiantesDTO;
+            const dtoTieneNodo = 'nodo' in estudiantesDTO;
             const dtoTieneSede = 'sede' in estudiantesDTO;
             const estudiante = await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
             if(!estudiante.nodoId && dtoTieneNodo) {

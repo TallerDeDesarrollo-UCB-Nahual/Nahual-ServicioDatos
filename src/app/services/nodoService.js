@@ -3,7 +3,7 @@ const NodoService = {
     encontrarTodosLosNodos: async(request, response) => {
         let todosLosNodos = await Nodo.findAll({
             attributes: {exclude: ['SedeId']},
-            include: 'sede'
+            include: 'sedes'
         });
         todosLosNodos = todosLosNodos.map(x => x.dataValues);
         return { 'response': todosLosNodos };

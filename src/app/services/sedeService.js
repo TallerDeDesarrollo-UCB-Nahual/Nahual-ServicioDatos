@@ -5,7 +5,7 @@ const SedeService = {
         let sedes = await Sede.findAll({
             include: {
                 model: Nodo,
-                as: 'nodos',
+                as: 'nodo',
                 attributes: {exclude: ['SedeId']}
             }
         });
