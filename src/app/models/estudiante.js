@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     'nombrePrimerTrabajo': DataTypes.STRING,
     'linkedin': DataTypes.STRING,
     'esEmpleado': DataTypes.BOOLEAN,
-    'modulo': DataTypes.STRING
+    'modulo': DataTypes.STRING,
   });
   Estudiante.associate = function(models){
     Estudiante.belongsTo(models.Sede, {foreignKey: 'sedeId', as: 'sede'}),

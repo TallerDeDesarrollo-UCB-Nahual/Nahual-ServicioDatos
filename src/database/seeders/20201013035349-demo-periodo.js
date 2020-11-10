@@ -5,13 +5,13 @@ module.exports = {
         return queryInterface.bulkInsert('Periodos', [{
                 anio: 1998,
                 periodo: 'C2',
-                topico: 'Testing Funcional',
+                topicoId: 1,
                 estado: true
             },
             {
                 anio: 1999,
                 periodo: 'C3',
-                topico: 'Testing Funcional',
+                topicoId: 1,
                 estado: false
             }
         ]);

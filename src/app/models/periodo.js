@@ -6,11 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       'anio': DataTypes.INTEGER,
       'periodo': DataTypes.STRING,
-      'topico': DataTypes.STRING,
+      'topicoId': DataTypes.INTEGER,
       'estado': DataTypes.BOOLEAN
     });
     Periodo.associate = function(models){
-      Periodo.hasMany(models.Curso, {as: 'cursos'})
+      Periodo.hasMany(models.Curso, {as: 'cursos'});
+      Periodo.belongsTo(models.Topico, {foreignKey: 'topicoId', as: 'topico'});
     };
     return Periodo;
   }
