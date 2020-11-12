@@ -9,6 +9,15 @@ const CursoService = {
         return { 'response': todosLosCursos };
     },
 
+    encontrarCursosPorPeriodo: async(request, response) => {
+        let todosLosCursos = await Curso.findAll({
+            attributes: {exclude: ['CursoId']},
+            include: 'curso'
+        });
+        todosLosCursos = todosLosCursos.map(x => x.dataValues);
+        return { 'response': todosLosCursos };
+    },
+
     crearCurso: async(request, response) => {
         try {
             const curso = await Curso.create(request.body);
