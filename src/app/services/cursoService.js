@@ -12,7 +12,13 @@ const CursoService = {
     encontrarCursosPorPeriodo: async(request, response) => {
         let todosLosCursos = await Curso.findAll({
             attributes: {exclude: ['CursoId']},
-            include: 'curso'
+            include:  [
+                {
+                    model: Periodo,
+                    as: 'periodo',
+                    attributes: {exclude: ['PeriodoId']}
+                },
+            ]
         });
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
         return { 'response': todosLosCursos };

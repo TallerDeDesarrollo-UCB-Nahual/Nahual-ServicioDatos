@@ -35,8 +35,8 @@ class Application {
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.url, estudiantes);
         this.express.use(ROUTE_URL + nombresRutas.modulos.url, modulos);
-        this.express.use(ROUTE_URL + nombresRutas.modulos.periodos.url, periodos);
-        this.express.use(ROUTE_URL + nombresRutas.modulos.cursos.url, cursos);
+        this.express.use(ROUTE_URL + nombresRutas.periodos.url, periodos);
+        this.express.use(ROUTE_URL + nombresRutas.cursos.url, cursos);
 
     }
 
