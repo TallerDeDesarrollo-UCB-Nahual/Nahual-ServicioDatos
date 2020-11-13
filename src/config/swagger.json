@@ -218,6 +218,31 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Enviar la informacion de un curso",
+                "description": "Enviar la informacion de un curso",
+                "parameters": [
+                    {
+                        "name": "Curso a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de un curso",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                }
             }
         }
     },
@@ -375,6 +400,31 @@
         "Cursos": {
             "type": "array",
             "$ref": "#/definitions/Curso"
+        },
+        "CursoAGuardar": {
+            "properties": {
+                "NodoId": {
+                    "type": "number"
+                },
+                "SedeId": {
+                    "type": "number"
+                },
+                "horarioInicio": {
+                    "type": "string"
+                },
+                "horarioFin": {
+                    "type": "string"
+                },
+                "profesores": {
+                    "type": "string"
+                },
+                "notas": {
+                    "type": "string"
+                },
+                "PeriodoId": {
+                    "type": "number"
+                }
+            }
         }
     }
 }
