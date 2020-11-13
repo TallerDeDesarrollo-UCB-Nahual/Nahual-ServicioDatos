@@ -1,7 +1,9 @@
 const { Periodo } = require('../models');
 const PeriodoService = {
-    encontrarTodosLosPeriodos: async(request, response) => {
-        let todosLosPeriodos = await Periodo.findAll();
+    encontrarTodosLosPeriodos: async(parametros) => {
+        let todosLosPeriodos = await Periodo.findAll({
+            where: parametros
+        });
         todosLosPeriodos = todosLosPeriodos.map(x => x.dataValues);
         return { 'response': todosLosPeriodos };
     },
