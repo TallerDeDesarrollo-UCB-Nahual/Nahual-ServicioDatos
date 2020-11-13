@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     const Periodo = sequelize.define('Periodo', {
       'id': {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       'anio': DataTypes.INTEGER,
       'periodo': DataTypes.STRING,
