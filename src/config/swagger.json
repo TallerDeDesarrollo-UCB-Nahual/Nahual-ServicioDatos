@@ -11,7 +11,8 @@
     },
     "host": "localhost:8000",
     "basePath": "/api",
-    "tags": [{
+    "tags": [
+        {
             "name": "Egresades",
             "description": "API para egresades en el sistema"
         },
@@ -37,7 +38,8 @@
                 ],
                 "summary": "Obtener todos los egresades desempleades",
                 "description": "Obtener todos los egresades desempleades",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "modulo",
                         "in": "query",
                         "description": "Filtrar por modulo",
@@ -67,13 +69,15 @@
                 ],
                 "summary": "Obtener toda la informacion de un estudiante",
                 "description": "Obtener toda la informacion de un estudiante",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID de un estudiante",
-                    "type": "integer"
-                }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un estudiante",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -82,69 +86,15 @@
                         }
                     }
                 }
-            }
-        },
-
-        "/egresades": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar la informacion de muchos estudiantes",
-                "description": "Enviar la informacion de muchos estudiantes",
-                "parameters": [{
-                    "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
-                    "in": "body",
-                    "description": "Toda la informacion de muchos estudiantes",
-                    "type": "string",
-                    "schema": {
-                        "$ref": "#/definitions/EstudianteSinId"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-
-                    }
-                }
-            }
-        },
-
-        "/estudiantes": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar toda la informacion de un estudiante",
-                "description": "Enviar toda la informacion de un estudiante",
-                "parameters": [{
-                    "name": "estudiante",
-                    "in": "body",
-                    "description": "Toda la informacion de un estudiante",
-                    "type": "string",
-                    "schema": {
-                        "$ref": "#/definitions/EstudianteSinId"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "El estudiante fue creado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/Estudiante"
-                        }
-                    }
-                }
-            }
-        },
-
-        "/estudiantes/{id}": {
+            },
             "put": {
                 "tags": [
                     "Estudiantes"
                 ],
                 "summary": "Editar toda la informacion de un estudiante especifico",
                 "description": "Editar toda la informacion de un estudiante especifico",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
@@ -170,34 +120,81 @@
                     }
                 }
             },
-
             "delete": {
                 "tags": [
                     "Estudiantes"
                 ],
                 "summary": "Elimina a un estudiante especifico",
                 "description": "Elimina a un estudiante especifico",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID del estudiante",
-                    "type": "integer"
-                }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del estudiante",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Estudiante fue eliminado exitosamente."
-
                     }
                 }
             }
-
-
+        },
+        "/egresades": {
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Enviar la informacion de muchos estudiantes",
+                "description": "Enviar la informacion de muchos estudiantes",
+                "parameters": [
+                    {
+                        "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
+                        "in": "body",
+                        "description": "Toda la informacion de muchos estudiantes",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                }
+            }
+        },
+        "/estudiantes": {
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Enviar toda la informacion de un estudiante",
+                "description": "Enviar toda la informacion de un estudiante",
+                "parameters": [
+                    {
+                        "name": "estudiante",
+                        "in": "body",
+                        "description": "Toda la informacion de un estudiante",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El estudiante fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Estudiante"
+                        }
+                    }
+                }
+            }
         }
-
-
-
-
     },
     "definitions": {
         "EstudianteDTO": {
