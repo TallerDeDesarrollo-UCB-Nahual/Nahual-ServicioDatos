@@ -194,6 +194,31 @@
                     }
                 }
             }
+        },
+        "/cursos": {
+            "get": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Obtener todos los cursos y tambien los cursos pertenecientes a un periodo (opcional)",
+                "description": "Obtener todos los cursos pertenecientes a un periodo",
+                "parameters": [
+                    {
+                        "name": "PeriodoId",
+                        "in": "query",
+                        "description": "Periodo Id a buscar",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cursos"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -310,6 +335,46 @@
         "egresadesDesempleados": {
             "type": "array",
             "$ref": "#/definitions/EstudianteDTO"
+        },
+        "Nodo": {
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Sede": {
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Curso": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "horarioInicio": {
+                    "type": "string"
+                },
+                "horarioFin": {
+                    "type": "string"
+                },
+                "nodo": {
+                    "type": "string",
+                    "$ref": "#/definitions/Nodo"
+                },
+                "sede": {
+                    "type": "string",
+                    "$ref": "#/definitions/Sede"
+                }
+            }
+        },
+        "Cursos": {
+            "type": "array",
+            "$ref": "#/definitions/Curso"
         }
     }
 }
