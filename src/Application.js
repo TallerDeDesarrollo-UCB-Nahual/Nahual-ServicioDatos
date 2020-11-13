@@ -10,6 +10,8 @@ const estados = require('./routes/estados');
 const egresades = require('./routes/egresades');
 const estudiantes = require('./routes/estudiantes')
 const modulos = require('./routes/modulos');
+const periodos = require('./routes/periodos');
+const cursos = require('./routes/cursos');
 const ROUTE_URL = '/api';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/swagger.json');
@@ -33,6 +35,8 @@ class Application {
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.url, estudiantes);
         this.express.use(ROUTE_URL + nombresRutas.modulos.url, modulos);
+        this.express.use(ROUTE_URL + nombresRutas.modulos.periodos.url, periodos);
+        this.express.use(ROUTE_URL + nombresRutas.modulos.cursos.url, cursos);
 
     }
 

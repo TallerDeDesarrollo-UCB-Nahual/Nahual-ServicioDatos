@@ -29,5 +29,11 @@ module.exports = {
             }
         }
     },
+    periodos : {
+        url: '/periodos',
+    },
+    cursos : {
+        url: '/cursos',
+    }
 
 };
