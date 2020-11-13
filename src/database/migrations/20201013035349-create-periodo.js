@@ -17,7 +17,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            topicoId: {
+            TopicoId: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },

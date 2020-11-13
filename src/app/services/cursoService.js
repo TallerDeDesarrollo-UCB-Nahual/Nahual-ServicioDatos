@@ -1,4 +1,4 @@
-const { Curso, Periodo, Nodo, Sede } = require('../models');
+const { Curso, Nodo, Sede } = require('../models');
 const CursoService = {
     encontrarTodosLosCursos: async(request, response) => {
         let todosLosCursos = await Curso.findAll();
