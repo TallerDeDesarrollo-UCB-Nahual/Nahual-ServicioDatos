@@ -5,7 +5,8 @@ const nombresRutas = require('../resources/nombresRutas');
 const cursoService = require('../app/services/cursoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosCursos = await cursoService.encontrarTodosLosCursos(request, response);
+    let parametros = request.query;
+    const todosLosCursos = await cursoService.encontrarCursosPorPeriodo(parametros);
     response.send(todosLosCursos)
 });
 
