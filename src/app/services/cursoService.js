@@ -1,10 +1,7 @@
 const { Curso } = require('../models');
 const CursoService = {
     encontrarTodosLosCursos: async(request, response) => {
-        let todosLosCursos = await Curso.findAll({
-            attributes: {exclude: ['CursoId']},
-            include: 'curso'
-        });
+        let todosLosCursos = await Curso.findAll();
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
         return { 'response': todosLosCursos };
     },
