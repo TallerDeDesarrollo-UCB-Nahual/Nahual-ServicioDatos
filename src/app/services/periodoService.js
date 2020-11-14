@@ -23,6 +23,22 @@ const PeriodoService = {
             throw error;
         }
     },
+
+    eliminarPeriodo: async(idPeriodo) => {
+        try{
+            const periodoABorrar = await Periodo.findOne({where: {PeriodoId: Number(idPeriodo)}})
+           
+            if(periodoABorrar){
+              const periodoEliminado = Periodo.destroy({
+                where:{PeriodoId: idPeriodo}
+              });
+              return {message: `El periodo con id ${idPeriodo} fue eliminado correctamente`};
+            }
+            return {message: `El periodo con id ${idPeriodo} no fue encontrado`};;
+        } catch (error) {
+            throw error;
+        } 
+    }
 }
 
 module.exports = PeriodoService;
