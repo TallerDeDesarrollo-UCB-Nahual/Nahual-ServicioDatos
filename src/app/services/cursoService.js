@@ -7,6 +7,7 @@ const CursoService = {
     },
 
     encontrarCursosPorPeriodo: async(parametros) => {
+        console.log(parametros.PeriodoId)
         let todosLosCursos = await Curso.findAll({
             where: parametros,
             attributes: {exclude: ['PeriodoId','NodoId','SedeId','profesores','notas']},
@@ -35,6 +36,24 @@ const CursoService = {
             throw error;
         }
     },
+
+    eliminarCursoEnPeriodo: async(idPeriodo, idCurso) => {
+        console.log(idPeriodo,idCurso);
+
+        try{
+            const cursoABorrar = await Curso.findOne({where: {id: Number(idCurso), PeriodoId: Number(idPeriodo)}})
+    
+            if(cursoABorrar){
+              const cursoEliminado = Curso.destroy({
+                where:{id:idCurso, PeriodoId: idPeriodo}
+              });
+              return {message: `El curso con id ${idCurso} y periodo con id ${idPeriodo} fue eliminado correctamente`};
+            }
+            return {message: `El curso con id ${idCurso} y periodo con id ${idPeriodo} no fue encontrado`};;
+        } catch (error) {
+            throw error;
+        } 
+    }
 }
 
 module.exports = CursoService;
