@@ -231,48 +231,12 @@ const EstudianteService = {
     },
 
     registrarEstudiantesEgresadesDTO: async(request, response) => {
-        var estudiantesDTO = request.body;
-        estudiantesDTO.forEach(async estudianteDTO => {
-            const dtoTieneNodo = 'nodo' in estudiantesDTO;
-            const dtoTieneSede = 'sede' in estudiantesDTO;
-            const estudiante = await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
-            if(!estudiante.nodoId && dtoTieneNodo) {
-                const nodoCreado = await Nodo.create({
-                    nombre: estudianteDTO.nodo,
-                });
-                const sedeCreada = await nodoCreado.createSede({
-                    nombre: estudianteDTO.sede,
-                });
-                estudiante.nodoId = nodoCreado.id;
-                estudiante.sedeId = sedeCreada.id;
-            } else {
-                if(!estudiante.sedeId && dtoTieneSede) {
-                    const sedeCreada = await Sede.create({
-                        nombre: estudianteDTO.sede,
-                        NodoId: estudiante.nodoId,
-                    });
-                    estudiante.sedeId = sedeCreada.id;
-                }
-            }
-            estudiante.estadoId = 4;
-            
-            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
-                if (count != 0) {
-                    await Estudiante.update(estudiante, {
-                        where: {
-                            nombreCompleto: estudiante.nombreCompleto,
-                            estadoId: 4
-                        }
-                    })
-                } else {
-                    await Estudiante.create(estudiante, {
-                        where: {
-                            estadoId: 4
-                        }
-                    })
-                }
-            })
-        })
+        const estudiantesDTO = request.body;
+        const estudiantes = await Promise.all(estudiantesDTO.map(async estudianteDTO => {
+            estudianteDTO.estadoId = 4;
+            return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
+        })); 
+        await Estudiante.bulkCreate(estudiantes, { validate: true });
         return 200;
     },
 
@@ -288,7 +252,19 @@ const EstudianteService = {
 
     crearEstudiante: async(request, response) => {
         try {
-            const resultado = await Estudiante.create(request.body);
+            const estudiante = request.body;
+            let resultado = '';
+            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+                if (count != 0) {
+                    resultado = await Estudiante.update(estudiante, {
+                        where: {
+                            nombreCompleto: estudiante.nombreCompleto,
+                        }
+                    })
+                } else {
+                    resultado = await Estudiante.create(estudiante);
+                }
+            })
             return { message: "El estudiante fue creado exitosamente", result: resultado };
         } catch (error) {
             throw error;
