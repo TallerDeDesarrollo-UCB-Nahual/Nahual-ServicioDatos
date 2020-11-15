@@ -11,14 +11,24 @@
     },
     "host": "localhost:8000",
     "basePath": "/api",
-    "tags": [{
+    "tags": [
+        {
             "name": "Egresades",
             "description": "API para egresades en el sistema"
         },
         {
             "name": "Estudiantes",
             "description": "API para estudiantes en el sistema"
+        },
+        {
+            "name": "Cursos",
+            "description": "API para cursos"
+        },
+        {
+            "name": "Periodos",
+            "description": "API para Periodos"
         }
+        
     ],
     "schemes": [
         "http"
@@ -37,7 +47,8 @@
                 ],
                 "summary": "Obtener todos los egresades desempleades",
                 "description": "Obtener todos los egresades desempleades",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "modulo",
                         "in": "query",
                         "description": "Filtrar por modulo",
@@ -67,13 +78,15 @@
                 ],
                 "summary": "Obtener toda la informacion de un estudiante",
                 "description": "Obtener toda la informacion de un estudiante",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID de un estudiante",
-                    "type": "integer"
-                }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un estudiante",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -82,69 +95,15 @@
                         }
                     }
                 }
-            }
-        },
-
-        "/egresades": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar la informacion de muchos estudiantes",
-                "description": "Enviar la informacion de muchos estudiantes",
-                "parameters": [{
-                    "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
-                    "in": "body",
-                    "description": "Toda la informacion de muchos estudiantes",
-                    "type": "string",
-                    "schema": {
-                        "$ref": "#/definitions/EstudianteSinId"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-
-                    }
-                }
-            }
-        },
-
-        "/estudiantes": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar toda la informacion de un estudiante",
-                "description": "Enviar toda la informacion de un estudiante",
-                "parameters": [{
-                    "name": "estudiante",
-                    "in": "body",
-                    "description": "Toda la informacion de un estudiante",
-                    "type": "string",
-                    "schema": {
-                        "$ref": "#/definitions/EstudianteSinId"
-                    }
-                }],
-                "responses": {
-                    "200": {
-                        "description": "El estudiante fue creado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/Estudiante"
-                        }
-                    }
-                }
-            }
-        },
-
-        "/estudiantes/{id}": {
+            },
             "put": {
                 "tags": [
                     "Estudiantes"
                 ],
                 "summary": "Editar toda la informacion de un estudiante especifico",
                 "description": "Editar toda la informacion de un estudiante especifico",
-                "parameters": [{
+                "parameters": [
+                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
@@ -170,34 +129,181 @@
                     }
                 }
             },
-
             "delete": {
                 "tags": [
                     "Estudiantes"
                 ],
                 "summary": "Elimina a un estudiante especifico",
                 "description": "Elimina a un estudiante especifico",
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID del estudiante",
-                    "type": "integer"
-                }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del estudiante",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Estudiante fue eliminado exitosamente."
-
                     }
                 }
             }
-
-
+        },
+        "/egresades": {
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Enviar la informacion de muchos estudiantes",
+                "description": "Enviar la informacion de muchos estudiantes",
+                "parameters": [
+                    {
+                        "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
+                        "in": "body",
+                        "description": "Toda la informacion de muchos estudiantes",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exitoso"
+                    }
+                }
+            }
+        },
+        "/estudiantes": {
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Enviar toda la informacion de un estudiante",
+                "description": "Enviar toda la informacion de un estudiante",
+                "parameters": [
+                    {
+                        "name": "estudiante",
+                        "in": "body",
+                        "description": "Toda la informacion de un estudiante",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El estudiante fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Estudiante"
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos": {
+            "get": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Obtener todos los cursos y tambien los cursos pertenecientes a un periodo (opcional)",
+                "description": "Obtener todos los cursos pertenecientes a un periodo",
+                "parameters": [
+                    {
+                        "name": "PeriodoId",
+                        "in": "query",
+                        "description": "Periodo Id a buscar",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Cursos"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Enviar la informacion de un curso",
+                "description": "Enviar la informacion de un curso",
+                "parameters": [
+                    {
+                        "name": "Curso a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de un curso",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                }
+            }
+        },
+        "/periodos": {
+            "get": {
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Obtener todos los periodos o periodos segun su estado (activo / inactivo)",
+                "description": "Obtener todos los periodos",
+                "parameters": [
+                    {
+                        "name": "estado",
+                        "in": "query",
+                        "description": "Estado para buscar",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Periodos"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Enviar la informacion de un periodo",
+                "description": "Enviar la informacion de un periodo",
+                "parameters": [
+                    {
+                        "name": "Periodo a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de un periodo",
+                        "schema": {
+                            "$ref": "#/definitions/PeriodoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El periodo fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/PeriodoAGuardar"
+                        }
+                    }
+                }
+            }
         }
-
-
-
-
     },
     "definitions": {
         "EstudianteDTO": {
@@ -313,6 +419,119 @@
         "egresadesDesempleados": {
             "type": "array",
             "$ref": "#/definitions/EstudianteDTO"
+        },
+        "Nodo": {
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Sede": {
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Curso": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "horarioInicio": {
+                    "type": "string"
+                },
+                "horarioFin": {
+                    "type": "string"
+                },
+                "nodo": {
+                    "type": "string",
+                    "$ref": "#/definitions/Nodo"
+                },
+                "sede": {
+                    "type": "string",
+                    "$ref": "#/definitions/Sede"
+                }
+            }
+        },
+        "Cursos": {
+            "type": "array",
+            "$ref": "#/definitions/Curso"
+        },
+        "CursoAGuardar": {
+            "properties": {
+                "NodoId": {
+                    "type": "number"
+                },
+                "SedeId": {
+                    "type": "number"
+                },
+                "horarioInicio": {
+                    "type": "string"
+                },
+                "horarioFin": {
+                    "type": "string"
+                },
+                "profesores": {
+                    "type": "string"
+                },
+                "notas": {
+                    "type": "string"
+                },
+                "PeriodoId": {
+                    "type": "number"
+                }
+            }
+        },
+        "Topico":{
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Periodo": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "anio": {
+                    "type": "integer"
+                },
+                "periodo": {
+                    "type": "string"
+                },
+                "estado": {
+                    "type": "boolean"
+                },
+                "topico": {
+                    "type": "string",
+                    "$ref": "#/definitions/Topico"
+                }
+            }
+        },
+        "Periodos": {
+            "type": "array",
+            "$ref": "#/definitions/Periodo"
+        },
+        "PeriodoAGuardar": {
+            "properties": {
+                "anio": {
+                    "type": "integer"
+                },
+                "periodo": {
+                    "type": "string"
+                },
+                "estado": {
+                    "type": "boolean"
+                },
+                "TopicoId": {
+                    "type": "number"
+                }
+            }
         }
     }
 }

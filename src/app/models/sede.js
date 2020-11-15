@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      'nombre': DataTypes.STRING
+      'nombre': DataTypes.STRING,
+      'NodoId': DataTypes.INTEGER
     }, {});
     Sede.associate = function(models){
-        Sede.hasMany(models.Nodo, {as: 'nodos'})
+      Sede.belongsTo(models.Nodo, {foreignKey: 'NodoId', as: 'nodo'});
+      Sede.hasMany(models.Curso, { as: 'cursos' });
     };
     return Sede;
 }

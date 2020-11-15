@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     'nombreCompleto': DataTypes.STRING,
-    'nombreEstado': DataTypes.STRING,
+    'estadoId': DataTypes.INTEGER,
     'fechaNacimiento': DataTypes.DATE,
     'correo': DataTypes.STRING,
     'celular': DataTypes.INTEGER,
@@ -18,12 +18,15 @@ module.exports = (sequelize, DataTypes) => {
     'nombrePrimerTrabajo': DataTypes.STRING,
     'linkedin': DataTypes.STRING,
     'esEmpleado': DataTypes.BOOLEAN,
-    'modulo': DataTypes.STRING
+    'modulo': DataTypes.STRING,
+    'zona': DataTypes.STRING,
   });
   Estudiante.associate = function(models){
     Estudiante.belongsTo(models.Sede, {foreignKey: 'sedeId', as: 'sede'}),
     Estudiante.belongsTo(models.Nodo, {foreignKey: 'nodoId', as: 'nodo'}),
+    Estudiante.belongsTo(models.Estado, {foreignKey: 'estadoId', as: 'estado'}),
     Estudiante.belongsTo(models.NivelIngles, {foreignKey: 'nivelInglesId', as: 'nivelIngles'})
+    
   };
   return Estudiante;
 }

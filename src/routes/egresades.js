@@ -7,9 +7,9 @@ const estudianteService = require('../app/services/estudianteService');
 
 var jsonParser = bodyParser.json()
 
-router.get(nombresRutas.emptyUrl, async(request, response) => {
+router.get(nombresRutas.emptyUrl + '/paginacion', async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
@@ -18,12 +18,50 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 
-router.get('/DTO', async(request, response) => {
+router.get('/DTO/paginacion', async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
+    response.set('Content-type', 'application/json');
+    response.end(JSON.stringify(result));
+});
+
+
+router.get(nombresRutas.estudiantes.egresades.desempleados.url +'/paginacion', async(request, response) => {
+    let parameters = request.query;
+    parameters.estadoId = 4;
+    parameters.esEmpleado = false;
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
+    response.send(result);
+});
+
+router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO/paginacion', async(request, response) => {
+    let parameters = request.query;
+    parameters.estadoId = 4;
+    parameters.esEmpleado = false;
+    parameters.pagina = Math.abs(parameters.pagina);
+    parameters.pagina = parameters.pagina || 1;
+    const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
+    response.send(result);
+});
+
+router.get(nombresRutas.emptyUrl, async(request, response) => {
+    let parameters = request.query;
+    parameters.estadoId = 4;
+    const result = await estudianteService.encontrarEgresadesSinPaginacion(parameters);
+    response.set('Content-type', 'application/json');
+    response.end(JSON.stringify(result));
+});
+
+
+router.get('/DTO', async(request, response) => {
+    let parameters = request.query;
+    parameters.estadoId = 4;
+    const result = await estudianteService.encontrarEgresadesSinPaginacionDTO(parameters);
     response.set('Content-type', 'application/json');
     response.end(JSON.stringify(result));
 });
@@ -31,36 +69,22 @@ router.get('/DTO', async(request, response) => {
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.esEmpleado = false;
-    parameters.pagina = Math.abs(parameters.pagina);
-    parameters.pagina = parameters.pagina || 1;
-    const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
+    const result = await estudianteService.encontrarEgresadesSinPaginacion(parameters);
     response.send(result);
 });
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
     let parameters = request.query;
-    parameters.nombreEstado = 'Egresade';
+    parameters.estadoId = 4;
     parameters.esEmpleado = false;
-    parameters.pagina = Math.abs(parameters.pagina);
-    parameters.pagina = parameters.pagina || 1;
-    const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
+    const result = await estudianteService.encontrarEgresadesSinPaginacionDTO(parameters);
     response.send(result);
 });
 
-router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresades();
-    response.send(todosLosEgresades);
-});
-
-router.get('/DTO', async(request, response) => {
-    const todosLosEgresades = await estudianteService.encontrarEstudiantesEgresadesDTO();
-    response.send(todosLosEgresades);
-});
-
 router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {
-    const status = await estudianteService.registrarEstudiantesEgresades(request, response);
+    const status = await estudianteService.registrarEstudiantesEgresadesDTO(request, response);
     response.status(status).send("SUCCESS");
 });
 

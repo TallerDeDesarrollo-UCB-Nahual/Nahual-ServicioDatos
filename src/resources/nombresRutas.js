@@ -11,6 +11,9 @@ module.exports = {
     sedes: {
         url: '/sedes'
     },
+    estados: {
+        url: '/estados'
+    },
     nivelIngles: {
         url: '/nivel-ingles'
     },
@@ -26,5 +29,11 @@ module.exports = {
             }
         }
     },
+    periodos : {
+        url: '/periodos',
+    },
+    cursos : {
+        url: '/cursos',
+    }
 
 };
