@@ -11,7 +11,9 @@ const { Nodo } = require('../models');
 const EstudianteService = {
 
     encontrarEstudiantes: async(parameters) => {
-        const pagina = parameters.pagina - 1;
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -37,15 +39,16 @@ const EstudianteService = {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
-            offset: pagina * 10,
-            limit: 10
+            where: parameters,
         });
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
 
     encontrarEstudiantesDTO: async(parameters) => {
-        const pagina = parameters.pagina - 1;
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -71,8 +74,7 @@ const EstudianteService = {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
-            offset: pagina * 10,
-            limit: 10
+            where: parameters,
         });
         todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
