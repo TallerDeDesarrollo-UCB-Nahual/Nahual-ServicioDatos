@@ -10,7 +10,7 @@ const CursoService = {
         console.log(parametros.PeriodoId)
         let todosLosCursos = await Curso.findAll({
             where: parametros,
-            attributes: {exclude: ['PeriodoId','NodoId','SedeId','profesores','notas']},
+            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
             include:  [
                 {
                     model: Nodo,
