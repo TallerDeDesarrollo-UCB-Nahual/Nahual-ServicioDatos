@@ -28,18 +28,20 @@ const PeriodoService = {
 
     eliminarPeriodo: async(idPeriodo) => {
         try{
-            const periodoABorrar = await Periodo.findOne({where: {PeriodoId: Number(idPeriodo)}})
+            const periodoABorrar = await Periodo.findOne({where: {id: Number(idPeriodo)}})
             cursos = CursoService.encontrarCursosPorPeriodo(idPeriodo)
             if(periodoABorrar){
-              cursos.forEach(curso => {
-                CursoService.eliminarCursoEnPeriodo(idPeriodo, curso.idCurso)
-              });
-              const periodoEliminado = Periodo.destroy({
-                where:{PeriodoId: idPeriodo}
-              });
-              return {message: `El periodo con id ${idPeriodo} fue eliminado correctamente y todos los cursos dentro de el tambien`};
+                if(cursos.length > 0){
+                    cursos.forEach(curso => {
+                        CursoService.eliminarCursoEnPeriodo(idPeriodo, curso.idCurso)
+                    });
+                }
+                const periodoEliminado = Periodo.destroy({
+                    where:{id: idPeriodo}
+                });
+                return {message: `El periodo con id ${idPeriodo} fue eliminado correctamente y todos los cursos dentro de el tambien`};
             }
-            return {message: `El periodo con id ${idPeriodo} no fue encontrado`};;
+            return {message: `El periodo con id ${idPeriodo} no fue encontrado`};
         } catch (error) {
             throw error;
         } 
