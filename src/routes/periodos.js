@@ -25,4 +25,13 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
     }
 });
 
+router.delete('/:id/cursos/:idCurso', async(request, response) => {
+    try {
+        const result = await servicioCursos.eliminarCursoEnPeriodo(request.params.id, request.params.idCurso);
+        response.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 module.exports = router;
