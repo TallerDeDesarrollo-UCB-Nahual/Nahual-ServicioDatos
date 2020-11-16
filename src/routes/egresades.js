@@ -85,7 +85,7 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(r
 
 router.post(nombresRutas.emptyUrl, jsonParser, async(request, response) => {
     try {
-        const status = await estudianteService.registrarEstudiantesEgresadesDTO(request, response);
+        const status = await estudianteService.importarListaEgresadesDTO(request, response);
         response.status(status).send("SUCCESS");
     }
     catch (error) {
