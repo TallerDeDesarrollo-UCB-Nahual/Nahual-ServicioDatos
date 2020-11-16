@@ -33,6 +33,7 @@ router.delete('/:id/cursos/:idCurso', async(request, response) => {
 router.delete('/:id', async(request, response) => {
     try {
         const result = await periodoService.eliminarPeriodo(request.params.id);
+        response.status(200).send(result);
     }catch (error) {
         console.log(error);
     }
