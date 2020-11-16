@@ -3,6 +3,7 @@ const PeriodoService = {
     encontrarTodosLosPeriodos: async(parametros) => {
         let todosLosPeriodos = await Periodo.findAll({
             where: parametros,
+            attributes: {exclude: ['TopicoId']},
             include:[
                 {
                     model: Topico,
