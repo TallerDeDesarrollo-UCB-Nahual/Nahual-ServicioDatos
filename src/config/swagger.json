@@ -302,7 +302,7 @@
                     }
                 }
             },
-            "periodo/{idPeriodo}/cursos/{idCurso}": {
+            "/{idPeriodo}/cursos/{idCurso}": {
                 "delete": {
                     "tags": [
                         "Cursos"
@@ -331,9 +331,31 @@
                         }
                     }
                 }
+            },
+            "/{idPeriodo}":{
+                "delete": {
+                    "tags": ["Periodos"],
+                    "summary": "Eliminar un periodo y los cursos que pertenezcan a este",
+                    "description": "Eliminar un periodo",
+                    "parameters":[
+                        {
+                            "name": "idPeriodo",
+                            "in": "path",
+                            "required": true,
+                            "description": "ID del Periodo",
+                            "type": "integer"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "El periodo con id ${idPeriodo} fue eliminado correctamente"
+                        }
+                    }
+                }
             }
         }
     },
+    
     "definitions": {
         "EstudianteDTO": {
             "properties": {

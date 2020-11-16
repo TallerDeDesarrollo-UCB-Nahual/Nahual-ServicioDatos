@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const periodoService = require('../app/services/periodoService');
+const { request, response } = require('express');
 const servicioCursos = require('../app/services/cursoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
@@ -30,6 +31,15 @@ router.delete('/:id/cursos/:idCurso', async(request, response) => {
         const result = await servicioCursos.eliminarCursoEnPeriodo(request.params.id, request.params.idCurso);
         response.status(200).send(result);
     } catch (error) {
+        console.log(error);
+    }
+});
+
+router.delete('/:id', async(request, response) => {
+    try {
+        const result = await periodoService.eliminarPeriodo(request.params.id);
+        response.status(200).send(result);
+    }catch (error) {
         console.log(error);
     }
 });
