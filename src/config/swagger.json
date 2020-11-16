@@ -244,6 +244,36 @@
                     }
                 }
             }
+        },
+        "periodo/{idPeriodo}/cursos/{idCurso}": {
+            "delete": {
+            "tags": [
+                    "Cursos"
+                ],
+                "summary": "Eliminar un curso que pertenezca a un periodo",
+                "description": "Eliminar un curso",
+                "parameters": [
+                    {
+                        "name": "idPeriodo",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del Periodo",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "idCurso",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del Curso",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso con id ${idCurso} y periodo con id ${idPeriodo} fue eliminado correctamente"
+                    }
+                }
+            }
         }
     },
     "definitions": {
