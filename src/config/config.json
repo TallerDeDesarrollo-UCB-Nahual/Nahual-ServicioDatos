@@ -8,7 +8,8 @@
         "define": {
             "schema": "public",
             "timestamps": false
-        }
+        },
+        "use_env_variable": "DATABASE_URL"
     },
     "test": {
         "username": null,
@@ -30,6 +31,7 @@
         "define": {
             "schema": "public",
             "timestamps": false
-        }
+        },
+        "use_env_variable": "DATABASE_URL"
     }
 }

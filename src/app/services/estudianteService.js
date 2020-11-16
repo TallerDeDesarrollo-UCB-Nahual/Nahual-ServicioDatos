@@ -232,7 +232,7 @@ const EstudianteService = {
         return 200
     },
 
-    registrarEstudiantesEgresadesDTO: async(request, response) => {
+    importarListaEgresadesDTO: async(request, response) => {
         const estudiantesDTO = request.body;
         const estudiantes = await Promise.all(estudiantesDTO.map(async estudianteDTO => {
             estudianteDTO.estadoId = 4;
