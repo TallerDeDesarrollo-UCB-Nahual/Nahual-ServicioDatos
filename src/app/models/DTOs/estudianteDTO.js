@@ -1,9 +1,5 @@
 'use strict';
 
-const { Estudiante } = require('../');
-const { Sede } = require("../");
-const { NivelIngles } = require('../');
-
 class EstudianteDTO {
     
     constructor(estudiante) {
@@ -22,7 +18,8 @@ class EstudianteDTO {
             'nombrePrimerTrabajo': estudiante.nombrePrimerTrabajo,
             'linkedin': estudiante.linkedin,
             'esEmpleado': estudiante.esEmpleado,
-            'modulo': estudiante.modulo
+            'modulo': estudiante.modulo,
+            'zona': estudiante.zona,
         }
     }
 
