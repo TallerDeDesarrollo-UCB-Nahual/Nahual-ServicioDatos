@@ -1,4 +1,5 @@
 const { Periodo, Topico } = require('../models');
+const CursoService = require('./cursoService');
 const PeriodoService = {
     encontrarTodosLosPeriodos: async(parametros) => {
         let todosLosPeriodos = await Periodo.findAll({
@@ -27,12 +28,15 @@ const PeriodoService = {
     eliminarPeriodo: async(idPeriodo) => {
         try{
             const periodoABorrar = await Periodo.findOne({where: {PeriodoId: Number(idPeriodo)}})
-           
+            cursos = CursoService.encontrarCursosPorPeriodo(idPeriodo)
             if(periodoABorrar){
+              cursos.forEach(curso => {
+                CursoService.eliminarCursoEnPeriodo(idPeriodo, curso.idCurso)
+              });
               const periodoEliminado = Periodo.destroy({
                 where:{PeriodoId: idPeriodo}
               });
-              return {message: `El periodo con id ${idPeriodo} fue eliminado correctamente`};
+              return {message: `El periodo con id ${idPeriodo} fue eliminado correctamente y todos los cursos dentro de el tambien`};
             }
             return {message: `El periodo con id ${idPeriodo} no fue encontrado`};;
         } catch (error) {
