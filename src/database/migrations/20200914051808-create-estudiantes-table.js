@@ -47,7 +47,7 @@ module.exports = {
             },
             nivelInglesId: {
                 type: Sequelize.INTEGER,
-                allowNull: false
+                allowNull: true,
             },
             nombrePrimerTrabajo: {
                 type: Sequelize.STRING,
@@ -59,13 +59,17 @@ module.exports = {
             },
             esEmpleado: {
                 type: Sequelize.BOOLEAN,
-                allowNull: false
+                defaultValue: false,
             },
             modulo: {
                 type: Sequelize.STRING,
                 allowNull: true
             },
             zona: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            detalle: {
                 type: Sequelize.STRING,
                 allowNull: true,
             }
