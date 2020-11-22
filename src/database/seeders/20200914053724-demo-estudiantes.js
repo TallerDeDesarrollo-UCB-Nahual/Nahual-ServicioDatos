@@ -18,6 +18,7 @@ module.exports = {
                 'esEmpleado': false,
                 'modulo': 'Testing funcional',
                 'zona': 'El prado BA',
+                'detalle': 'Educacion especial'
             },
             {
                 'nombreCompleto': 'Diego Figueroa',
