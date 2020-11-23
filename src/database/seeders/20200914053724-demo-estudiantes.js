@@ -4,7 +4,7 @@ module.exports = {
     up: async(queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Estudiantes', [{
                 'nombreCompleto': 'clodomiro saavedra perez',
-                'estadoId': 4,
+                'estadoId': 1,
                 'fechaNacimiento': '1995-02-02',
                 'correo': 'clodo.saavedra@gcorreo.com',
                 'celular': 79840584,
