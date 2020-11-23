@@ -480,8 +480,8 @@ const EstudianteService = {
                         "id":estudiante.id,
                         "estadoId":estado
                     }
-                    await Estudiante.update(estudianteActualizado, { where: { id: estudiante.id } });
-                    resultado.push({ Operacion: "Se registro correctamente"});
+                    await Estudiante.update(estudianteActualizado, { where: { id: estudianteEncontrado.id } });
+                    resultado.push({ Operacion: "Se cambio el estado correctamente"});
                     codigo=200;
                 }
             }    
