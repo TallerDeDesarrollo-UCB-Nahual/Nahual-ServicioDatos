@@ -6,9 +6,6 @@ module.exports = {
                 nombre: 'Pre-inscripte',
             },
             {
-                nombre: 'Inscripte',
-            },
-            {
                 nombre: 'Alumne',
             },
             {
@@ -19,9 +16,6 @@ module.exports = {
             },
             {
                 nombre: 'Abandonade',
-            },
-            {
-                nombre: 'Tester',
             }
         ]);
     },

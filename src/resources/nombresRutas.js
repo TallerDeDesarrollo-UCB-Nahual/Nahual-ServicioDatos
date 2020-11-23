@@ -34,6 +34,9 @@ module.exports = {
     },
     cursos : {
         url: '/cursos',
+    },
+    inscriptos : {
+        url: '/inscriptos',
     }
 
 };

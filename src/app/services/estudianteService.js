@@ -83,7 +83,7 @@ const EstudianteService = {
     encontrarEgresadePorId: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -116,7 +116,7 @@ const EstudianteService = {
     encontrarEgresadePorIdDTO: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -217,13 +217,13 @@ const EstudianteService = {
                     await Estudiante.update(estudiante, {
                         where: {
                             nombreCompleto: estudiante.nombreCompleto,
-                            estadoId: 4
+                            estadoId: 3
                         }
                     })
                 } else {
                     await Estudiante.create(estudiante, {
                         where: {
-                            estadoId: 4
+                            estadoId: 3
                         }
                     })
                 }
@@ -235,7 +235,7 @@ const EstudianteService = {
     importarListaEgresadesDTO: async(request, response) => {
         const estudiantesDTO = request.body;
         const estudiantes = await Promise.all(estudiantesDTO.map(async estudianteDTO => {
-            estudianteDTO.estadoId = 4;
+            estudianteDTO.estadoId = 3;
             return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
         })); 
         await Estudiante.bulkCreate(estudiantes, { validate: true });
@@ -337,7 +337,7 @@ const EstudianteService = {
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -414,7 +414,7 @@ const EstudianteService = {
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
