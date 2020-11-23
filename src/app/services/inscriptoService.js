@@ -39,7 +39,7 @@ const InscriptoService = {
                 else{
                     let curso = await Curso.findByPk(inscripto.cursoId);
                     if(curso == null){
-                        resultado.push({ Operacion: "El curso con id " + inscripto.estudianteId + " no existe"});
+                        resultado.push({ Operacion: "El curso con id " + inscripto.cursoId + " no existe"});
                         codigo = 400;
                     }
                     else{
@@ -88,7 +88,7 @@ const InscriptoService = {
             else{
                 let curso = await Curso.findByPk(inscripto.cursoId);
                 if(curso == null){
-                    resultado.push({ Operacion: "El curso con id " + inscripto.estudianteId + " no existe"});
+                    resultado.push({ Operacion: "El curso con id " + inscripto.cursoId + " no existe"});
                     codigo = 400;
                 }
                 else{
