@@ -459,6 +459,35 @@ const EstudianteService = {
         todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
     },
+
+    cambiarEstadoAlumnes: async(request, response) => {
+        var estudiantes = request.body.estudiantes
+        var estado=request.body.estado
+        var resultado = []
+        for(const estudiante of estudiantes ){
+            let estudianteEncontrado = await Estudiante.findByPk(estudiante.id);
+            if(estudianteEncontrado == null){
+                resultado.push({ Operacion: "El estudiante con id " + estudiante.id + " no existe"});
+                codigo = 400;
+            }
+            else{
+                if(estudianteEncontrado.estadoId!=2){
+                    resultado.push({ Operacion: "El estudiante" + estudianteEncontrado.id + " no es un alumne"});
+                    codigo = 400;
+                }
+                else{
+                    estudianteActualizado = {
+                        "id":estudiante.id,
+                        "estadoId":estado
+                    }
+                    await Estudiante.update(estudianteActualizado, { where: { id: estudiante.id } });
+                    resultado.push({ Operacion: "Se registro correctamente"});
+                    codigo=200;
+                }
+            }    
+        };  
+        return {message: resultado, result: codigo}; 
+    },
 }
 
 module.exports = EstudianteService;
