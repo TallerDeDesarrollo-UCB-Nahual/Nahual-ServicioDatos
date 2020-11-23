@@ -472,7 +472,7 @@ const EstudianteService = {
             }
             else{
                 if(estudianteEncontrado.estadoId!=2){
-                    resultado.push({ Operacion: "El estudiante" + estudianteEncontrado.id + " no es un alumne"});
+                    resultado.push({ Operacion: "El estudiante " + estudianteEncontrado.nombreCompleto + " no es un alumne"});
                     codigo = 400;
                 }
                 else{
@@ -481,7 +481,7 @@ const EstudianteService = {
                         "estadoId":estado
                     }
                     await Estudiante.update(estudianteActualizado, { where: { id: estudianteEncontrado.id } });
-                    resultado.push({ Operacion: "Se cambio el estado correctamente"});
+                    resultado.push({ Operacion: "Se cambio el estado correctamente de estudiante: "+estudianteEncontrado.nombreCompleto});
                     codigo=200;
                 }
             }    
