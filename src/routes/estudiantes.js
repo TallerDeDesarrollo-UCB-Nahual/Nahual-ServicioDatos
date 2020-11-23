@@ -53,9 +53,8 @@ router.delete('/:id', async(request, response) => {
     }
 })
 
-router.put('/cambiarEstadoAlumnes', async(request,response)=>{
+router.post('/cambiarEstadoAlumnes', async(request,response)=>{
     try {
-        console.log(request.body)
         const result = await estudianteService.cambiarEstadoAlumnes(request, response);
         response.status(200).send(result);
     } catch (error) {
