@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    'nombreCompleto': DataTypes.STRING,
+    'nombre': DataTypes.STRING,
+    'apellido': DataTypes.STRING,
     'estadoId': DataTypes.INTEGER,
     'fechaNacimiento': DataTypes.DATE,
     'correo': DataTypes.STRING,

@@ -3,7 +3,8 @@
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Estudiantes', [{
-                'nombreCompleto': 'clodomiro saavedra perez',
+                'nombre': 'clodomiro',
+                'apellido': 'saavedra perez',
                 'estadoId': 4,
                 'fechaNacimiento': '1995-02-02',
                 'correo': 'clodo.saavedra@gcorreo.com',
@@ -20,7 +21,8 @@ module.exports = {
                 'zona': 'El prado BA',
             },
             {
-                'nombreCompleto': 'Diego Figueroa',
+                'nombre': 'Diego',
+                'apellido': 'Figueroa',
                 'estadoId': 4,
                 'fechaNacimiento': '1992-02-01',
                 'correo': 'diego.figueroa@gcorreo.com',
@@ -36,7 +38,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombreCompleto': 'Guillermo Posebon',
+                'nombre': 'Guillermo',
+                'apellido': 'Posebon',
                 'estadoId': 3,
                 'fechaNacimiento': '1998-07-02',
                 'correo': 'guillermo.posebon@gcorreo.com',
@@ -52,7 +55,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombreCompleto': 'Gustavo Roca',
+                'nombre': 'Gustavo',
+                'apellido': 'Roca',
                 'estadoId': 4,
                 'fechaNacimiento': '1985-01-02',
                 'correo': 'gustavo.roca@gcorreo.com',
@@ -68,7 +72,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombreCompleto': 'Adrian Torrez',
+                'nombre': 'Adrian',
+                'apellido': 'Torrez',
                 'estadoId': 4,
                 'fechaNacimiento': '1990-02-02',
                 'correo': 'clodo.saavedra@gcorreo.com',
