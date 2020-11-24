@@ -9,12 +9,8 @@ module.exports = {
                 autoIncrement: true,
                 allowNull: false
             },
-            horarioInicio: {
-                type: Sequelize.TIME,
-                allowNull: true
-            },
-            horarioFin: {
-                type: Sequelize.TIME,
+            horario: {
+                type: Sequelize.STRING,
                 allowNull: true
             },
             profesores: {
