@@ -10,6 +10,11 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosCursos)
 });
 
+router.get(nombresRutas.emptyUrl+'/:cursoId/inscritos', async(request, response) => {
+    const inscritosDelCurso = await cursoService.encontrarInscritosDeUnCurso(request.params.cursoId);
+    response.send(inscritosDelCurso)
+});
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await cursoService.crearCurso(request, response);

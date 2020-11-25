@@ -1,9 +1,23 @@
-const { Curso, Nodo, Sede } = require('../models');
+const { Curso, Nodo, Sede, Inscripto, Estudiante } = require('../models');
 const CursoService = {
     encontrarTodosLosCursos: async(request, response) => {
         let todosLosCursos = await Curso.findAll();
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
         return { 'response': todosLosCursos };
+    },
+
+    encontrarInscritosDeUnCurso: async (idCurso) => {
+        let todosLosCursos = await Curso.findAll();
+        const curso = await Inscripto.findAll({
+            attributes: {exclude: ['id','cursoId','estudianteId']},
+            where: { cursoId: Number(idCurso) },
+            include: [
+                {
+                    model: Estudiante,
+                    as: 'estudiante',
+                }]
+        })
+        return { 'response': curso };
     },
 
     encontrarCursosPorPeriodo: async(parametros) => {
