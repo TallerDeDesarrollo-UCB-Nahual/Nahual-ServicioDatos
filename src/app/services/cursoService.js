@@ -5,19 +5,23 @@ const CursoService = {
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
         return { 'response': todosLosCursos };
     },
-
+    
     encontrarInscritosDeUnCurso: async (idCurso) => {
-        let todosLosCursos = await Curso.findAll();
-        const curso = await Inscripto.findAll({
-            attributes: {exclude: ['id','cursoId','estudianteId']},
+        try {
+          const curso = await Inscripto.findAll({
+            attributes: { exclude: ["id", "cursoId", "estudianteId"] },
             where: { cursoId: Number(idCurso) },
             include: [
-                {
-                    model: Estudiante,
-                    as: 'estudiante',
-                }]
-        })
-        return { 'response': curso };
+              {
+                model: Estudiante,
+                as: "estudiante"
+              }
+            ]
+          });
+          return { response: curso };
+        } catch (error) {
+          throw error;
+        }
     },
 
     encontrarCursosPorPeriodo: async(parametros) => {

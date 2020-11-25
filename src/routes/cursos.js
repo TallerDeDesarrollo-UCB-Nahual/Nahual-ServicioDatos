@@ -10,10 +10,23 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosCursos)
 });
 
-router.get(nombresRutas.emptyUrl+'/:cursoId/inscritos', async(request, response) => {
-    const inscritosDelCurso = await cursoService.encontrarInscritosDeUnCurso(request.params.cursoId);
-    response.send(inscritosDelCurso)
-});
+router.get(
+    nombresRutas.emptyUrl + "/:cursoId/inscritos",
+    async (request, response) => {
+      try {
+        if (Number(request.params.cursoId)) {
+          const inscritosDelCurso = await cursoService.encontrarInscritosDeUnCurso(
+            request.params.cursoId
+          );
+          response.status(200).send(inscritosDelCurso);
+        } else {
+          response.status(400).send("IdCurso invalido");
+        }
+      } catch (error) {
+        response.status(400).send(error);
+      }
+    }
+  );
 
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
