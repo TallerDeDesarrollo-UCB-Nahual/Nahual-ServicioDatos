@@ -1,5 +1,5 @@
 const { Periodo, Topico } = require('../models');
-const CursoService = require('./cursoService');
+const { CursoService } = require('./cursoService');
 const PeriodoService = {
     encontrarTodosLosPeriodos: async(parametros) => {
         let todosLosPeriodos = await Periodo.findAll({
@@ -17,6 +17,12 @@ const PeriodoService = {
         return { 'response': todosLosPeriodos };
     },
 
+    encontrarPeriodoporId: async (periodoId) => {
+        let periodo = await Periodo.findByPk(periodoId)
+        if (!periodo) throw new NotFoundException();
+        return { 'response': periodo };
+    },
+
     crearPeriodo: async(request, response) => {
         try {
             const periodo = await Periodo.create(request.body);
@@ -24,6 +30,12 @@ const PeriodoService = {
         } catch (error) {
             throw error;
         }
+    },
+
+    editarPeriodo: async(request, response) => {
+        const resultado = await Periodo.update(request.body, { where: { id: request.params.id } });
+        let periodo = await Periodo.findByPk(request.params.id);
+        return { message: "El periodo fue editado exitosamente", Periodo: periodo };
     },
 
     eliminarPeriodo: async(idPeriodo) => {
