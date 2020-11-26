@@ -19,4 +19,9 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
     }
 });
 
+router.put("/:id", async(request, response) => {
+    const result = await cursoService.editarCurso(request, response);
+    response.status(200).send(result);
+});
+
 module.exports = router;
