@@ -253,6 +253,40 @@
                 }
             }
         },
+        "/cursos/{id}": {
+            "put": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Editar la informacion de un curso en especifico",
+                "description": "Editar la informacion de un curso en especifico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del curso",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Curso a editar",
+                        "in": "body",
+                        "description": "Toda la informacion de un curso",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso fue editado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/CursoAGuardar"
+                        }
+                    }
+                }
+            }
+        },
         "/periodos": {
             "get": {
                 "tags": [
