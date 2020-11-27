@@ -4,11 +4,6 @@ const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const sedeService = require('../app/services/sedeService');
 
-router.get(nombresRutas.emptyUrl, async(request, response) => {
-    const sedes = await sedeService.encontrarTodasLasSedes(request, response);
-    response.send(sedes)
-});
-
 router.put(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await sedeService.actualizarSede(request, response);

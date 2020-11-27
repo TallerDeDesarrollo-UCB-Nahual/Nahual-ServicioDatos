@@ -1,5 +1,4 @@
 const { Sede, Nodo } = require('../models');
-const { Estudiante } = require('../models');
 const SedeService = {
     encontrarTodasLasSedes: async(request, response) => {
         let sedes = await Sede.findAll({
@@ -11,6 +10,15 @@ const SedeService = {
         });
         sedes = sedes.map(x => x.dataValues);
         return { 'response': sedes };
+    },
+
+    encontrarSedesPorNodo: async(parametros) => {
+        let todasLasSedes = await Sede.findAll({
+            where: parametros,
+            attributes: {exclude: ['NodoId', 'id']}
+        });
+        todasLasSedes = todasLasSedes.map(x => x.dataValues);
+        return { 'response': todasLasSedes };
     },
 
     actualizarSede: async(request, response) => {
