@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Nodo = sequelize.define('Nodo', {
     'id': {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     'nombre': DataTypes.STRING
   });
