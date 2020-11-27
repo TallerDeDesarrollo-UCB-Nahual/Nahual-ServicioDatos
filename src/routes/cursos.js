@@ -11,14 +11,14 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 router.get(
-    nombresRutas.emptyUrl + "/:cursoId/inscritos",
+    nombresRutas.emptyUrl + "/:cursoId/inscriptes",
     async (request, response) => {
       try {
         if (Number(request.params.cursoId)) {
-          const inscritosDelCurso = await cursoService.encontrarInscritosDeUnCurso(
+          const inscriptesDelCurso = await cursoService.encontrarInscriptesDeUnCurso(
             request.params.cursoId
           );
-          response.status(200).send(inscritosDelCurso);
+          response.status(200).send(inscriptesDelCurso);
         } else {
           response.status(400).send("IdCurso invalido");
         }

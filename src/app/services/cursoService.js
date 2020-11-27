@@ -6,7 +6,7 @@ const CursoService = {
         return { 'response': todosLosCursos };
     },
     
-    encontrarInscritosDeUnCurso: async (idCurso) => {
+    encontrarInscriptesDeUnCurso: async (idCurso) => {
         try {
           const curso = await Inscripto.findAll({
             attributes: { exclude: ["id", "cursoId", "estudianteId"] },
