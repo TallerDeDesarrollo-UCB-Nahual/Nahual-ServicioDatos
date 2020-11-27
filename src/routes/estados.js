@@ -9,4 +9,5 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosEstadosDeEstudiantes);
 });
 
+
 module.exports = router;

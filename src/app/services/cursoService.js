@@ -28,6 +28,28 @@ const CursoService = {
         return { 'response': todosLosCursos };
     },
 
+    encontrarCursoPorId: async(cursoId) => {
+        let curso = await Estudiante.findByPk(estudianteId, {
+            where: parametros,
+            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
+            include:  [
+                {
+                    model: Nodo,
+                    as: 'nodo',
+                    attributes: {exclude: ['id']},
+                },
+                {
+                    model: Sede,
+                    as: 'sede',
+                    attributes: {exclude: ['id','NodoId']}
+                }
+            ]
+        });
+        todosLosCursos = todosLosCursos.map(x => x.dataValues);
+        return { 'response': curso };
+    },
+
+
     crearCurso: async(request, response) => {
         try {
             const curso = await Curso.create(request.body);

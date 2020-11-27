@@ -10,6 +10,12 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosCursos)
 });
 
+router.get("/:id", async(request, response) => {
+    let parametros = request.query;
+    const curso = await cursoService.encontrarCursoPorId(parametros);
+    response.send(curso)
+});
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await cursoService.crearCurso(request, response);
