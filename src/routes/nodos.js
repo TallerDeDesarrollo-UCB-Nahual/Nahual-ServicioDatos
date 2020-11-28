@@ -46,6 +46,16 @@ router.delete('/sedes/:id', async(request, response) => {
     }
 });
 
+router.put('/sedes/:id', async(request, response) => {
+    try {
+        const result = await sedeService.actualizarSede(request, response);
+        response.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await nodoService.crearNodo(request, response);
@@ -54,5 +64,6 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
         console.log(error);
     }
 });
+
 
 module.exports = router;
