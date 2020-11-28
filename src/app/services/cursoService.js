@@ -14,7 +14,8 @@ const CursoService = {
             include: [
               {
                 model: Estudiante,
-                as: "estudiante"
+                as: "estudiante",
+                where: { estadoId: 2 }
               }
             ]
           });
