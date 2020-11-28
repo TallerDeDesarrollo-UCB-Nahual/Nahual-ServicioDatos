@@ -10,7 +10,7 @@ const CursoService = {
         console.log(parametros.PeriodoId)
         let todosLosCursos = await Curso.findAll({
             where: parametros,
-            attributes: {exclude: ['PeriodoId','NodoId','SedeId','profesores','notas']},
+            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
             include:  [
                 {
                     model: Nodo,
@@ -35,6 +35,12 @@ const CursoService = {
         } catch (error) {
             throw error;
         }
+    },
+
+    editarCurso: async(request, response) => {
+        const resultado = await Curso.update(request.body, { where: { id: request.params.id } });
+        let curso = await Curso.findByPk(request.params.id);
+        return { message: "El curso fue editado exitosamente", Curso: curso };
     },
 
     eliminarCursoEnPeriodo: async(idPeriodo, idCurso) => {

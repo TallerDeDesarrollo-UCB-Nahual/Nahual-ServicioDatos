@@ -11,7 +11,9 @@ const { Nodo } = require('../models');
 const EstudianteService = {
 
     encontrarEstudiantes: async(parameters) => {
-        const pagina = parameters.pagina - 1;
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -37,15 +39,16 @@ const EstudianteService = {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
-            offset: pagina * 10,
-            limit: 10
+            where: parameters,
         });
         todosLosEstudiantes = todosLosEstudiantes.map(x => x.dataValues);
         return { 'response': todosLosEstudiantes };
     },
 
     encontrarEstudiantesDTO: async(parameters) => {
-        const pagina = parameters.pagina - 1;
+        const Op = Sequelize.Op;
+        if('nombreCompleto' in parameters)
+            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -71,8 +74,7 @@ const EstudianteService = {
                 model: NivelIngles,
                 as: 'nivelIngles',
             }],
-            offset: pagina * 10,
-            limit: 10
+            where: parameters,
         });
         todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(todosLosEstudiantes);
         return { 'response': todosLosEstudiantes };
@@ -81,7 +83,7 @@ const EstudianteService = {
     encontrarEgresadePorId: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -114,7 +116,7 @@ const EstudianteService = {
     encontrarEgresadePorIdDTO: async(estudianteId) => {
         let egresade = await Estudiante.findByPk(estudianteId, {
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -215,13 +217,13 @@ const EstudianteService = {
                     await Estudiante.update(estudiante, {
                         where: {
                             nombreCompleto: estudiante.nombreCompleto,
-                            estadoId: 4
+                            estadoId: 3
                         }
                     })
                 } else {
                     await Estudiante.create(estudiante, {
                         where: {
-                            estadoId: 4
+                            estadoId: 3
                         }
                     })
                 }
@@ -230,49 +232,13 @@ const EstudianteService = {
         return 200
     },
 
-    registrarEstudiantesEgresadesDTO: async(request, response) => {
-        var estudiantesDTO = request.body;
-        estudiantesDTO.forEach(async estudianteDTO => {
-            const dtoTieneNodo = 'nodo' in estudiantesDTO;
-            const dtoTieneSede = 'sede' in estudiantesDTO;
-            const estudiante = await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
-            if(!estudiante.nodoId && dtoTieneNodo) {
-                const nodoCreado = await Nodo.create({
-                    nombre: estudianteDTO.nodo,
-                });
-                const sedeCreada = await nodoCreado.createSede({
-                    nombre: estudianteDTO.sede,
-                });
-                estudiante.nodoId = nodoCreado.id;
-                estudiante.sedeId = sedeCreada.id;
-            } else {
-                if(!estudiante.sedeId && dtoTieneSede) {
-                    const sedeCreada = await Sede.create({
-                        nombre: estudianteDTO.sede,
-                        NodoId: estudiante.nodoId,
-                    });
-                    estudiante.sedeId = sedeCreada.id;
-                }
-            }
-            estudiante.estadoId = 4;
-            
-            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
-                if (count != 0) {
-                    await Estudiante.update(estudiante, {
-                        where: {
-                            nombreCompleto: estudiante.nombreCompleto,
-                            estadoId: 4
-                        }
-                    })
-                } else {
-                    await Estudiante.create(estudiante, {
-                        where: {
-                            estadoId: 4
-                        }
-                    })
-                }
-            })
-        })
+    importarListaEgresadesDTO: async(request, response) => {
+        const estudiantesDTO = request.body;
+        const estudiantes = await Promise.all(estudiantesDTO.map(async estudianteDTO => {
+            estudianteDTO.estadoId = 3;
+            return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
+        })); 
+        await Estudiante.bulkCreate(estudiantes, { validate: true });
         return 200;
     },
 
@@ -288,7 +254,19 @@ const EstudianteService = {
 
     crearEstudiante: async(request, response) => {
         try {
-            const resultado = await Estudiante.create(request.body);
+            const estudiante = request.body;
+            let resultado = '';
+            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+                if (count != 0) {
+                    resultado = await Estudiante.update(estudiante, {
+                        where: {
+                            nombreCompleto: estudiante.nombreCompleto,
+                        }
+                    })
+                } else {
+                    resultado = await Estudiante.create(estudiante);
+                }
+            })
             return { message: "El estudiante fue creado exitosamente", result: resultado };
         } catch (error) {
             throw error;
@@ -359,7 +337,7 @@ const EstudianteService = {
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -436,7 +414,7 @@ const EstudianteService = {
             parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
-                estadoId: 4
+                estadoId: 3
             },
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [

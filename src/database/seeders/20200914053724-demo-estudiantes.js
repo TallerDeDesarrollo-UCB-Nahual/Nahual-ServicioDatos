@@ -3,9 +3,8 @@
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Estudiantes', [{
-                'nombre': 'clodomiro',
-                'apellido': 'saavedra perez',
-                'estadoId': 4,
+                'nombreCompleto': 'clodomiro saavedra perez',
+                'estadoId': 1,
                 'fechaNacimiento': '1995-02-02',
                 'correo': 'clodo.saavedra@gcorreo.com',
                 'celular': 79840584,
@@ -19,11 +18,11 @@ module.exports = {
                 'esEmpleado': false,
                 'modulo': 'Testing funcional',
                 'zona': 'El prado BA',
+                'detalle': 'Educacion especial'
             },
             {
-                'nombre': 'Diego',
-                'apellido': 'Figueroa',
-                'estadoId': 4,
+                'nombreCompleto': 'Diego Figueroa',
+                'estadoId': 3,
                 'fechaNacimiento': '1992-02-01',
                 'correo': 'diego.figueroa@gcorreo.com',
                 'celular': 79340514,
@@ -38,9 +37,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombre': 'Guillermo',
-                'apellido': 'Posebon',
-                'estadoId': 3,
+                'nombreCompleto': 'Guillermo Posebon',
+                'estadoId': 2,
                 'fechaNacimiento': '1998-07-02',
                 'correo': 'guillermo.posebon@gcorreo.com',
                 'celular': 798580584,
@@ -55,9 +53,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombre': 'Gustavo',
-                'apellido': 'Roca',
-                'estadoId': 4,
+                'nombreCompleto': 'Gustavo Roca',
+                'estadoId': 3,
                 'fechaNacimiento': '1985-01-02',
                 'correo': 'gustavo.roca@gcorreo.com',
                 'celular': 77840584,
@@ -72,9 +69,8 @@ module.exports = {
                 'modulo': 'Testing funcional'
             },
             {
-                'nombre': 'Adrian',
-                'apellido': 'Torrez',
-                'estadoId': 4,
+                'nombreCompleto': 'Adrian Torrez',
+                'estadoId': 3,
                 'fechaNacimiento': '1990-02-02',
                 'correo': 'clodo.saavedra@gcorreo.com',
                 'celular': 71140584,
@@ -90,7 +86,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Matias Centeno',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1990-02-02',
                 'correo': 'matias.centeno@gcorreo.com',
                 'celular': 79880584,
@@ -106,7 +102,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Nicolas Cardozo',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1995-10-10',
                 'correo': 'nicolas.cardozo@gcorreo.com',
                 'celular': 73330584,
@@ -122,7 +118,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Micaela Nunez',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1995-11-11',
                 'correo': 'micanu@gcorreo.com',
                 'celular': 79555584,
@@ -138,7 +134,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Maria callete',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '2001-02-02',
                 'correo': 'mariacalle@gcorreo.com',
                 'celular': 73947393,
@@ -154,7 +150,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Florencia Bosch',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1990-01-01',
                 'correo': 'florencia.bosch@gcorreo.com',
                 'celular': 6374857,
@@ -170,7 +166,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Alejandra Zamudio',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1975-11-02',
                 'correo': 'ale.zamudio@gcorreo.com',
                 'celular': 7788782,
@@ -186,7 +182,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Daniel Banquito',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1991-01-01',
                 'correo': 'daniel.banquito@gcorreo.com',
                 'celular': 78665522,
@@ -202,7 +198,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Florimar Molina',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1994-12-10',
                 'correo': 'florimolina@gcorreo.com',
                 'celular': 74095744,
@@ -218,7 +214,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Gaston Humano',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1999-10-09',
                 'correo': 'gaston.humano@gcorreo.com',
                 'celular': 73834833,
@@ -234,7 +230,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Michael Jackson',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1995-05-05',
                 'correo': 'michael.jackso@gcorreo.com',
                 'celular': 73938372,
@@ -250,7 +246,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Kenji Lozano',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1990-01-01',
                 'correo': 'kenji.lozano@gcorreo.com',
                 'celular': 7787452,
@@ -266,7 +262,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Jorge Frias',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '2000-01-01',
                 'correo': 'jorge.frias@gcorreo.com',
                 'celular': 78564898,
@@ -282,7 +278,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Edson Lopez',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '2003-04-07',
                 'correo': 'edson.lopez@gcorreo.com',
                 'celular': 7389483,
@@ -298,7 +294,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Ericka Viraca',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1998-01-01',
                 'correo': 'ericka.viraca@gcorreo.com',
                 'celular': 79840586,
@@ -314,7 +310,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Julian Rodriguez',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '2000-02-02',
                 'correo': 'julian.rodriguez@gcorreo.com',
                 'celular': 79888665,
@@ -330,7 +326,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Harry Potter Mamani',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1991-06-08',
                 'correo': 'harry.mamani@gcorreo.com',
                 'celular': 78677899,
@@ -346,7 +342,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Henry Quispe de la Mamani',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1990-01-08',
                 'correo': 'henry.quispe@gcorreo.com',
                 'celular': 794847859,
@@ -362,7 +358,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Dante Bradshaw',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1989-03-14',
                 'correo': 'ultricies@mauris.org',
                 'celular': 16233293,
@@ -378,7 +374,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Harlan Ferguson',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1995-07-11',
                 'correo': 'volutpat@nonluctus.edu',
                 'celular': 20261429,
@@ -394,7 +390,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Brennan Goff',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1985-04-07',
                 'correo': 'goff.brennan@gcorreo.com',
                 'celular': 60794806,
@@ -410,7 +406,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Ori Griffith',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1995-05-05',
                 'correo': 'orig1995@gcorreo.com',
                 'celular': 77482948,
@@ -426,7 +422,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Ann Britt',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1990-01-01',
                 'correo': 'annbritt@gcorreo.com',
                 'celular': 7787452,
@@ -442,7 +438,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'John Smith',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1998-09-17',
                 'correo': 'johnhsmith@gcorreo.com',
                 'celular': 78564898,
@@ -458,7 +454,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Matthew Watkins',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1985-01-30',
                 'correo': 'watkinator@gcorreo.com',
                 'celular': 7389483,
@@ -474,7 +470,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Jeanette Lawrence',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1991-09-27',
                 'correo': 'jeanlawrence91@gcorreo.com',
                 'celular': 22651768,
@@ -490,7 +486,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Elizabeth Mclean',
-                'estadoId': 3,
+                'estadoId': 2,
                 'fechaNacimiento': '1990-03-25',
                 'correo': 'lizzymclean@gcorreo.com',
                 'celular': 60115138,
@@ -506,7 +502,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Tobias Sanchez',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1984-10-31',
                 'correo': 'santoviez@gcorreo.com',
                 'celular': 61422284,
@@ -522,7 +518,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Robert Tougas',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1988-09-17',
                 'correo': 'eltoug@gcorreo.com',
                 'celular': 28084949,
@@ -538,7 +534,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Dominique Harrison',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1985-01-30',
                 'correo': 'dominih@hotcorreo.com',
                 'celular': 39367092,
@@ -554,7 +550,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Uta Sanford',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1996-07-31',
                 'correo': 'utan1123@gcorreo.com',
                 'celular': 19816256,
@@ -570,7 +566,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Lael Cochran',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1988-04-20',
                 'correo': 'lcochran@outlook.com',
                 'celular': 46031108,
@@ -586,7 +582,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Anastasia Phelps',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1990-10-11',
                 'correo': 'anniephelps90@gcorreo.com',
                 'celular': 90232469,
@@ -602,7 +598,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Finn Camacho',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1984-10-23',
                 'correo': 'finnster@gcorreo.com',
                 'celular': 41288630,
@@ -618,7 +614,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Jayme Suarez',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1989-07-21',
                 'correo': 'jaysuarez@live.com',
                 'celular': 71856887,
@@ -634,7 +630,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Ralph Young',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1994-07-25',
                 'correo': 'youngterralph@gcorreo.com',
                 'celular': 61067222,
@@ -650,7 +646,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Laura Knapp',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1988-03-12',
                 'correo': 'lauknapp@gcorreo.com',
                 'celular': 75433544,
@@ -666,7 +662,7 @@ module.exports = {
             },
             {
                 'nombreCompleto': 'Hiram Wilder',
-                'estadoId': 4,
+                'estadoId': 3,
                 'fechaNacimiento': '1989-06-02',
                 'correo': 'wiramhilder@gcorreo.com',
                 'celular': 62871255,

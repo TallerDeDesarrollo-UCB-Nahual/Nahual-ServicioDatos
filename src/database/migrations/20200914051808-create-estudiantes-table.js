@@ -15,27 +15,27 @@ module.exports = {
             },
             estadoId: {
                 type: Sequelize.INTEGER,
-                allowNull: false
+                allowNull: false,
             },
             fechaNacimiento: {
                 type: Sequelize.DATE,
-                allowNull: true
+                allowNull: true,
             },
             correo: {
                 type: Sequelize.STRING,
-                allowNull: true
+                allowNull: true,
             },
             celular: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
             },
             sedeId: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
             },
             nodoId: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
             },
             añoGraduacion: {
                 type: Sequelize.INTEGER,
@@ -47,7 +47,7 @@ module.exports = {
             },
             nivelInglesId: {
                 type: Sequelize.INTEGER,
-                allowNull: true
+                allowNull: true,
             },
             nombrePrimerTrabajo: {
                 type: Sequelize.STRING,
@@ -59,13 +59,17 @@ module.exports = {
             },
             esEmpleado: {
                 type: Sequelize.BOOLEAN,
-                allowNull: false
+                defaultValue: false,
             },
             modulo: {
                 type: Sequelize.STRING,
                 allowNull: true
             },
             zona: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            detalle: {
                 type: Sequelize.STRING,
                 allowNull: true,
             }

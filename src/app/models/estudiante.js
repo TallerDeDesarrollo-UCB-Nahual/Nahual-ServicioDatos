@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     'esEmpleado': DataTypes.BOOLEAN,
     'modulo': DataTypes.STRING,
     'zona': DataTypes.STRING,
+    'detalle': DataTypes.STRING,
   });
   Estudiante.associate = function(models){
     Estudiante.belongsTo(models.Sede, {foreignKey: 'sedeId', as: 'sede'}),
