@@ -37,6 +37,15 @@ router.delete(nombresRutas.emptyUrl, async(request, response) => {
     }
 });
 
+router.delete('/sedes/:id', async(request, response) => {
+    try {
+        const result = await sedeService.eliminarSede(request, response);
+        response.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await nodoService.crearNodo(request, response);

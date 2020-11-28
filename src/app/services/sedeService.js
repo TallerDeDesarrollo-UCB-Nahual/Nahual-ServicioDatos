@@ -15,7 +15,7 @@ const SedeService = {
     encontrarSedesPorNodo: async(parametros) => {
         let todasLasSedes = await Sede.findAll({
             where: parametros,
-            attributes: {exclude: ['NodoId', 'id']}
+            attributes: {exclude: 'NodoId'}
         });
         todasLasSedes = todasLasSedes.map(x => x.dataValues);
         return { 'response': todasLasSedes };
