@@ -26,7 +26,7 @@ module.exports = {
                 allowNull: true,
             },
             celular: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: true,
             },
             sedeId: {

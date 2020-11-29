@@ -12,8 +12,10 @@ const EstudianteService = {
 
     encontrarEstudiantes: async(parameters) => {
         const Op = Sequelize.Op;
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -47,8 +49,10 @@ const EstudianteService = {
 
     encontrarEstudiantesDTO: async(parameters) => {
         const Op = Sequelize.Op;
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEstudiantes = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -212,11 +216,12 @@ const EstudianteService = {
         var estudiantes = request.body
 
         estudiantes.forEach(async estudiante => {
-            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+            await Estudiante.count({ where: { nombre: estudiante.nombre, apellido: estudiante.apellido } }).then(async count => {
                 if (count != 0) {
                     await Estudiante.update(estudiante, {
                         where: {
-                            nombreCompleto: estudiante.nombreCompleto,
+                            nombre: estudiante.nombre,
+                            apellido: estudiante.apellido,
                             estadoId: 3
                         }
                     })
@@ -256,11 +261,12 @@ const EstudianteService = {
         try {
             const estudiante = request.body;
             let resultado = '';
-            await Estudiante.count({ where: { nombreCompleto: estudiante.nombreCompleto } }).then(async count => {
+            await Estudiante.count({ where: { nombre: estudiante.nombre, apellido: estudiante.apellido } }).then(async count => {
                 if (count != 0) {
                     resultado = await Estudiante.update(estudiante, {
                         where: {
-                            nombreCompleto: estudiante.nombreCompleto,
+                            nombre: estudiante.nombre,
+                            apellido: estudiante.apellido,
                         }
                     })
                 } else {
@@ -289,8 +295,10 @@ const EstudianteService = {
         const criterioDeOrden = parameters.ordenarPor || 'id';
         delete parameters.ordenarPor;
         const sentidoDeOrden = criterioDeOrden ==='añoGraduacion' ? 'DESC':'ASC';
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEgresadesPorNombre = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -333,8 +341,10 @@ const EstudianteService = {
         const criterioDeOrden = parameters.ordenarPor || 'id';
         delete parameters.ordenarPor;
         const sentidoDeOrden = criterioDeOrden ==='añoGraduacion' ? 'DESC':'ASC';
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
                 estadoId: 3
@@ -376,8 +386,10 @@ const EstudianteService = {
 
     encontrarEgresadesSinPaginacion: async (parameters) => {
         const Op = Sequelize.Op;
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEgresadesPorNombre = await Estudiante.findAll({
             attributes: {exclude: ['sedeId','nodoId','nivelInglesId']},
             include: [
@@ -410,8 +422,10 @@ const EstudianteService = {
 
     encontrarEgresadesSinPaginacionDTO: async(parameters) => {
         const Op = Sequelize.Op;
-        if('nombreCompleto' in parameters)
-            parameters.nombreCompleto = { [Op.startsWith]: parameters.nombreCompleto };
+        if('nombre' in parameters)
+            parameters.nombre = { [Op.startsWith]: parameters.nombre };
+        if('apellido' in parameters)
+            parameters.apellido = { [Op.startsWith]: parameters.apellido };
         let todosLosEstudiantes = await Estudiante.findAll({
             where: {
                 estadoId: 3

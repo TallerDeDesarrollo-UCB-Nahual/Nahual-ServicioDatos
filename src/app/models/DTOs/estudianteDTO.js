@@ -21,6 +21,7 @@ class EstudianteDTO {
             'esEmpleado': estudiante.esEmpleado,
             'modulo': estudiante.modulo,
             'zona': estudiante.zona,
+            'detalle': estudiante.detalle,
         }
     }
 
