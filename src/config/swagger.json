@@ -771,6 +771,12 @@
                 },
                 "modulo": {
                     "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
+                    "type": "string"
                 }
             }
         },
@@ -813,6 +819,12 @@
                     "type": "boolean"
                 },
                 "modulo": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
                     "type": "string"
                 }
             }
