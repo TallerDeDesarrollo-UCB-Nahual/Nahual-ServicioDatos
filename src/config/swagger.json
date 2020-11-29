@@ -387,6 +387,61 @@
                     }
                 }
             }
+        },
+        "/periodos/{id}":{
+            "get":{
+                "tags": ["Periodos"],
+                "summary": "Obtener toda la informacion de un periodo",
+                "description": "Obtener toda la informacion de un periodo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un periodo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Periodo"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Periodos"],
+                "summary": "Editar la informacion de un periodo especifico",
+                "description": "Editar la informacion de un periodo especifico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del periodo",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "periodo",
+                        "in": "body",
+                        "description": "OK",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/PeriodoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El periodo fue editado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Periodo"
+                        }
+                    }
+                }
+            }
         }
     },
     
