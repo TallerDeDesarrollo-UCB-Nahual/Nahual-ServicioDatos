@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     'estadoId': DataTypes.INTEGER,
     'fechaNacimiento': DataTypes.DATE,
     'correo': DataTypes.STRING,
-    'celular': DataTypes.INTEGER,
+    'celular': DataTypes.STRING,
     'sedeId': DataTypes.INTEGER,
     'nodoId': DataTypes.INTEGER,
     'añoGraduacion': DataTypes.INTEGER,
