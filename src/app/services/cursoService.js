@@ -6,6 +6,28 @@ const CursoService = {
         return { 'response': todosLosCursos };
     },
     
+    encontrarCursosPorPeriodo: async(parametros) => {
+        console.log(parametros.PeriodoId)
+        let todosLosCursos = await Curso.findAll({
+            where: parametros,
+            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
+            include:  [
+                {
+                    model: Nodo,
+                    as: 'nodo',
+                    attributes: {exclude: ['id']},
+                },
+                {
+                    model: Sede,
+                    as: 'sede',
+                    attributes: {exclude: ['id','NodoId']}
+                }
+            ]
+        });
+        todosLosCursos = todosLosCursos.map(x => x.dataValues);
+        return { 'response': todosLosCursos };
+    },
+    
     encontrarInscriptesDeUnCurso: async (idCurso) => {
         try {
           const curso = await Inscripto.findAll({
