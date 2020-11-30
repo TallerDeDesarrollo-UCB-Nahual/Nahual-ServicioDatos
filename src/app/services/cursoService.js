@@ -40,7 +40,7 @@ const CursoService = {
                 }
             ]
         });
-        return { 'response': curso };
+        return { 'respuesta': curso };
     },
 
     crearCurso: async(request, response) => {
