@@ -1,36 +1,36 @@
 {
-  "development": {
-    "username": "zdqhxzgk",
-    "password": "k780jUWv9Yp2P6ku-uAnKNlGFm5Wfx59",
-    "database": "zdqhxzgk",
-    "host": "suleiman.db.elephantsql.com",
-    "dialect": "postgres",
-    "define": {
-      "schema": "public",
-      "timestamps": false
-    }
-  },
-  "test": {
-    "username": null,
-    "password": null,
-    "database": null,
-    "host": null,
-    "dialect": null,
-    "define": {
-      "schema": "public",
-      "timestamps": false
-    }
-  },
-  "production": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
-    "dialect": "postgres",
-    "define": {
-      "schema": "public",
-      "timestamps": false
+    "development": {
+        "username": "postgres",
+        "password": "postgres",
+        "database": "nahual",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "define": {
+            "schema": "public",
+            "timestamps": false
+        }
     },
-    "use_env_variable": "DATABASE_URL"
-  }
+    "test": {
+        "username": null,
+        "password": null,
+        "database": null,
+        "host": null,
+        "dialect": null,
+        "define": {
+            "schema": "public",
+            "timestamps": false
+        }
+    },
+    "production": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "postgres",
+        "define": {
+            "schema": "public",
+            "timestamps": false
+        },
+        "use_env_variable": "DATABASE_URL"
+    }
 }

@@ -28,6 +28,15 @@ router.get(
     }
   );
 
+router.get("/:id", async (request, response) => {
+    try {
+        const curso = await cursoService.encontrarCursoPorId(request.params.id);
+        response.send(curso);
+    } catch (error) {
+        response.status(404).send( 'Curso no encontrado' );
+    }
+});
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await cursoService.crearCurso(request, response);

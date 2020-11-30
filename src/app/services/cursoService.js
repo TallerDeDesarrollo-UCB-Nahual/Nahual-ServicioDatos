@@ -25,11 +25,8 @@ const CursoService = {
         }
     },
 
-    encontrarCursosPorPeriodo: async(parametros) => {
-        console.log(parametros.PeriodoId)
-        let todosLosCursos = await Curso.findAll({
-            where: parametros,
-            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
+    encontrarCursoPorId: async(cursoId) => {
+        let curso = await Curso.findByPk(cursoId,{
             include:  [
                 {
                     model: Nodo,
@@ -43,8 +40,7 @@ const CursoService = {
                 }
             ]
         });
-        todosLosCursos = todosLosCursos.map(x => x.dataValues);
-        return { 'response': todosLosCursos };
+        return { 'response': curso };
     },
 
     crearCurso: async(request, response) => {
