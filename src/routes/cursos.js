@@ -10,6 +10,24 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosCursos)
 });
 
+router.get(
+    nombresRutas.emptyUrl + "/:cursoId/inscriptes",
+    async (peticion, respuesta) => {
+      try {
+        if (Number(peticion.params.cursoId)) {
+          const inscriptesDelCurso = await cursoService.encontrarInscriptesDeUnCurso(
+            peticion.params.cursoId
+          );
+          respuesta.status(200).send(inscriptesDelCurso);
+        } else {
+          respuesta.status(400).send("IdCurso invalido");
+        }
+      } catch (error) {
+        respuesta.status(400).send(error);
+      }
+    }
+  );
+
 router.post(nombresRutas.emptyUrl, async(request, response) => {
     try {
         const result = await cursoService.crearCurso(request, response);
