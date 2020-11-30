@@ -285,6 +285,30 @@
                         }
                     }
                 }
+            },
+            "get":{
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Obtener toda la informacion de un curso",
+                "description": "Obtener toda la informacion de un curso",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un curso",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Curso"
+                        }
+                    }
+                }
             }
         },
         "/periodos": {
