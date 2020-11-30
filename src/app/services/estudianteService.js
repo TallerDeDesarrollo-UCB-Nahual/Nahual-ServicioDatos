@@ -504,7 +504,9 @@ const EstudianteService = {
           resultado.push({
             Operacion:
               "El estudiante " +
-              estudianteEncontrado.nombreCompleto +
+              estudianteEncontrado.nombre +
+              " " +
+              estudianteEncontrado.apellido +
               " no es un alumne"
           });
           codigo = 400;
@@ -519,7 +521,9 @@ const EstudianteService = {
           resultado.push({
             Operacion:
               "Se cambio el estado correctamente de estudiante: " +
-              estudianteEncontrado.nombreCompleto
+              estudianteEncontrado.nombre +
+              " " +
+              estudianteEncontrado.apellido
           });
           codigo = 200;
         }
