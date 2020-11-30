@@ -25,7 +25,7 @@ const PeriodoService = {
         {
           model: Topico,
           as: 'topico',
-          attributes: { exclude: ['id'] }
+          attributes: { include: ['id'] }
         }
       ]
     });
