@@ -1,5 +1,4 @@
 const { Sede, Nodo } = require('../models');
-const { Estudiante } = require('../models');
 const SedeService = {
     encontrarTodasLasSedes: async(request, response) => {
         let sedes = await Sede.findAll({
@@ -13,9 +12,20 @@ const SedeService = {
         return { 'response': sedes };
     },
 
+    encontrarSedesPorNodo: async(parametros) => {
+        let todasLasSedes = await Sede.findAll({
+            where: parametros,
+            attributes: {exclude: 'NodoId'}
+        });
+        todasLasSedes = todasLasSedes.map(x => x.dataValues);
+        return { 'response': todasLasSedes };
+    },
+
     actualizarSede: async(request, response) => {
         try {
+            await Sede.update(request.body, { where: { id: request.params.id } });
             let sede = await Sede.findByPk(request.params.id);
+            // sede.nombre = request.params.nombre;
             return { message: "La sede fue actualizada exitosamente", Sede: sede };
         } catch (error) {
             throw error;
