@@ -16,7 +16,7 @@ router.get("/:id", async (request, response) => {
         const periodo = await periodoService.encontrarPeriodoporId(request.params.id);
         response.send(periodo);
     } catch (error) {
-        response.status(404).send({ "mensgitaje" : "Periodo no encontrado" });
+        response.status(404).send( 'Periodo no encontrado' );
     }
 })
 
