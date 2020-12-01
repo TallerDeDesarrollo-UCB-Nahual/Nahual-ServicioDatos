@@ -14,4 +14,9 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
     }
 });
 
+router.get(nombresRutas.emptyUrl, async(request, response) => {
+    const sedes = await sedeService.encontrarTodasLasSedes(request, response);
+    response.send(sedes)
+});
+
 module.exports = router;
