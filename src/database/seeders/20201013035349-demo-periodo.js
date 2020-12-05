@@ -6,13 +6,15 @@ module.exports = {
                 anio: 1998,
                 periodo: 'C2',
                 TopicoId: 1,
-                estado: true
+                estado: true,
+                mensajeDeCierre: 'Bienvenido al periodo C2'
             },
             {
                 anio: 1999,
                 periodo: 'C3',
                 TopicoId: 1,
-                estado: false
+                estado: false,
+                mensajeDeCierre: 'Bienvenido al periodo C3'
             }
         ]);
     },

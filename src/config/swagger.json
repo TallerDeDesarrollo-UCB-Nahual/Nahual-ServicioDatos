@@ -674,6 +674,9 @@
                 "topico": {
                     "type": "string",
                     "$ref": "#/definitions/Topico"
+                },
+                "mensajeDeCierre": {
+                    "type": "string"
                 }
             }
         },
@@ -694,6 +697,9 @@
                 },
                 "TopicoId": {
                     "type": "number"
+                },
+                "mensajeDeCierre": {
+                    "type": "string"
                 }
             }
         }
