@@ -24,6 +24,10 @@ module.exports = {
             estado: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false
+            },
+            mensajeDeCierre: {
+                type: Sequelize.STRING,
+                allowNull: false
             }
         })
     },

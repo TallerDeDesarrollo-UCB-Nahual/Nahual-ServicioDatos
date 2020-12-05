@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       'anio': DataTypes.INTEGER,
       'periodo': DataTypes.STRING,
       'TopicoId': DataTypes.INTEGER,
-      'estado': DataTypes.BOOLEAN
+      'estado': DataTypes.BOOLEAN,
+      'mensajeDeCierre': DataTypes.STRING
     });
     Periodo.associate = function(models){
       Periodo.hasMany(models.Curso, {as: 'cursos'});
