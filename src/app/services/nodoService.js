@@ -9,6 +9,14 @@ const NodoService = {
         return { 'response': todosLosNodos };
     },
 
+    encontrarNodos: async(request, response) => {
+        let todosLosNodos = await Nodo.findAll({
+            attributes: {exclude: ['sedes']}
+        });
+        todosLosNodos = todosLosNodos.map(x => x.dataValues);
+        return { 'response': todosLosNodos };
+    },
+
     actualizarNodo: async(request, response) => {
         try {
             const nodo = await Nodo.findByPk(request.params.id);

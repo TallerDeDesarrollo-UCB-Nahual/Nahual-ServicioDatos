@@ -10,6 +10,11 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
     response.send(todosLosNodos)
 });
 
+router.get('/nombreNodos', async(request, response) => {
+    const todosLosNodos = await nodoService.encontrarNodos(request, response);
+    response.send(todosLosNodos)
+});
+
 router.get("/:id/sedes", async(request, response) => {
     try {
         const sedes = await sedeService.encontrarSedesPorNodo({NodoId: request.params.id});
