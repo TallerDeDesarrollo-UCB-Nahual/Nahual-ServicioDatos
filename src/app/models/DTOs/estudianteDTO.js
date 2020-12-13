@@ -5,8 +5,16 @@ class EstudianteDTO {
     constructor(estudiante) {
         this.estudianteDTO = {
             'id': estudiante.id,
+            'dni': estudiante.dni,
             'nombre': estudiante.nombre,
             'apellido': estudiante.apellido,
+            'nacionalidad': estudiante.nacionalidad,
+            'localidad': estudiante.localidad,
+            'trabajaActualmente': estudiante.trabajaActualmente,
+            'lugarDeTrabajo': estudiante.lugarDeTrabajo,
+            'trabajaSistemas': estudiante.trabajaSistemas,
+            'experienciaSistemas': estudiante.experienciaSistemas,
+            'estudiosSistemas': estudiante.estudiosSistemas,
             'Estado': estudiante.estado.nombre,
             'fechaNacimiento': estudiante.fechaNacimiento,
             'correo': estudiante.correo,
