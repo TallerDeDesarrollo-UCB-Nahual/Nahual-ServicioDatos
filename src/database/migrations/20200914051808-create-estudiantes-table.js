@@ -10,7 +10,7 @@ module.exports = {
                 allowNull: false
             },
             dni: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: true,
             },
             nombreCompleto: {
@@ -22,16 +22,12 @@ module.exports = {
                 allowNull: true
             },
             trabajaActualmente: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false,
-            },
-            lugarDeTrabajo: {
                 type: Sequelize.STRING,
                 allowNull: true
             },
             trabajaSistemas: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false,
+                type: Sequelize.STRING,
+                defaultValue: true,
             },
             experienciaSistemas: {
                 type: Sequelize.STRING,
