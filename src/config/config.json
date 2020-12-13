@@ -1,8 +1,9 @@
 {
     "development": {
-        "username": "<username>",
-        "password": "<password>",
-        "database": "nahual",
+        "username": "postgres",
+        "password": "password",
+        "database": "Nahual-LastOne",
+        "port": "5433",
         "host": "127.0.0.1",
         "dialect": "postgres",
         "define": {

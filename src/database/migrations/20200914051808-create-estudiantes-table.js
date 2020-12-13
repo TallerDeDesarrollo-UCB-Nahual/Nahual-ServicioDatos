@@ -9,9 +9,37 @@ module.exports = {
                 autoIncrement: true,
                 allowNull: false
             },
+            dni: {
+                type: Sequelize.INTEGER,
+                allowNull: true,
+            },
             nombreCompleto: {
                 type: Sequelize.STRING,
                 allowNull: false
+            },
+            nacionalidad: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            trabajaActualmente: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: false,
+            },
+            lugarDeTrabajo: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            trabajaSistemas: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: false,
+            },
+            experienciaSistemas: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            estudiosSistemas: {
+                type: Sequelize.STRING,
+                allowNull: true
             },
             estadoId: {
                 type: Sequelize.INTEGER,
