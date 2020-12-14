@@ -27,6 +27,30 @@
         {
             "name": "Periodos",
             "description": "API para Periodos"
+        },
+        {
+            "name": "Estados",
+            "description": "API para Estado de Cursos"
+        },
+        {
+            "name": "Inscriptos",
+            "description": "API para Inscriptos a Cursos"
+        },
+        {
+            "name": "Modulos",
+            "description": "API para Modulos de Cursos"
+        },
+        {
+            "name": "NivelIngles",
+            "description": "API para obtener los niveles de Ingles"
+        },
+        {
+            "name": "Nodos",
+            "description": "API para Nodos"
+        },
+        {
+            "name": "Sedes",
+            "description": "API para Sedes"
         }
     ],
     "schemes": [
@@ -251,15 +275,13 @@
                         }
                     }
                 }
-            }
-        },
-        "/cursos/{id}": {
+            },
             "put": {
                 "tags": [
                     "Cursos"
                 ],
-                "summary": "Editar la informacion de un curso en especifico",
-                "description": "Editar la informacion de un curso en especifico",
+                "summary": "Editar toda la informacion de un curso especifico",
+                "description": "Editar toda la informacion de un curso especifico",
                 "parameters": [
                     {
                         "name": "id",
@@ -267,43 +289,11 @@
                         "required": true,
                         "description": "ID del curso",
                         "type": "integer"
-                    },
-                    {
-                        "name": "Curso a editar",
-                        "in": "body",
-                        "description": "Toda la informacion de un curso",
-                        "schema": {
-                            "$ref": "#/definitions/CursoAGuardar"
-                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "El curso fue editado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/CursoAGuardar"
-                        }
-                    }
-                }
-            },
-            "get":{
-                "tags": [
-                    "Cursos"
-                ],
-                "summary": "Obtener toda la informacion de un curso",
-                "description": "Obtener toda la informacion de un curso",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID de un curso",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Curso"
                         }
@@ -360,6 +350,51 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Editar informacion de un periodo especifico",
+                "description": "Editar informacion de un periodo especifico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del periodo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El periodo fue editado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Periodo"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Eliminar un periodo",
+                "description": "Eliminar un periodo",
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de Periodo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El periodo fue eliminado correctamente"
+                    }
+                }
+            },
             "/{idPeriodo}/cursos/{idCurso}": {
                 "delete": {
                     "tags": [
@@ -412,17 +447,18 @@
                 }
             }
         },
-        "/periodos/{id}":{
-            "get":{
-                "tags": ["Periodos"],
-                "summary": "Obtener toda la informacion de un periodo",
-                "description": "Obtener toda la informacion de un periodo",
+        "/estados":{
+            "get": {
+                "tags": [
+                    "Estados"
+                ],
+                "summary": "Obtener todos los estados posibles de un Estudiante",
+                "description": "Obtener todos los estados",
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID de un periodo",
+                        "in": "query",
+                        "description": "ID de un estado",
                         "type": "integer"
                     }
                 ],
@@ -430,39 +466,264 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Periodo"
+                            "$ref": "#/definitions/Estados"
+                        }
+                    }
+                }
+            }
+        },
+        "/modulos":{
+            "get": {
+                "tags": [
+                    "Modulos"
+                ],
+                "summary": "Obtener todos los modulos",
+                "description": "Obtener todos los modulos",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID de un modulo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Modulos"
+                        }
+                    }
+                }
+            }
+        },
+        "/nivel-ingles":{
+            "get": {
+                "tags": [
+                    "NivelIngles"
+                ],
+                "summary": "Obtener todos los niveles de ingles",
+                "description": "Obtener todos los niveles de ingles",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID de un nivel de ingles",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/NivelesIngles"
+                        }
+                    }
+                }
+            }
+        },
+        "/inscriptos": {
+            "get": {
+                "tags": [
+                    "Inscriptos"
+                ],
+                "summary": "Obtener toda la informacion de un inscripto",
+                "description": "Obtener toda la informacion de un inscripto",
+                "parameters": [
+                    {
+                        "name": "estudianteId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un estudiante",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "cursoId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un curso",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Inscriptos"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Inscriptos"
+                ],
+                "summary": "Enviar la informacion de muchos inscriptos",
+                "description": "Enviar la informacion de muchos inscriptos",
+                "parameters": [
+                    {
+                        "name": "Lista de inscriptos [{inscripto#1},{inscripto#2},{inscripto#3}]",
+                        "in": "body",
+                        "description": "Toda la informacion de muchos inscriptos",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/Inscriptos"
+                        }
+                    },
+                    {
+                        "name": "cursoId",
+                        "in": "body",
+                        "description": "Curso al que pertenece la inscripciones",
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/definitions/Curso"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se registro correctamente"
+                    }
+                }
+            }
+        },
+        "/nodos": {
+            "get": {
+                "tags": [
+                    "Nodos"
+                ],
+                "summary": "Obtener todos los nodos de sedes",
+                "description": "Obtener todos los nodos de sedes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID de Nodo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Nodos"
                         }
                     }
                 }
             },
             "put": {
-                "tags": ["Periodos"],
-                "summary": "Editar la informacion de un periodo especifico",
-                "description": "Editar la informacion de un periodo especifico",
+                "tags": [
+                    "Nodos"
+                ],
+                "summary": "Actualizar informacion de un nodo especifico",
+                "description": "Actualizar informacion de un nodo especifico",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
                         "required": true,
-                        "description": "ID del periodo",
+                        "description": "ID del nodo",
                         "type": "integer"
-                    },
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "La informacion del nodo fue actualizada exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Nodo"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Nodos"
+                ],
+                "summary": "Eliminar un nodo",
+                "description": "Eliminar un nodo",
+                "parameters":[
                     {
-                        "name": "periodo",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de Nodo",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El nodo fue eliminado exitosamente"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Nodos"
+                ],
+                "summary": "Enviar la informacion de un nodo",
+                "description": "Enviar la informacion de un nodo",
+                "parameters": [
+                    {
+                        "name": "Nodo a guardar",
                         "in": "body",
-                        "description": "OK",
+                        "description": "Toda la informacion de un nodo",
                         "type": "string",
                         "schema": {
-                            "$ref": "#/definitions/PeriodoAGuardar"
+                            "$ref": "#/definitions/NodoAGuardar"
                         }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "El periodo fue editado exitosamente",
+                        "description": "El nodo fue creado exitosamente"
+                    }
+                }
+            }
+        },
+        "/sedes": {
+            "get": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Obtener todas las sedes",
+                "description": "Obtener todas las sedes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID de Sede",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Periodo"
+                            "$ref": "#/definitions/Sedes"
                         }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sedes"
+                ],
+                "summary": "Enviar la informacion de una sede",
+                "description": "Enviar la informacion de una sede",
+                "parameters": [
+                    {
+                        "name": "Sede a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de una sede",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/SedeAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "La sede fue creada exitosamente"
                     }
                 }
             }
@@ -476,16 +737,80 @@
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "nombreCompleto": {
+                "dni": {
                     "type": "string"
                 },
-                "cursosTerminados": {
+                "nombre": {
                     "type": "string"
                 },
-                "nivelIngles": {
+                "apellido": {
                     "type": "string"
                 },
-                "nodo": {
+                "nacionalidad": {
+                    "type": "string"
+                },
+                "trabajaActualmente": {
+                    "type": "boolean"
+                },
+                "lugarDeTrabajo": {
+                    "type": "string"
+                },
+                "trabajaSistemas": {
+                    "type": "boolean"
+                },
+                "experienciaSistemas": {
+                    "type": "string"
+                },
+                "estudiosSistemas": {
+                    "type": "string"
+                },
+                "estadoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Estado"
+                },
+                "fechaNacimiento": {
+                    "type": "string"
+                },
+                "correo": {
+                    "type": "string"
+                },
+                "celular": {
+                    "type": "integer"
+                },
+                "sedeId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Sede"
+                },
+                "nodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
+                },
+                "añoGraduacion": {
+                    "type": "integer"
+                },
+                "cuatrimestre": {
+                    "type": "integer"
+                },
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
+                },
+                "nombrePrimerTrabajo": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "esEmpleado": {
+                    "type": "boolean"
+                },
+                "modulo": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
                     "type": "string"
                 }
             }
@@ -496,11 +821,36 @@
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "nombreCompleto": {
+                "dni": {
                     "type": "string"
                 },
-                "nombreEstado": {
+                "nombre": {
                     "type": "string"
+                },
+                "apellido": {
+                    "type": "string"
+                },
+                "nacionalidad": {
+                    "type": "string"
+                },
+                "trabajaActualmente": {
+                    "type": "boolean"
+                },
+                "lugarDeTrabajo": {
+                    "type": "string"
+                },
+                "trabajaSistemas": {
+                    "type": "boolean"
+                },
+                "experienciaSistemas": {
+                    "type": "string"
+                },
+                "estudiosSistemas": {
+                    "type": "string"
+                },
+                "estadoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Estado"
                 },
                 "fechaNacimiento": {
                     "type": "string"
@@ -511,8 +861,13 @@
                 "celular": {
                     "type": "integer"
                 },
-                "nombreNodo": {
-                    "type": "string"
+                "sedeId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Sede"
+                },
+                "nodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
                 },
                 "añoGraduacion": {
                     "type": "integer"
@@ -520,8 +875,9 @@
                 "cuatrimestre": {
                     "type": "integer"
                 },
-                "nivelIngles": {
-                    "type": "string"
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
                 },
                 "nombrePrimerTrabajo": {
                     "type": "string"
@@ -533,17 +889,52 @@
                     "type": "boolean"
                 },
                 "modulo": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
                     "type": "string"
                 }
             }
         },
         "EstudianteSinId": {
             "properties": {
-                "nombreCompleto": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "dni": {
                     "type": "string"
                 },
-                "nombreEstado": {
+                "nombre": {
                     "type": "string"
+                },
+                "apellido": {
+                    "type": "string"
+                },
+                "nacionalidad": {
+                    "type": "string"
+                },
+                "trabajaActualmente": {
+                    "type": "boolean"
+                },
+                "lugarDeTrabajo": {
+                    "type": "string"
+                },
+                "trabajaSistemas": {
+                    "type": "boolean"
+                },
+                "experienciaSistemas": {
+                    "type": "string"
+                },
+                "estudiosSistemas": {
+                    "type": "string"
+                },
+                "estadoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Estado"
                 },
                 "fechaNacimiento": {
                     "type": "string"
@@ -554,8 +945,13 @@
                 "celular": {
                     "type": "integer"
                 },
-                "nombreNodo": {
-                    "type": "string"
+                "sedeId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Sede"
+                },
+                "nodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
                 },
                 "añoGraduacion": {
                     "type": "integer"
@@ -563,8 +959,9 @@
                 "cuatrimestre": {
                     "type": "integer"
                 },
-                "nivelIngles": {
-                    "type": "string"
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
                 },
                 "nombrePrimerTrabajo": {
                     "type": "string"
@@ -576,6 +973,12 @@
                     "type": "boolean"
                 },
                 "modulo": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
                     "type": "string"
                 }
             }
@@ -586,6 +989,10 @@
         },
         "Nodo": {
             "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
                 "nombre": {
                     "type": "string"
                 }
@@ -593,8 +1000,16 @@
         },
         "Sede": {
             "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
                 "nombre": {
                     "type": "string"
+                },
+                "NodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
                 }
             }
         },
@@ -604,19 +1019,26 @@
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "horarioInicio": {
-                    "type": "string"
-                },
-                "horarioFin": {
-                    "type": "string"
-                },
-                "nodo": {
-                    "type": "string",
+                "NodoId": {
+                    "type": "integer",
                     "$ref": "#/definitions/Nodo"
                 },
-                "sede": {
-                    "type": "string",
+                "SedeId": {
+                    "type": "integer",
                     "$ref": "#/definitions/Sede"
+                },
+                "horario": {
+                    "type": "string"
+                },
+                "profesores": {
+                    "type": "string"
+                },
+                "notas": {
+                    "type": "string"
+                },
+                "periodo": {
+                    "type": "string",
+                    "$ref": "#/definitions/Periodo"
                 }
             }
         },
@@ -626,16 +1048,19 @@
         },
         "CursoAGuardar": {
             "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
                 "NodoId": {
-                    "type": "number"
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
                 },
                 "SedeId": {
-                    "type": "number"
+                    "type": "integer",
+                    "$ref": "#/definitions/Sede"
                 },
-                "horarioInicio": {
-                    "type": "string"
-                },
-                "horarioFin": {
+                "horario": {
                     "type": "string"
                 },
                 "profesores": {
@@ -644,13 +1069,18 @@
                 "notas": {
                     "type": "string"
                 },
-                "PeriodoId": {
-                    "type": "number"
+                "periodo": {
+                    "type": "string",
+                    "$ref": "#/definitions/Periodo"
                 }
             }
         },
         "Topico": {
             "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
                 "nombre": {
                     "type": "string"
                 }
@@ -668,12 +1098,12 @@
                 "periodo": {
                     "type": "string"
                 },
+                "TopicoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Topico"
+                },
                 "estado": {
                     "type": "boolean"
-                },
-                "topico": {
-                    "type": "string",
-                    "$ref": "#/definitions/Topico"
                 },
                 "mensajeDeCierre": {
                     "type": "string"
@@ -697,9 +1127,105 @@
                 },
                 "TopicoId": {
                     "type": "number"
+                }
+            }
+        },
+        "Estado": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
                 },
-                "mensajeDeCierre": {
+                "nombre": {
                     "type": "string"
+                }
+            }
+        },
+        "Estados": {
+            "type": "array",
+            "$ref": "#/definitions/Estado"
+        },
+        "Modulo": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Modulos": {
+            "type": "array",
+            "$ref": "#/definitions/Modulo"
+        },
+        "NivelIngles": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "NivelesIngles": {
+            "type": "array",
+            "$ref": "#/definitions/NivelIngles"
+        },
+        "Inscripto": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "estudianteId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Estudiante"
+                },
+                "cursoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Curso"
+                }
+            }
+        },
+        "Inscriptos": {
+            "type": "array",
+            "$ref": "#/definitions/Inscripto"
+        },
+        "Nodos": {
+            "type": "array",
+            "$ref": "#/definitions/Nodo"
+        },
+        "NodoAGuardar": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Sedes": {
+            "type": "array",
+            "$ref": "#/definitions/Sede"
+        },
+        "SedeAGuardar": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "nombre": {
+                    "type": "string"
+                },
+                "NodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
                 }
             }
         }
