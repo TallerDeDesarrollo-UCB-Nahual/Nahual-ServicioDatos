@@ -12,7 +12,16 @@ module.exports = {
                 nombre: 'Banfield',
             },
             {
-                nombre: 'Ituzaingó'
+                nombre: 'Ituzaingó' 
+            },
+            {
+                nombre: 'Gonzalez Catán',
+            },
+            {
+                nombre: 'Pacheco',
+            },
+            {
+                nombre: 'Mendoza',
             }
         ]);
     },

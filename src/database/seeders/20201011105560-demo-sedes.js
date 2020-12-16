@@ -15,7 +15,7 @@ module.exports = {
                 NodoId: 1
             },
             {
-                nombre: 'Technisis',
+                nombre: 'Technisys',
                 NodoId: 1
             },
             {
@@ -23,16 +23,52 @@ module.exports = {
                 NodoId: 3
             },
             {
-                nombre: 'Rosario',
+                nombre: 'Hipoacusia',
                 NodoId: 1
             },
             {
-                nombre: 'Máximo Paz',
+                nombre: 'Bachi Barrio 31',
                 NodoId: 1
             },
             {
                 nombre: 'Tierra Violeta',
                 NodoId: 1
+            },
+            {
+                nombre: 'La Carbonilla',
+                NodoId: 1
+            },
+            {
+                nombre: 'NIT',
+                NodoId: 1
+            },
+            {
+                nombre: 'ORT',
+                NodoId: 1
+            },
+            {
+                nombre: 'Paternal',
+                NodoId: 1
+            },
+            {
+                nombre: 'Rosario',
+                NodoId: 2
+            },
+            {
+                nombre: 'Máximo Paz',
+                NodoId: 2
+            },
+            {
+                nombre: 'Gonzalez Catán',
+                NodoId: 5
+            },
+            {
+                nombre: 'Pacheco',
+                NodoId: 6
+            },
+            {
+                nombre: 'Mendoza',
+                NodoId: 7
             },
         ]);
     },
