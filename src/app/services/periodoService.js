@@ -1,5 +1,5 @@
 const { Periodo, Topico } = require('../models');
-const { CursoService } = require('./cursoService');
+const CursoService = require('./cursoService');
 const PeriodoService = {
   encontrarTodosLosPeriodos: async (parametros) => {
     let todosLosPeriodos = await Periodo.findAll({
@@ -50,7 +50,7 @@ const PeriodoService = {
   eliminarPeriodo: async (idPeriodo) => {
     try {
       const periodoABorrar = await Periodo.findOne({ where: { id: Number(idPeriodo) } })
-      cursos = CursoService.encontrarCursosPorPeriodo(idPeriodo)
+      cursos = CursoService.encontrarCursosPorPeriodo({PeriodoId: idPeriodo})
       if (periodoABorrar) {
         if (cursos.length > 0) {
           cursos.forEach(curso => {
