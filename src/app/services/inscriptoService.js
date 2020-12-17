@@ -45,8 +45,8 @@ const InscriptoService = {
                     else{
                         if(estudiante.estadoId == 1){
                             estudianteActualizado = {
-                                "nodoId": curso.nodoId,
-                                "sedeId": curso.sedeId,
+                                "nodoId": curso.NodoId,
+                                "sedeId": curso.SedeId,
                                 "estadoId": 2
                             }
                             await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
@@ -94,8 +94,8 @@ const InscriptoService = {
                 else{
                     if(estudiante.estadoId == 1){
                         estudianteActualizado = {
-                            "nodoId": curso.nodoId,
-                            "sedeId": curso.sedeId,
+                            "nodoId": curso.NodoId,
+                            "sedeId": curso.SedeId,
                             "estadoId": 2
                         }
                         await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
