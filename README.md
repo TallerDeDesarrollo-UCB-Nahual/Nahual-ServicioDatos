@@ -1,36 +1,45 @@
-﻿## 🔌 Configurations
+﻿## 🔌 Configuraciones
 
-It is needed to create the database **nahual** in your pgAdmin server.
+Es necesario crear la base de datos **nahual** en su servidor pgAdmin.
 
-## 💿 Install Dependencies
+## 💿 Instalar Dependencias
 
-From your CLI inside the folder Nahual-ServicioDatos run the following command:
+Desde su CLI y dentro de la carpeta Nahual-ServicioDatos, ejecuta el siguiente comando:
 
 npm install
 
-**Make sure you have modified the database configurations inside config/config.json**
+**Asegúrese de haber modificado las configuraciones de la base de datos dentro de config/config.json**
 
-To run migrations use the following command inside the folder Nahual-ServicioDatos **only use this command once when the schema is not set**:
+Para ejecutar migraciones use el siguiente comando dentro de la carpeta Nahual-ServicioDatos **solo use este comando una vez cuando el esquema no esté configurado**:
 
 npx sequelize-cli db:migrate
 
-To run the seeds use the following command **it is only needed in a local/development environment, avoid to use it in production** :
+Para ejecutar las semillas, use el siguiente comando **solo se necesita en un entorno local/desarrollo, evite usarlo en producción** :
 
 npx sequelize-cli db:seed:all
 
-## 💻 Run Project
+## 💻 Ejecutar Proyecto
 
-To run project use the following command inside the folder Nahual-ServicioDatos:
+Para ejecutar el proyecto use el siguiente comando dentro de la carpeta Nahual-ServicioDatos:
 
 npm run start --env=<environment>
 
-To run in a development enviroment use the following command:
+Para ejecutar en un entorno de desarrollo, utilice el siguiente comando:
 
 npm run dev --env=<enviroment>
 
-
-Possible environments:
+Entornos posibles:
 
 * development
 * test
 * production
+
+Para ver la documentación de Swagger, ejecute en su navegador:
+
+https://nahual-datos-estudiantes.herokuapp.com/api-docs/
+
+Para ver el esquema de la base de datos, ejecute en su navegador:
+
+https://drive.google.com/file/d/1huv1D0Qr0mc9ONbs4zp0svKCvj8JGP1b/view
+
+Se utilizaron PostgreSQL y Node.js para el desarrollo de este proyecto.
