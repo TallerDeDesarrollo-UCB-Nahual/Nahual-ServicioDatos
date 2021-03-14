@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     'estadoId': DataTypes.INTEGER,
     'fechaNacimiento': DataTypes.DATE,
     'correo': DataTypes.STRING,
+    'correoOpcional':DataTypes.STRING,
     'celular': DataTypes.STRING,
     'sedeId': DataTypes.INTEGER,
     'nodoId': DataTypes.INTEGER,

@@ -17,6 +17,7 @@ class EstudianteDTO {
             'Estado': estudiante.estado.nombre,
             'fechaNacimiento': estudiante.fechaNacimiento,
             'correo': estudiante.correo,
+            'correoOpcional': estudiante.correoOpcional,
             'celular': estudiante.celular,
             'sede': estudiante.sede && estudiante.sede.nombre,
             'nodo': estudiante.nodo && estudiante.nodo.nombre,

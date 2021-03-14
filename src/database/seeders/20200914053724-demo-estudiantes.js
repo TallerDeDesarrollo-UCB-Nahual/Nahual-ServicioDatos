@@ -48,7 +48,8 @@ module.exports = {
             'nombrePrimerTrabajo': 'Jamcity',
             'linkedin': 'https://linkedin/diegofigueroa',
             'esEmpleado': false,
-            'modulo': 'Testing funcional'
+            'modulo': 'Testing funcional',
+            'correoOpcional':'aloja@gmail.com'
         },
         {
             'dni': '54221152',
