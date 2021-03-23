@@ -28,10 +28,6 @@
         "database": "d6kdoigojuqtnh",
         "host": "ec2-52-71-161-140.compute-1.amazonaws.com",
         "dialect": "postgres",
-        "dialectOptions": {
-            "ssl": true
-          },
-        "port": 5432,
         "define": {
             "schema": "public",
             "timestamps": false
