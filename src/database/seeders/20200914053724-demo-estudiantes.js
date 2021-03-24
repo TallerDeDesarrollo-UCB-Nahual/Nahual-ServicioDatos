@@ -971,6 +971,30 @@ module.exports = {
             'esEmpleado': false,
             'modulo': 'Alfabetizacion digital'
         },
+        ,
+        {
+            'dni': '7777777',
+            'nombre': 'Pepe',
+            'apellido': 'Aliguieri',
+            'nacionalidad': 'Argentino',
+            'trabajaActualmente': 'false',
+            'trabajaSistemas': 'Yeah',
+            'experienciaSistemas': 'ninguno',
+            'estudiosSistemas': 'ninguno',
+            'estadoId': 3,
+            'fechaNacimiento': '1989-06-02',
+            'correo': 'wiramhilder@gcorreo.com',
+            'celular': 62871255,
+            'sedeId': 3,
+            'nodoId': 1,
+            'añoGraduacion': 2009,
+            'cuatrimestre': 3,
+            'nivelInglesId': 2,
+            'nombrePrimerTrabajo': null,
+            'linkedin': 'https://linkedin/hiramwilder',
+            'esEmpleado': false,
+            'modulo': 'Alfabetizacion digital'
+        },
         ]);
     },
 
