@@ -12,7 +12,7 @@
     "test": "jest",
     "create-schema": "npx sequelize-cli db:migrate",
     "seeder": "npx sequelize-cli db:seed:all",
-    "heroku-postbuild": "npm run -s create-schema && npm run -s seeder"
+    "heroku-postbuild": "npm run -s create-schema && npm run -s seeder"  
   },
   "repository": {
     "type": "git",
