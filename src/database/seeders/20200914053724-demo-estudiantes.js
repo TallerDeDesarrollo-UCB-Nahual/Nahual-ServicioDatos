@@ -971,9 +971,8 @@ module.exports = {
             'esEmpleado': false,
             'modulo': 'Alfabetizacion digital'
         },
-        ,
         {
-            'dni': '7777777',
+            'dni': '54221157',
             'nombre': 'Pepe',
             'apellido': 'Aliguieri',
             'nacionalidad': 'Argentino',
