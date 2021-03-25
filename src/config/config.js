@@ -1,4 +1,4 @@
-{
+const data = {
     "development": {
         "username": "postgres",
         "password": "PgAdmin123.",
@@ -23,10 +23,10 @@
         }
     },
     "production": {
-        "username": "dvqtsdbidilevk",
-        "password": "6ce60e6ac2b58889fa9bb8d69e4f8fc6413f4b86f0087f160d497c6d210d07b3",
-        "database": "d6kdoigojuqtnh",
-        "host": "ec2-52-71-161-140.compute-1.amazonaws.com",
+        "username": process.env.USERNAME,
+        "password": process.env.PASSWORD,
+        "database": process.env.DATABASE,
+        "host": process.env.HOST,
         "dialect": "postgres",
         "NODE_ENV": "production",
         "define": {
@@ -38,7 +38,10 @@
                 "rejectUnauthorized": false
             }
         }, 
-        "DATABASE_URL": "postgres://dvqtsdbidilevk:6ce60e6ac2b58889fa9bb8d69e4f8fc6413f4b86f0087f160d497c6d210d07b3@ec2-52-71-161-140.compute-1.amazonaws.com:5432/d6kdoigojuqtnh"
+        "DATABASE_URL": process.env.DATABASE_URL
 
     }
-}
+};
+
+
+module.exports = data;
