@@ -1,7 +1,7 @@
 'use strict';
 
 class EstudianteDTO {
-    
+
     constructor(estudiante) {
         this.estudianteDTO = {
             'id': estudiante.id,
@@ -30,6 +30,8 @@ class EstudianteDTO {
             'modulo': estudiante.modulo,
             'zona': estudiante.zona,
             'detalle': estudiante.detalle,
+            'fechaActualTrabajo': DataTypes.DATE,
+            'lugarActualTrabajo': DataTypes.STRING,
         }
     }
 
