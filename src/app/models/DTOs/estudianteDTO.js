@@ -32,6 +32,7 @@ class EstudianteDTO {
             'detalle': estudiante.detalle,
             'fechaActualTrabajo': estudiante.fechaActualTrabajo,
             'lugarActualTrabajo': estudiante.lugarActualTrabajo,
+            'fechaPrimerEmpleo': estudiante.fechaPrimerEmpleo,
         }
     }
 
