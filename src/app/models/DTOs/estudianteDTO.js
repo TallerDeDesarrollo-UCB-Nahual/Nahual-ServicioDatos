@@ -30,8 +30,8 @@ class EstudianteDTO {
             'modulo': estudiante.modulo,
             'zona': estudiante.zona,
             'detalle': estudiante.detalle,
-            'fechaActualTrabajo': DataTypes.DATE,
-            'lugarActualTrabajo': DataTypes.STRING,
+            'fechaActualTrabajo': estudiante.fechaActualTrabajo,
+            'lugarActualTrabajo': estudiante.lugarActualTrabajo,
         }
     }
 
