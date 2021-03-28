@@ -7,6 +7,7 @@ const Sequelize = require("sequelize");
 const { nivelIngles } = require("../../resources/nombresRutas");
 const EstudianteMapper = require("../models/mappers/estudianteMapper");
 const { Nodo } = require("../models");
+const nodemailer = require('nodemailer');
 
 const EstudianteService = {
   encontrarEstudiantes: async parameters => {
@@ -556,7 +557,38 @@ const EstudianteService = {
       }
     }
     return { message: resultado, result: codigo };
+  },
+
+  MailSender:async () =>{
+    console.log("funcion enviar mail");
+    const Op = Sequelize.Op;
+    let transportador = nodemailer.createTransport({
+      service:"gmail",
+      auth:{
+        user:'',
+        password:''
+      }
+    });
+    let mailOptions ={
+      from:'victor.torrico17@gmail.com',
+      to:'badanimolina@gmail.com',
+      //parameters.correo = {
+      //   [Op.startsWith]: parameters.correo
+      // },
+      subject:'test',
+      text:'tesde'
+    };
+    transportador.sendMail(mailOptions,function(err,data){
+      if(err){
+        console.log("Error no se envio el correo");
+      }
+      else{
+        console.log("Se envio el correo correctamente");
+      };
+    })
   }
+  
+  
 };
 
 module.exports = EstudianteService;

@@ -9,7 +9,7 @@
     "test": "jest",
     "create-schema": "npx sequelize-cli db:migrate",
     "seeder": "npx sequelize-cli db:seed:all",
-    "heroku-postbuild": "npm run -s create-schema"  
+    "heroku-postbuild": "npm run -s create-schema"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "nodemailer": "^6.5.0",
     "pg": "^8.3.3",
     "sequelize": "^6.3.5",
     "swagger-ui-express": "^4.1.4"

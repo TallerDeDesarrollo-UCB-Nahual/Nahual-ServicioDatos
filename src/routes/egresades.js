@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const estudianteService = require('../app/services/estudianteService');
+const { response } = require('express');
+const EstudianteService = require('../app/services/estudianteService');
 
 var jsonParser = bodyParser.json()
 
@@ -102,6 +104,12 @@ router.get('/:id', async(request, response) => {
 router.get('/:id/DTO', async(request, response) => {
     const todosLosEgresades = await estudianteService.encontrarEgresadePorIdDTO(request.params.id);
     response.send(todosLosEgresades);
+});
+
+router.post('/EnviarCertificado',async(request,response)=>{
+    console.log(request,response,"que hace esta wea");
+    const sendMail = await estudianteService.MailSender();
+    response.send(sendMail);
 });
 
 module.exports = router;
