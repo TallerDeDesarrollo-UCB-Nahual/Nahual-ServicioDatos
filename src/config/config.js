@@ -1,11 +1,10 @@
 const data = {
     "development": {
         "username": "postgres",
-        "password": "PgAdmin123.",
-        "database": "Nahual-Cursos-Fixed",
+        "password": "vitto2",
+        "database": "nahual",
         "host": "127.0.0.1",
         "dialect": "postgres",
-        "port": 2000,
         "define": {
             "schema": "public",
             "timestamps": false
