@@ -13,6 +13,7 @@ const modulos = require('./routes/modulos');
 const periodos = require('./routes/periodos');
 const cursos = require('./routes/cursos');
 const inscriptos = require('./routes/inscriptos');
+const topicos = require('./routes/topicos');
 const ROUTE_URL = '/api';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/swagger.json');
@@ -40,6 +41,8 @@ class Application {
         this.express.use(ROUTE_URL + nombresRutas.cursos.url, cursos);
         this.express.use(ROUTE_URL + nombresRutas.inscriptos.url, inscriptos);
         this.express.use(ROUTE_URL + nombresRutas.cursos.inscriptes.url, cursos);
+        this.express.use(ROUTE_URL + nombresRutas.topicos.url, topicos);
+
     }
 
     setUpExpress() {

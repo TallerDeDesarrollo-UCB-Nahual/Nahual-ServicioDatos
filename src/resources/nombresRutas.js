@@ -40,6 +40,9 @@ module.exports = {
     },
     inscriptos : {
         url: '/inscriptos',
+    },
+    topicos: {
+        url: '/topicos'
     }
 
 };
