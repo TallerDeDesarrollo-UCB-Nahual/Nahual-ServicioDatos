@@ -117,6 +117,54 @@ const InscriptoService = {
         return {message: resultado, result: codigo}; 
     },
 
+    desinscribir:async(request, response) => {
+        var desinscripto = request.body;
+        var resultado = [];
+        var codigo;
+        let estudiante = await Estudiante.findByPk(desinscripto.alumneId);
+        let estaInscripto = await Inscripto.findAll({
+            where: {
+                estudianteId: desinscripto.alumneId,
+                cursoId: desinscripto.cursoId
+            }
+        });
+        if(estaInscripto.length == 0){
+            resultado.push({ Operacion: "El estudiante no se encuentra inscripto a un curso"});
+            codigo = 400;
+        }
+        else{
+            if(estudiante == null){
+                resultado.push({ Operacion: "El estudiante con id " + desinscripto.alumneId + " no existe"});
+                codigo = 400;
+            }
+            else{
+                let curso = await Curso.findByPk(desinscripto.cursoId);
+                if(curso == null){
+                    resultado.push({ Operacion: "El curso con id " + desinscripto.cursoId + " no existe"});
+                    codigo = 400;
+                }
+                else{
+                    if(estudiante.estadoId == 2){
+                        estudianteActualizado = {
+                            "nodoId": curso.NodoId,
+                            "sedeId": curso.SedeId,
+                            "estadoId": 1
+                        }
+                        await Inscripto.delete(desinscripto);
+                        await Estudiante.update(estudianteActualizado, { where: { id: desinscripto.alumneId } });
+                        resultado.push({ Operacion: "Se elimino la inscripcion correctamente"});
+                        codigo = 200;
+                    }
+                    else{
+                        resultado.push({ Operacion: "El estudiante no es un pre-inscripte"});
+                        codigo = 400;
+                    } 
+                }
+            }
+        }
+
+    }
+
     
 }
 
