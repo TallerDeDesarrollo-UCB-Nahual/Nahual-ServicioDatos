@@ -116,7 +116,23 @@ const InscriptoService = {
         }    
         return {message: resultado, result: codigo}; 
     },
-
+    desinscribir:async(request, response) => {        
+        var estId= request.params.id;
+        var cursId=request.query.curseId;
+        console.log(estId);
+        console.log(cursId);
+        var resultado = [];
+        var codigo;
+        await Inscripto.destroy({ 
+            where: {
+                estudianteId:estId ,
+                cursoId: cursId
+            } 
+        });                        
+        resultado.push({ Operacion: "Se elimino la inscripcion correctamente"});
+        codigo = 200;
+        return {message: resultado, result: codigo}; 
+    }
     
 }
 
