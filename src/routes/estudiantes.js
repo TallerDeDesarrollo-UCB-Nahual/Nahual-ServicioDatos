@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const estudianteService = require("../app/services/estudianteService");
 const nombresRutas = require("../resources/nombresRutas");
-
+const inscriptoService = require('../app/services/inscriptoService');
 router.get(nombresRutas.emptyUrl, async (request, response) => {
   let parameters = request.query;
   const todosLosEgresades = await estudianteService.encontrarEstudiantes(
@@ -61,6 +61,14 @@ router.delete("/:id", async (request, response) => {
       request,
       response
     );
+    console.log(request);
+    if(request.body.curseId!='')
+    {
+      const resp = await inscriptoService.desinscribir(
+        request,
+        response
+      )
+    }
     response.status(200).send(result);
   } catch (error) {
     console.log(error);

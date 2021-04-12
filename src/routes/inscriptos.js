@@ -20,4 +20,6 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
     response.status(inscribir.result).send(inscribir.message);
 });
 
+
+
 module.exports = router;
