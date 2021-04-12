@@ -1,4 +1,4 @@
-const { Curso, Nodo, Sede, Inscripto, Estudiante, NivelIngles } = require('../models');
+const { Curso, Nodo, Sede, Periodo, Topico, Inscripto, Estudiante, NivelIngles } = require('../models');
 const CursoService = {
     encontrarTodosLosCursos: async(request, response) => {
         let todosLosCursos = await Curso.findAll();
@@ -10,7 +10,7 @@ const CursoService = {
         console.log(parametros.PeriodoId)
         let todosLosCursos = await Curso.findAll({
             where: parametros,
-            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
+            attributes: {exclude: ['NodoId','SedeId']},
             include:  [
                 {
                     model: Nodo,
@@ -21,7 +21,19 @@ const CursoService = {
                     model: Sede,
                     as: 'sede',
                     attributes: {exclude: ['id','NodoId']}
-                }
+                },
+                {
+                  model: Periodo,
+                  as: 'periodo',
+                  attributes: {exclude: ['id']},
+                  include:[
+                    {
+                      model: Topico,
+                      as: 'topico',
+                      attributes: {exclude: ['id']},
+                    },
+                  ]
+                },
             ]
         });
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
