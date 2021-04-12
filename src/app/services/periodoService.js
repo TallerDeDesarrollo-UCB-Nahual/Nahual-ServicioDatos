@@ -50,11 +50,11 @@ const PeriodoService = {
   eliminarPeriodo: async (idPeriodo) => {
     try {
       const periodoABorrar = await Periodo.findOne({ where: { id: Number(idPeriodo) } })
-      cursos = CursoService.encontrarCursosPorPeriodo({PeriodoId: idPeriodo})
+      cursos = CursoService.encontrarCursos({PeriodoId: idPeriodo})
       if (periodoABorrar) {
         if (cursos.length > 0) {
           cursos.forEach(curso => {
-            CursoService.eliminarCursoEnPeriodo(idPeriodo, curso.idCurso)
+            //CursoService.eliminarCursoEnPeriodo(idPeriodo, curso.idCurso)
           });
         }
         const periodoEliminado = Periodo.destroy({

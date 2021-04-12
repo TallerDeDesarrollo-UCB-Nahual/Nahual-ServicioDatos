@@ -14,10 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       'periodo': DataTypes.STRING,
       'TopicoId': DataTypes.INTEGER,
       'estado': DataTypes.BOOLEAN,
-      'PeriodoId': DataTypes.INTEGER,
     }, {});
     Curso.associate = function(models){
-      Curso.belongsTo(models.Periodo, {foreignKey: 'PeriodoId', as: 'periodo'});
       Curso.belongsTo(models.Nodo, { foreignKey: 'NodoId', as: 'nodo' });
       Curso.belongsTo(models.Sede, { foreignKey: 'SedeId', as: 'sede' });
       Curso.belongsTo(models.Topico, {foreignKey: 'TopicoId', as: 'topico'});
