@@ -4,6 +4,7 @@ const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const cursoService = require('../app/services/cursoService');
 
+
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parametros = request.query;
     const todosLosCursos = await cursoService.encontrarCursos(parametros);
@@ -62,4 +63,5 @@ router.delete("/:id", async (request, response) => {
     console.log(error);
   }
 });
+
 module.exports = router;
