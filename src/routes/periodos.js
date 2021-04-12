@@ -21,7 +21,7 @@ router.get("/:id", async (request, response) => {
 })
 
 router.get("/:id/cursos", async(request, response) => {
-    const cursos = await servicioCursos.encontrarCursosPorPeriodo({PeriodoId: request.params.id});
+    const cursos = await servicioCursos.encontrarCursos({PeriodoId: request.params.id});
     response.send(cursos)
 });
 
@@ -42,7 +42,7 @@ router.put("/:id", async(request, response) => {
 
 router.delete('/:id/cursos/:idCurso', async(request, response) => {
     try {
-        const result = await servicioCursos.eliminarCursoEnPeriodo(request.params.id, request.params.idCurso);
+        //const result = await servicioCursos.eliminarCursoEnPeriodo(request.params.id, request.params.idCurso);
         response.status(200).send(result);
     } catch (error) {
         console.log(error);

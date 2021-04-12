@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       'mensajeDeCierre': DataTypes.STRING
     });
     Periodo.associate = function(models){
-      Periodo.hasMany(models.Curso, {as: 'cursos'});
       Periodo.belongsTo(models.Topico, {foreignKey: 'TopicoId', as: 'topico'});
     };
     return Periodo;

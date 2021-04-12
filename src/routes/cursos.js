@@ -7,7 +7,7 @@ const cursoService = require('../app/services/cursoService');
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
     let parametros = request.query;
-    const todosLosCursos = await cursoService.encontrarCursosPorPeriodo(parametros);
+    const todosLosCursos = await cursoService.encontrarCursos(parametros);
     response.send(todosLosCursos)
 });
 
@@ -30,21 +30,21 @@ router.get(
   );
 
 router.get("/:id", async (request, response) => {
-    try {
-        const curso = await cursoService.encontrarCursoPorId(request.params.id);
-        response.send(curso);
-    } catch (error) {
-        response.status(404).send( 'Curso no encontrado' );
-    }
+  try {
+    const curso = await cursoService.encontrarCursoPorId(request.params.id);
+    response.send(curso);
+  } catch (error) {
+    response.status(404).send( 'Curso no encontrado' );
+  }
 });
 
 router.post(nombresRutas.emptyUrl, async(request, response) => {
-    try {
-        const result = await cursoService.crearCurso(request, response);
-        response.status(200).send(result);
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const result = await cursoService.crearCurso(request, response);
+    response.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.put("/:id", async(request, response) => {
@@ -52,5 +52,16 @@ router.put("/:id", async(request, response) => {
     response.status(200).send(result);
 });
 
+router.delete("/:id", async (request, response) => {
+  try {
+    const result = await cursoService.eliminarCurso(
+      request,
+      response
+    );
+    response.status(200).send(result);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;
