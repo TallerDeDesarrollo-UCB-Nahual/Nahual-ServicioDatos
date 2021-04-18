@@ -1,13 +1,8 @@
 const data = {
     "development": {
         "username": "postgres",
-<<<<<<< HEAD
-        "password": "PgAdmin123.",
-        "database": "Nahual-Cursos-Fixed",
-=======
         "password": "pass123",
         "database": "nahual",
->>>>>>> 3f8833f7657441ed4047ca6a2aae8c68ab417ff1
         "host": "127.0.0.1",
         "dialect": "postgres",
         "define": {
