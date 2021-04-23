@@ -37,10 +37,6 @@
             "description": "API para Inscriptos a Cursos"
         },
         {
-            "name": "Modulos",
-            "description": "API para Modulos de Cursos"
-        },
-        {
             "name": "NivelIngles",
             "description": "API para obtener los niveles de Ingles"
         },
@@ -467,31 +463,6 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Estados"
-                        }
-                    }
-                }
-            }
-        },
-        "/modulos":{
-            "get": {
-                "tags": [
-                    "Modulos"
-                ],
-                "summary": "Obtener todos los modulos",
-                "description": "Obtener todos los modulos",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "ID de un modulo",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Modulos"
                         }
                     }
                 }
@@ -1144,21 +1115,6 @@
         "Estados": {
             "type": "array",
             "$ref": "#/definitions/Estado"
-        },
-        "Modulo": {
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "uniqueItems": true
-                },
-                "nombre": {
-                    "type": "string"
-                }
-            }
-        },
-        "Modulos": {
-            "type": "array",
-            "$ref": "#/definitions/Modulo"
         },
         "NivelIngles": {
             "properties": {
