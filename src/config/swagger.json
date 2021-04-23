@@ -51,6 +51,10 @@
         {
             "name": "Sedes",
             "description": "API para Sedes"
+        },
+        {
+            "name": "Topicos",
+            "description": "API de todos los topicos"
         }
     ],
     "schemes": [
@@ -727,6 +731,132 @@
                     }
                 }
             }
+        },
+        "/topicos": {
+            "get": {
+                "tags" : [
+                    "Topicos"
+                ],
+                "summary": "Obtiene todos los topicos registrados",
+                "description": "Obtiene todos los topicos registraos hasta el momento. Estos son utilizados por los cursos para describir el tema principal de este",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DatoTopico"
+                        }
+                    }
+                }
+                
+            },
+            "post": {
+                "tags": [
+                    "Topicos"
+                ],
+                "summary": "Agrega un nuevo topico",
+                "description": "Agrega un nuevo topico para ser usado como tema de un curso",
+                "parameters": [
+                    {
+                        "name": "nombre",
+                        "in": "body",
+                        "description": "Nombre del nuevo topico",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/PostTopico"
+                        }
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El topico fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/DatoTopico"
+                        }
+                    }
+                }
+            }
+        },
+        "/topicos/{id}": {
+            "get": {
+                "tags" : [
+                    "Topicos"
+                ],
+                "summary": "Obtiene el topico identificado por el id",
+                "description": "Obtiene solo un topico con el mismo id que el URL",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del topico",
+                        "type": "integer"
+                    }                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DatoTopico"
+                        }
+                    },
+                    "404":{
+                        "description": "Topico no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Topicos"
+                ],
+                "summary": "Modifica un topico ya existente",
+                "description": "Busca el topico con el id del URL y lo modifica",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del topico",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "body",
+                        "description": "Nuevo nombre para el topico",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/PostTopico"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El topico fue editado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/DatoTopico"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Topicos"
+                ],
+                "summary": "Elimina un topico en especifico",
+                "description": "Busca el topico con el id del URL y lo elimina",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del topico",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El topico fue eliminado exitosamente"
+                    }
+                }
+                
+            }
         }
     },
     
@@ -1228,6 +1358,25 @@
                     "$ref": "#/definitions/Nodo"
                 }
             }
+        },
+        "DatoTopico": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "PostTopico": {
+            "properties": {
+                "nombre": {
+                    "type": "string"
+                }
+            }
         }
+        
     }
 }
