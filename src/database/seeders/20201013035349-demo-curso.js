@@ -2,7 +2,9 @@
 
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        return queryInterface.bulkInsert('Cursos', [{
+        return queryInterface.bulkInsert('Cursos', 
+        [
+            {
                 horario: '10:00 - 15:00',
                 profesores: 'Pepe Perez',
                 estado: true,

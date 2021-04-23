@@ -13,7 +13,11 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            nombreCompleto: {
+            nombre: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
+            apellido: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
@@ -21,8 +25,44 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true
             },
-            trabajaActualmente: {
+            fechaNacimiento: {
+                type: Sequelize.DATE,
+                allowNull: true,
+            },
+            correo: {
                 type: Sequelize.STRING,
+                allowNull: true,
+            },
+            correoOpcional: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            celular: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            linkedin: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            zona: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            detalle: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            añoGraduacion: {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            nombrePrimerTrabajo: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            trabajaActualmente: {
+                type: Sequelize.BOOLEAN,
                 allowNull: true
             },
             trabajaSistemas: {
@@ -37,21 +77,29 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true
             },
-            estadoId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
+            fechaActualTrabajo: {
+                type: Sequelize.DATE,
+                allowNull: true
             },
-            fechaNacimiento: {
+            lugarActualTrabajo: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            fechaPrimerEmpleo: {
                 type: Sequelize.DATE,
                 allowNull: true,
             },
-            correo: {
+            topico: {
                 type: Sequelize.STRING,
+                allowNull: true
+            },
+            nivelInglesId: {
+                type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            celular: {
-                type: Sequelize.STRING,
-                allowNull: true,
+            estadoId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
             },
             sedeId: {
                 type: Sequelize.INTEGER,
@@ -61,42 +109,6 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            añoGraduacion: {
-                type: Sequelize.INTEGER,
-                allowNull: true
-            },
-            cuatrimestre: {
-                type: Sequelize.INTEGER,
-                allowNull: true
-            },
-            nivelInglesId: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            nombrePrimerTrabajo: {
-                type: Sequelize.STRING,
-                allowNull: true
-            },
-            linkedin: {
-                type: Sequelize.STRING,
-                allowNull: true
-            },
-            esEmpleado: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false,
-            },
-            modulo: {
-                type: Sequelize.STRING,
-                allowNull: true
-            },
-            zona: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            detalle: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            }
         })
     },
 

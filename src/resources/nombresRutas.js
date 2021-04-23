@@ -17,9 +17,6 @@ module.exports = {
     nivelIngles: {
         url: '/nivel-ingles'
     },
-    modulos: {
-        url: '/modulos'
-    },
     estudiantes: {
         url: '/estudiantes',
         egresades: {
@@ -28,9 +25,6 @@ module.exports = {
                 url: '/desempleados'
             }
         }
-    },
-    periodos : {
-        url: '/periodos',
     },
     cursos : {
         url: '/cursos',

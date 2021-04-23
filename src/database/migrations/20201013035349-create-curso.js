@@ -9,6 +9,18 @@ module.exports = {
                 autoIncrement: true,
                 allowNull: false
             },
+            NodoId: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
+            SedeId: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
+            TopicoId: {
+                type: Sequelize.INTEGER,
+                allowNull: false
+            },
             horario: {
                 type: Sequelize.STRING,
                 allowNull: true
@@ -21,18 +33,18 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true
             },
-            PeriodoId: {
+            anio: {
                 type: Sequelize.INTEGER,
                 allowNull: false
             },
-            NodoId: {
-                type: Sequelize.INTEGER,
+            periodo: {
+                type: Sequelize.STRING,
                 allowNull: false
             },
-            SedeId: {
-                type: Sequelize.INTEGER,
+            estado: {
+                type: Sequelize.BOOLEAN,
                 allowNull: false
-            }
+            },
         })
     },
 
