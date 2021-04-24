@@ -718,11 +718,35 @@
                 "nacionalidad": {
                     "type": "string"
                 },
+                "fechaNacimiento": {
+                    "type": "string"
+                },
+                "correo": {
+                    "type": "string"
+                },
+                "correoOpcional": {
+                    "type": "string"
+                },
+                "celular": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
+                    "type": "string"
+                },
+                "añoGraduacion": {
+                    "type": "integer"
+                },
+                "nombrePrimerTrabajo": {
+                    "type": "string"
+                },
                 "trabajaActualmente": {
                     "type": "boolean"
-                },
-                "lugarDeTrabajo": {
-                    "type": "string"
                 },
                 "trabajaSistemas": {
                     "type": "boolean"
@@ -733,18 +757,25 @@
                 "estudiosSistemas": {
                     "type": "string"
                 },
+                "fechaActualTrabajo": {
+                    "type": "string"
+                },
+                "lugarActualTrabajo": {
+                    "type": "string"
+                },
+                "fechaPrimerEmpleo": {
+                    "type": "string"
+                },
+                "topico": {
+                    "type": "string"
+                },
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
+                },
                 "estadoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Estado"
-                },
-                "fechaNacimiento": {
-                    "type": "string"
-                },
-                "correo": {
-                    "type": "string"
-                },
-                "celular": {
-                    "type": "integer"
                 },
                 "sedeId": {
                     "type": "integer",
@@ -753,34 +784,6 @@
                 "nodoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Nodo"
-                },
-                "añoGraduacion": {
-                    "type": "integer"
-                },
-                "cuatrimestre": {
-                    "type": "integer"
-                },
-                "nivelInglesId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/NivelIngles"
-                },
-                "nombrePrimerTrabajo": {
-                    "type": "string"
-                },
-                "linkedin": {
-                    "type": "string"
-                },
-                "esEmpleado": {
-                    "type": "boolean"
-                },
-                "modulo": {
-                    "type": "string"
-                },
-                "zona": {
-                    "type": "string"
-                },
-                "detalle": {
-                    "type": "string"
                 }
             }
         },
