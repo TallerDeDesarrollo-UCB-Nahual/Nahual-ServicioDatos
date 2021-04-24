@@ -1,7 +1,7 @@
 const data = {
     "development": {
         "username": "postgres",
-        "password": "pass123",
+        "password": "host",
         "database": "nahual",
         "host": "127.0.0.1",
         "dialect": "postgres",
