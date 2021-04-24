@@ -236,16 +236,8 @@
                 "tags": [
                     "Cursos"
                 ],
-                "summary": "Obtener todos los cursos y tambien los cursos pertenecientes a un periodo (opcional)",
-                "description": "Obtener todos los cursos pertenecientes a un periodo",
-                "parameters": [
-                    {
-                        "name": "PeriodoId",
-                        "in": "query",
-                        "description": "Periodo Id a buscar",
-                        "type": "number"
-                    }
-                ],
+                "summary": "Obtiene todos los cursos registrados hasta el momento",
+                "description": "Obtiene todos lus cursos registrados hasta el momento",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -259,11 +251,11 @@
                 "tags": [
                     "Cursos"
                 ],
-                "summary": "Enviar la informacion de un curso",
-                "description": "Enviar la informacion de un curso",
+                "summary": "Crea un nuevo curso",
+                "description": "Crea un nuevo curso",
                 "parameters": [
                     {
-                        "name": "Curso a guardar",
+                        "name": "Curso nuevo",
                         "in": "body",
                         "description": "Toda la informacion de un curso",
                         "schema": {
@@ -275,7 +267,33 @@
                     "200": {
                         "description": "El curso fue creado exitosamente",
                         "schema": {
-                            "$ref": "#/definitions/CursoAGuardar"
+                            "$ref": "#/definitions/Cursos"
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos/{id}": {
+            "get": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Muestra un curso en especifico",
+                "description": "Muestra un curso en especifico por el id del URL",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del curso",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso fue editado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/Curso"
                         }
                     }
                 }
@@ -293,6 +311,14 @@
                         "required": true,
                         "description": "ID del curso",
                         "type": "integer"
+                    },
+                    {
+                        "name": "Curso nuevo",
+                        "in": "body",
+                        "description": "Toda la informacion de un curso",
+                        "schema": {
+                            "$ref": "#/definitions/CursoEditar"
+                        }
                     }
                 ],
                 "responses": {
@@ -301,6 +327,27 @@
                         "schema": {
                             "$ref": "#/definitions/Curso"
                         }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Elimina un curso en especifico",
+                "description": "Elimina un curso en especifco por el iD en el URL",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID del curso",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El curso fue eliminado exitosamente"
                     }
                 }
             }
@@ -1149,14 +1196,6 @@
                     "type": "integer",
                     "uniqueItems": true
                 },
-                "NodoId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/Nodo"
-                },
-                "SedeId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/Sede"
-                },
                 "horario": {
                     "type": "string"
                 },
@@ -1166,9 +1205,29 @@
                 "notas": {
                     "type": "string"
                 },
+                "anio": {
+                    "type": "integer"
+                },
                 "periodo": {
                     "type": "string",
                     "$ref": "#/definitions/Periodo"
+                },
+                "TopicoId": {
+                    "type": "integer"
+                },
+                "estado": {
+                    "type": "boolean"
+                },
+                "NodoId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Nodo"
+                },
+                "SedeId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/Sede"
+                },
+                "topico": {
+                    "type": "string"
                 }
             }
         },
@@ -1178,30 +1237,14 @@
         },
         "CursoAGuardar": {
             "properties": {
-                "id": {
-                    "type": "integer",
-                    "uniqueItems": true
-                },
                 "NodoId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/Nodo"
+                    "type": "integer"
                 },
                 "SedeId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/Sede"
+                    "type": "integer"
                 },
-                "horario": {
-                    "type": "string"
-                },
-                "profesores": {
-                    "type": "string"
-                },
-                "notas": {
-                    "type": "string"
-                },
-                "periodo": {
-                    "type": "string",
-                    "$ref": "#/definitions/Periodo"
+                "Topico": {
+                    "type": "integer"
                 }
             }
         },
@@ -1374,6 +1417,37 @@
             "properties": {
                 "nombre": {
                     "type": "string"
+                }
+            }
+        },
+        "CursoEditar": {
+            "properties": {
+                "NodoId": {
+                    "type":"integer"
+                },
+                "SedeId": {
+                    "type":"integer"
+                },
+                "horario": {
+                    "type": "string"
+                },
+                "profesores": {
+                    "type": "string"
+                },
+                "notas": {
+                    "type": "string"
+                },
+                "anio": {
+                    "type": "integer"
+                },
+                "periodo": {
+                    "type": "integer"
+                },
+                "TopicoId": {
+                    "type": "integer"
+                },
+                "estado": {
+                    "type": "boolean"
                 }
             }
         }
