@@ -37,10 +37,6 @@
             "description": "API para Inscriptos a Cursos"
         },
         {
-            "name": "Modulos",
-            "description": "API para Modulos de Cursos"
-        },
-        {
             "name": "NivelIngles",
             "description": "API para obtener los niveles de Ingles"
         },
@@ -98,6 +94,32 @@
                 }
             }
         },
+        "/estudiantes": {
+            "get": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Obtener toda la informacion de los estudiantes",
+                "description": "Obtener toda la informacion de los estudiantes",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID de un estudiante",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Estudiante"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/{id}": {
             "get": {
                 "tags": [
@@ -119,6 +141,31 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Estudiante"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Enviar la informacion de un estudiante",
+                "description": "Enviar la informacion de un estudiante",
+                "parameters": [
+                    {
+                        "name": "Estudiante a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de un estudiante",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El estudiante fue creado exitosamente",
+                        "schema": {
+                            "$ref": "#/definitions/EstudianteSinId"
                         }
                     }
                 }
@@ -174,59 +221,6 @@
                 "responses": {
                     "200": {
                         "description": "Estudiante fue eliminado exitosamente."
-                    }
-                }
-            }
-        },
-        "/egresades": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar la informacion de muchos estudiantes",
-                "description": "Enviar la informacion de muchos estudiantes",
-                "parameters": [
-                    {
-                        "name": "Lista de estudiantes [{estudiante#1},{estudiante#2},{estudiante#3}]",
-                        "in": "body",
-                        "description": "Toda la informacion de muchos estudiantes",
-                        "type": "string",
-                        "schema": {
-                            "$ref": "#/definitions/EstudianteSinId"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Exitoso"
-                    }
-                }
-            }
-        },
-        "/estudiantes": {
-            "post": {
-                "tags": [
-                    "Estudiantes"
-                ],
-                "summary": "Enviar toda la informacion de un estudiante",
-                "description": "Enviar toda la informacion de un estudiante",
-                "parameters": [
-                    {
-                        "name": "estudiante",
-                        "in": "body",
-                        "description": "Toda la informacion de un estudiante",
-                        "type": "string",
-                        "schema": {
-                            "$ref": "#/definitions/EstudianteSinId"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "El estudiante fue creado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/Estudiante"
-                        }
                     }
                 }
             }
@@ -368,7 +362,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "200": { 
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Periodos"
@@ -523,31 +517,6 @@
                 }
             }
         },
-        "/modulos":{
-            "get": {
-                "tags": [
-                    "Modulos"
-                ],
-                "summary": "Obtener todos los modulos",
-                "description": "Obtener todos los modulos",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "ID de un modulo",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Modulos"
-                        }
-                    }
-                }
-            }
-        },
         "/nivel-ingles":{
             "get": {
                 "tags": [
@@ -662,6 +631,29 @@
                     }
                 }
             },
+            "post": {
+                "tags": [
+                    "Nodos"
+                ],
+                "summary": "Enviar la informacion de un nodo",
+                "description": "Enviar la informacion de un nodo",
+                "parameters": [
+                    {
+                        "name": "Nodo a guardar",
+                        "in": "body",
+                        "description": "Toda la informacion de un nodo",
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/NodoAGuardar"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El nodo fue creado exitosamente"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Nodos"
@@ -704,29 +696,6 @@
                 "responses": {
                     "200": {
                         "description": "El nodo fue eliminado exitosamente"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Nodos"
-                ],
-                "summary": "Enviar la informacion de un nodo",
-                "description": "Enviar la informacion de un nodo",
-                "parameters": [
-                    {
-                        "name": "Nodo a guardar",
-                        "in": "body",
-                        "description": "Toda la informacion de un nodo",
-                        "type": "string",
-                        "schema": {
-                            "$ref": "#/definitions/NodoAGuardar"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "El nodo fue creado exitosamente"
                     }
                 }
             }
@@ -926,11 +895,35 @@
                 "nacionalidad": {
                     "type": "string"
                 },
+                "fechaNacimiento": {
+                    "type": "string"
+                },
+                "correo": {
+                    "type": "string"
+                },
+                "correoOpcional": {
+                    "type": "string"
+                },
+                "celular": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
+                    "type": "string"
+                },
+                "añoGraduacion": {
+                    "type": "integer"
+                },
+                "nombrePrimerTrabajo": {
+                    "type": "string"
+                },
                 "trabajaActualmente": {
                     "type": "boolean"
-                },
-                "lugarDeTrabajo": {
-                    "type": "string"
                 },
                 "trabajaSistemas": {
                     "type": "boolean"
@@ -941,18 +934,25 @@
                 "estudiosSistemas": {
                     "type": "string"
                 },
+                "fechaActualTrabajo": {
+                    "type": "string"
+                },
+                "lugarActualTrabajo": {
+                    "type": "string"
+                },
+                "fechaPrimerEmpleo": {
+                    "type": "string"
+                },
+                "topico": {
+                    "type": "string"
+                },
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
+                },
                 "estadoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Estado"
-                },
-                "fechaNacimiento": {
-                    "type": "string"
-                },
-                "correo": {
-                    "type": "string"
-                },
-                "celular": {
-                    "type": "integer"
                 },
                 "sedeId": {
                     "type": "integer",
@@ -961,34 +961,6 @@
                 "nodoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Nodo"
-                },
-                "añoGraduacion": {
-                    "type": "integer"
-                },
-                "cuatrimestre": {
-                    "type": "integer"
-                },
-                "nivelInglesId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/NivelIngles"
-                },
-                "nombrePrimerTrabajo": {
-                    "type": "string"
-                },
-                "linkedin": {
-                    "type": "string"
-                },
-                "esEmpleado": {
-                    "type": "boolean"
-                },
-                "modulo": {
-                    "type": "string"
-                },
-                "zona": {
-                    "type": "string"
-                },
-                "detalle": {
-                    "type": "string"
                 }
             }
         },
@@ -1010,11 +982,35 @@
                 "nacionalidad": {
                     "type": "string"
                 },
+                "fechaNacimiento": {
+                    "type": "string"
+                },
+                "correo": {
+                    "type": "string"
+                },
+                "correoOpcional": {
+                    "type": "string"
+                },
+                "celular": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
+                    "type": "string"
+                },
+                "añoGraduacion": {
+                    "type": "integer"
+                },
+                "nombrePrimerTrabajo": {
+                    "type": "string"
+                },
                 "trabajaActualmente": {
                     "type": "boolean"
-                },
-                "lugarDeTrabajo": {
-                    "type": "string"
                 },
                 "trabajaSistemas": {
                     "type": "boolean"
@@ -1025,18 +1021,25 @@
                 "estudiosSistemas": {
                     "type": "string"
                 },
+                "fechaActualTrabajo": {
+                    "type": "string"
+                },
+                "lugarActualTrabajo": {
+                    "type": "string"
+                },
+                "fechaPrimerEmpleo": {
+                    "type": "string"
+                },
+                "topico": {
+                    "type": "string"
+                },
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
+                },
                 "estadoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Estado"
-                },
-                "fechaNacimiento": {
-                    "type": "string"
-                },
-                "correo": {
-                    "type": "string"
-                },
-                "celular": {
-                    "type": "integer"
                 },
                 "sedeId": {
                     "type": "integer",
@@ -1045,34 +1048,6 @@
                 "nodoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Nodo"
-                },
-                "añoGraduacion": {
-                    "type": "integer"
-                },
-                "cuatrimestre": {
-                    "type": "integer"
-                },
-                "nivelInglesId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/NivelIngles"
-                },
-                "nombrePrimerTrabajo": {
-                    "type": "string"
-                },
-                "linkedin": {
-                    "type": "string"
-                },
-                "esEmpleado": {
-                    "type": "boolean"
-                },
-                "modulo": {
-                    "type": "string"
-                },
-                "zona": {
-                    "type": "string"
-                },
-                "detalle": {
-                    "type": "string"
                 }
             }
         },
@@ -1094,11 +1069,35 @@
                 "nacionalidad": {
                     "type": "string"
                 },
+                "fechaNacimiento": {
+                    "type": "string"
+                },
+                "correo": {
+                    "type": "string"
+                },
+                "correoOpcional": {
+                    "type": "string"
+                },
+                "celular": {
+                    "type": "string"
+                },
+                "linkedin": {
+                    "type": "string"
+                },
+                "zona": {
+                    "type": "string"
+                },
+                "detalle": {
+                    "type": "string"
+                },
+                "añoGraduacion": {
+                    "type": "integer"
+                },
+                "nombrePrimerTrabajo": {
+                    "type": "string"
+                },
                 "trabajaActualmente": {
                     "type": "boolean"
-                },
-                "lugarDeTrabajo": {
-                    "type": "string"
                 },
                 "trabajaSistemas": {
                     "type": "boolean"
@@ -1109,18 +1108,25 @@
                 "estudiosSistemas": {
                     "type": "string"
                 },
+                "fechaActualTrabajo": {
+                    "type": "string"
+                },
+                "lugarActualTrabajo": {
+                    "type": "string"
+                },
+                "fechaPrimerEmpleo": {
+                    "type": "string"
+                },
+                "topico": {
+                    "type": "string"
+                },
+                "nivelInglesId": {
+                    "type": "integer",
+                    "$ref": "#/definitions/NivelIngles"
+                },
                 "estadoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Estado"
-                },
-                "fechaNacimiento": {
-                    "type": "string"
-                },
-                "correo": {
-                    "type": "string"
-                },
-                "celular": {
-                    "type": "integer"
                 },
                 "sedeId": {
                     "type": "integer",
@@ -1129,34 +1135,6 @@
                 "nodoId": {
                     "type": "integer",
                     "$ref": "#/definitions/Nodo"
-                },
-                "añoGraduacion": {
-                    "type": "integer"
-                },
-                "cuatrimestre": {
-                    "type": "integer"
-                },
-                "nivelInglesId": {
-                    "type": "integer",
-                    "$ref": "#/definitions/NivelIngles"
-                },
-                "nombrePrimerTrabajo": {
-                    "type": "string"
-                },
-                "linkedin": {
-                    "type": "string"
-                },
-                "esEmpleado": {
-                    "type": "boolean"
-                },
-                "modulo": {
-                    "type": "string"
-                },
-                "zona": {
-                    "type": "string"
-                },
-                "detalle": {
-                    "type": "string"
                 }
             }
         },
@@ -1317,21 +1295,6 @@
         "Estados": {
             "type": "array",
             "$ref": "#/definitions/Estado"
-        },
-        "Modulo": {
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "uniqueItems": true
-                },
-                "nombre": {
-                    "type": "string"
-                }
-            }
-        },
-        "Modulos": {
-            "type": "array",
-            "$ref": "#/definitions/Modulo"
         },
         "NivelIngles": {
             "properties": {
