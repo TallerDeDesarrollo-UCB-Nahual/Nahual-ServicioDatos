@@ -7,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       'NodoId': DataTypes.INTEGER,
       'SedeId': DataTypes.INTEGER,
+      'TopicoId': DataTypes.INTEGER,
       'horario': DataTypes.STRING,
       'profesores': DataTypes.STRING,
       'notas': DataTypes.STRING,
       'anio': DataTypes.INTEGER,
       'periodo': DataTypes.STRING,
-      'TopicoId': DataTypes.INTEGER,
       'estado': DataTypes.BOOLEAN,
     }, {});
     Curso.associate = function(models){

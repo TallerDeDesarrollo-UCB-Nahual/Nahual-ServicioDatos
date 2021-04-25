@@ -8,9 +8,7 @@ const nodos = require('./routes/nodos');
 const nivelIngles = require('./routes/nivelIngles');
 const estados = require('./routes/estados');
 const egresades = require('./routes/egresades');
-const estudiantes = require('./routes/estudiantes')
-const modulos = require('./routes/modulos');
-const periodos = require('./routes/periodos');
+const estudiantes = require('./routes/estudiantes');
 const cursos = require('./routes/cursos');
 const inscriptos = require('./routes/inscriptos');
 const topicos = require('./routes/topicos');
@@ -36,14 +34,11 @@ class Application {
         this.express.use(ROUTE_URL + nombresRutas.nivelIngles.url, nivelIngles);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.egresades.url, egresades);
         this.express.use(ROUTE_URL + nombresRutas.estudiantes.url, estudiantes);
-        this.express.use(ROUTE_URL + nombresRutas.modulos.url, modulos);
-        this.express.use(ROUTE_URL + nombresRutas.periodos.url, periodos);
         this.express.use(ROUTE_URL + nombresRutas.cursos.url, cursos);
         this.express.use(ROUTE_URL + nombresRutas.inscriptos.url, inscriptos);
         this.express.use(ROUTE_URL + nombresRutas.cursos.inscriptes.url, cursos);
         this.express.use(ROUTE_URL + nombresRutas.cursos.inscriptes.inscripte.url, inscriptos);
         this.express.use(ROUTE_URL + nombresRutas.topicos.url, topicos);
-
     }
 
     setUpExpress() {

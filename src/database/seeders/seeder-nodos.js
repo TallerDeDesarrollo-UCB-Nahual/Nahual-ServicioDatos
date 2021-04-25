@@ -2,7 +2,9 @@
 
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        return queryInterface.bulkInsert('Nodos', [{
+        return queryInterface.bulkInsert('Nodos', 
+        [
+            {
                 nombre: 'CABA',
             },
             {
