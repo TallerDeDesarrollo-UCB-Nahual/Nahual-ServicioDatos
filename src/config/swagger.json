@@ -25,10 +25,6 @@
             "description": "API para cursos"
         },
         {
-            "name": "Periodos",
-            "description": "API para Periodos"
-        },
-        {
             "name": "Estados",
             "description": "API para Estado de Cursos"
         },
@@ -342,152 +338,6 @@
                 "responses": {
                     "200": {
                         "description": "El curso fue eliminado exitosamente"
-                    }
-                }
-            }
-        },
-        "/periodos": {
-            "get": {
-                "tags": [
-                    "Periodos"
-                ],
-                "summary": "Obtener todos los periodos o periodos segun su estado (activo / inactivo)",
-                "description": "Obtener todos los periodos",
-                "parameters": [
-                    {
-                        "name": "estado",
-                        "in": "query",
-                        "description": "Estado para buscar",
-                        "type": "boolean"
-                    }
-                ],
-                "responses": {
-                    "200": { 
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Periodos"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Periodos"
-                ],
-                "summary": "Enviar la informacion de un periodo",
-                "description": "Enviar la informacion de un periodo",
-                "parameters": [
-                    {
-                        "name": "Periodo a guardar",
-                        "in": "body",
-                        "description": "Toda la informacion de un periodo",
-                        "schema": {
-                            "$ref": "#/definitions/PeriodoAGuardar"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "El periodo fue creado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/PeriodoAGuardar"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Periodos"
-                ],
-                "summary": "Editar informacion de un periodo especifico",
-                "description": "Editar informacion de un periodo especifico",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID del periodo",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "El periodo fue editado exitosamente",
-                        "schema": {
-                            "$ref": "#/definitions/Periodo"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Periodos"
-                ],
-                "summary": "Eliminar un periodo",
-                "description": "Eliminar un periodo",
-                "parameters":[
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "description": "ID de Periodo",
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "El periodo fue eliminado correctamente"
-                    }
-                }
-            },
-            "/{idPeriodo}/cursos/{idCurso}": {
-                "delete": {
-                    "tags": [
-                        "Cursos"
-                    ],
-                    "summary": "Eliminar un curso que pertenezca a un periodo",
-                    "description": "Eliminar un curso",
-                    "parameters": [
-                        {
-                            "name": "idPeriodo",
-                            "in": "path",
-                            "required": true,
-                            "description": "ID del Periodo",
-                            "type": "integer"
-                        },
-                        {
-                            "name": "idCurso",
-                            "in": "path",
-                            "required": true,
-                            "description": "ID del Curso",
-                            "type": "integer"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "El curso con id ${idCurso} y periodo con id ${idPeriodo} fue eliminado correctamente"
-                        }
-                    }
-                }
-            },
-            "/{idPeriodo}":{
-                "delete": {
-                    "tags": ["Periodos"],
-                    "summary": "Eliminar un periodo y los cursos que pertenezcan a este",
-                    "description": "Eliminar un periodo",
-                    "parameters":[
-                        {
-                            "name": "idPeriodo",
-                            "in": "path",
-                            "required": true,
-                            "description": "ID del Periodo",
-                            "type": "integer"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "El periodo con id ${idPeriodo} fue eliminado correctamente"
-                        }
                     }
                 }
             }
@@ -874,8 +724,7 @@
                 
             }
         }
-    },
-    
+    },   
     "definitions": {
         "EstudianteDTO": {
             "properties": {
