@@ -268,7 +268,15 @@ const EstudianteService = {
 
   actualizarEstudiante: async (request, response) => {
     try {
-      const resultado = await Estudiante.update(request.body, {
+      let body = {}
+      if(request.body.trabajaActualmente === true) {
+          body = {...request.body,
+          estadoId:3}
+      }else {
+        body = {...request.body,
+          estadoId:2}
+      }
+      const resultado = await Estudiante.update(body, {
         where: { id: request.params.id }
       });
       let estudiante = await Estudiante.findByPk(request.params.id);
@@ -479,7 +487,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        estadoId: 2
+        [Op.or]: [{estadoId: 2}, {estadoId: 3}]
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -506,7 +514,7 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      where: parameters
+      /* where: parameters */
     });
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
