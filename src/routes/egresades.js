@@ -32,7 +32,6 @@ router.get('/DTO/paginacion', async(request, response) => {
 router.get(nombresRutas.estudiantes.egresades.desempleados.url +'/paginacion', async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    parameters.esEmpleado = false;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresades(parameters);
@@ -42,7 +41,6 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url +'/paginacion', a
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO/paginacion', async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    parameters.esEmpleado = false;
     parameters.pagina = Math.abs(parameters.pagina);
     parameters.pagina = parameters.pagina || 1;
     const result = await estudianteService.encontrarEstudiantesEgresadesDTO(parameters);
@@ -70,7 +68,6 @@ router.get('/DTO', async(request, response) => {
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    parameters.esEmpleado = false;
     const result = await estudianteService.encontrarEgresadesSinPaginacion(parameters);
     response.send(result);
 });
@@ -78,7 +75,6 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    parameters.esEmpleado = false;
     const result = await estudianteService.encontrarEgresadesSinPaginacionDTO(parameters);
     response.send(result);
 });
