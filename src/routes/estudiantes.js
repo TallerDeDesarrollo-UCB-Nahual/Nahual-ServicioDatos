@@ -61,14 +61,14 @@ router.delete("/:id", async (request, response) => {
       request,
       response
     );
-    console.log(request);
-    if(request.body.curseId!='')
-    {
-      const resp = await inscriptoService.desinscribir(
-        request,
-        response
-      )
-    }
+    // console.log(request);
+    // if(request.body.curseId!='')
+    // {
+    //   const resp = await inscriptoService.desinscribir(
+    //     request,
+    //     response
+    //   )
+    // }
     response.status(200).send(result);
   } catch (error) {
     console.log(error);
