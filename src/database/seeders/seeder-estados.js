@@ -15,6 +15,9 @@ module.exports = {
             },
             {
                 nombre: 'Abandonade',
+            },
+            {
+                nombre:'Egresade/Alumne',
             }
         ]);
     },
