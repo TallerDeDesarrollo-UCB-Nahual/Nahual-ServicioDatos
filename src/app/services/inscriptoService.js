@@ -43,21 +43,21 @@ const InscriptoService = {
                         codigo = 400;
                     }
                     else{
-                        if(estudiante.estadoId == 1){
+                        //if(estudiante.estadoId == 1){
                             estudianteActualizado = {
                                 "nodoId": curso.NodoId,
                                 "sedeId": curso.SedeId,
-                                "estadoId": 2
-                            }
+                                "estadoId": 1
+                           }
                             await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
                             await Inscripto.create(inscripto);
                             resultado.push({ Operacion: "Se registro correctamente"});
                             codigo = 200;
-                        }
-                        else{
-                            resultado.push({ Operacion: "El estudiante no es un pre-inscripte"});
-                            codigo = 400;
-                        } 
+                        //}
+                        // else{
+                        //     resultado.push({ Operacion: "El estudiante no es un pre-inscripte"});
+                        //     codigo = 400;
+                        // } 
                     }
                 }
             }
