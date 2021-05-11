@@ -44,6 +44,7 @@ const InscriptoService = {
                     }
                     else{
                         var estado = (estudiante.estadoId === 2) ? 5 : 1;
+                        console.log("VARIOS      ---          "+estado);
                         estudianteActualizado = {
                             "nodoId": curso.NodoId,
                             "sedeId": curso.SedeId,
@@ -69,6 +70,7 @@ const InscriptoService = {
         var resultado = [];
         var codigo;
         let estudiante = await Estudiante.findByPk(inscripto.estudianteId);
+        console.log(estudiante);
         let estaInscripto = await Inscripto.findAll({
             where: {
                 estudianteId: inscripto.estudianteId,
@@ -87,9 +89,12 @@ const InscriptoService = {
                     codigo = 400;
                 }
                 else{
+                    var estado = (estudiante.estadoId === 2) ? 5 : 1;
+                    console.log("Solo 1       - ---          "+estado);
                     estudianteActualizado = {
                         "nodoId": curso.NodoId,
                         "sedeId": curso.SedeId,
+                        "estadoId": estado,
                     }
                     await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
                     await Inscripto.create(inscripto);

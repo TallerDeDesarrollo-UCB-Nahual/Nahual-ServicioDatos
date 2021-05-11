@@ -42,7 +42,7 @@ const CursoService = {
               {
                 model: Estudiante,
                 as: "estudiante",
-                where: { estadoId: 2 },
+               // where: { estadoId: 1 },
                 attributes: { exclude: ["nodoId", "sedeId", "nivelInglesId"] },
                 include: [
                   {
