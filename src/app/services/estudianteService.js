@@ -528,39 +528,29 @@ const EstudianteService = {
     var resultado = [];
     for (const estudiante of estudiantes) {
       let estudianteEncontrado = await Estudiante.findByPk(estudiante.id);
-      if (estudianteEncontrado == null) {
+      if (estudianteEncontrado === null) {
         resultado.push({
           Operacion: "El estudiante con id " + estudiante.id + " no existe"
         });
         codigo = 400;
       } else {
-        if (estudianteEncontrado.estadoId != 2) {
-          resultado.push({
-            Operacion:
-              "El estudiante " +
-              estudianteEncontrado.nombre +
-              " " +
-              estudianteEncontrado.apellido +
-              " no es un alumne"
-          });
-          codigo = 400;
-        } else {
-          estudianteActualizado = {
-            id: estudiante.id,
-            estadoId: estado
-          };
-          await Estudiante.update(estudianteActualizado, {
-            where: { id: estudianteEncontrado.id }
-          });
-          resultado.push({
-            Operacion:
-              "Se cambio el estado correctamente de estudiante: " +
-              estudianteEncontrado.nombre +
-              " " +
-              estudianteEncontrado.apellido
-          });
-          codigo = 200;
-        }
+        estado = (estudianteEncontrado.estadoId === 5 && estado === 4) ? 2 : estado; 
+        estudianteActualizado = {
+          id: estudiante.id,
+          estadoId: estado
+        };
+        await Estudiante.update(estudianteActualizado, {
+          where: { id: estudianteEncontrado.id }
+        });
+        resultado.push({
+          Operacion:
+            "Se cambio el estado correctamente de estudiante: " +
+            estudianteEncontrado.nombre +
+            " " +
+            estudianteEncontrado.apellido
+        });
+        codigo = 200;
+      
       }
     }
     return { message: resultado, result: codigo };
