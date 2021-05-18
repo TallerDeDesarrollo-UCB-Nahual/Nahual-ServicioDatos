@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       'anio': DataTypes.INTEGER,
       'periodo': DataTypes.STRING,
       'estado': DataTypes.BOOLEAN,
+      'esEgresade': DataTypes.BOOLEAN,
     }, {});
     Curso.associate = function(models){
       Curso.belongsTo(models.Nodo, { foreignKey: 'NodoId', as: 'nodo' });

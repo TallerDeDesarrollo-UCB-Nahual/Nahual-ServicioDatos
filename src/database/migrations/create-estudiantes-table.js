@@ -13,6 +13,10 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
+            tipoDNI: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
             nombre: {
                 type: Sequelize.STRING,
                 allowNull: false
@@ -57,6 +61,18 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true
             },
+            topico: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            periodo: {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            profesor: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
             nombrePrimerTrabajo: {
                 type: Sequelize.STRING,
                 allowNull: true
@@ -88,10 +104,6 @@ module.exports = {
             fechaPrimerEmpleo: {
                 type: Sequelize.DATE,
                 allowNull: true,
-            },
-            topico: {
-                type: Sequelize.STRING,
-                allowNull: true
             },
             nivelInglesId: {
                 type: Sequelize.INTEGER,

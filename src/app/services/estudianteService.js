@@ -470,7 +470,9 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      where: parameters
+      where: {
+        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
+      },
     });
     return { response: todosLosEgresadesPorNombre };
   },
@@ -487,7 +489,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        [Op.or]: [{estadoId: 2}, {estadoId: 3}]
+        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
