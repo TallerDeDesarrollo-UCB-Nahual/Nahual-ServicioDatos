@@ -45,6 +45,10 @@ module.exports = {
                 type: Sequelize.BOOLEAN,
                 allowNull: false
             },
+            esEgresade: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false
+            },
         })
     },
 
