@@ -44,7 +44,6 @@ const InscriptoService = {
                     }
                     else{
                         var estado = (estudiante.estadoId === 2) ? 5 : 1;
-                        console.log("VARIOS      ---          "+estado);
                         estudianteActualizado = {
                             "nodoId": curso.NodoId,
                             "sedeId": curso.SedeId,
@@ -90,7 +89,6 @@ const InscriptoService = {
                 }
                 else{
                     var estado = (estudiante.estadoId === 2) ? 5 : 1;
-                    console.log("Solo 1       - ---          "+estado);
                     estudianteActualizado = {
                         "nodoId": curso.NodoId,
                         "sedeId": curso.SedeId,
