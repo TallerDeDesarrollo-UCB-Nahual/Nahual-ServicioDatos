@@ -43,21 +43,16 @@ const InscriptoService = {
                         codigo = 400;
                     }
                     else{
-                        if(estudiante.estadoId == 1){
-                            estudianteActualizado = {
-                                "nodoId": curso.NodoId,
-                                "sedeId": curso.SedeId,
-                                "estadoId": 2
-                            }
-                            await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
-                            await Inscripto.create(inscripto);
-                            resultado.push({ Operacion: "Se registro correctamente"});
-                            codigo = 200;
+                        var estado = (estudiante.estadoId === 2) ? 5 : 1;
+                        estudianteActualizado = {
+                            "nodoId": curso.NodoId,
+                            "sedeId": curso.SedeId,
+                            "estadoId": estado,
                         }
-                        else{
-                            resultado.push({ Operacion: "El estudiante no es un pre-inscripte"});
-                            codigo = 400;
-                        } 
+                        await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
+                        await Inscripto.create(inscripto);
+                        resultado.push({ Operacion: "Se registro correctamente"});
+                        codigo = 200;
                     }
                 }
             }
@@ -74,6 +69,7 @@ const InscriptoService = {
         var resultado = [];
         var codigo;
         let estudiante = await Estudiante.findByPk(inscripto.estudianteId);
+        console.log(estudiante);
         let estaInscripto = await Inscripto.findAll({
             where: {
                 estudianteId: inscripto.estudianteId,
@@ -92,21 +88,16 @@ const InscriptoService = {
                     codigo = 400;
                 }
                 else{
-                    if(estudiante.estadoId == 1){
-                        estudianteActualizado = {
-                            "nodoId": curso.NodoId,
-                            "sedeId": curso.SedeId,
-                            "estadoId": 2
-                        }
-                        await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
-                        await Inscripto.create(inscripto);
-                        resultado.push({ Operacion: "Se registro correctamente"});
-                        codigo = 200;
+                    var estado = (estudiante.estadoId === 2) ? 5 : 1;
+                    estudianteActualizado = {
+                        "nodoId": curso.NodoId,
+                        "sedeId": curso.SedeId,
+                        "estadoId": estado,
                     }
-                    else{
-                        resultado.push({ Operacion: "El estudiante no es un pre-inscripte"});
-                        codigo = 400;
-                    } 
+                    await Estudiante.update(estudianteActualizado, { where: { id: inscripto.estudianteId } });
+                    await Inscripto.create(inscripto);
+                    resultado.push({ Operacion: "Se registro correctamente"});
+                    codigo = 200;
                 }
             }
         }
@@ -117,7 +108,17 @@ const InscriptoService = {
         return {message: resultado, result: codigo}; 
     },
 
-    
+
+    desinscribir:async(request, response) => {  
+        var resultado = [];
+        var codigo;
+        await Inscripto.destroy({ 
+            where: { id: request.params.id }
+        });                        
+        resultado.push({ Operacion: "Se elimino la inscripcion correctamente"});
+        codigo = 200;
+        return {message: resultado, result: codigo}; 
+    }
 }
 
 module.exports = InscriptoService;

@@ -20,4 +20,18 @@ router.post(nombresRutas.emptyUrl, async(request, response) => {
     response.status(inscribir.result).send(inscribir.message);
 });
 
+router.delete("/:id", async (request, response) => {
+    try {
+      const result = await inscriptoService.desinscribir(
+        request,
+        response
+      );
+      response.status(200).send(result);
+    } catch (error) {
+      console.log(error);
+    }
+});
+  
+
+
 module.exports = router;

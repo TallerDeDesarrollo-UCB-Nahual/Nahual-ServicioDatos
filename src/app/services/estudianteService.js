@@ -98,7 +98,7 @@ const EstudianteService = {
   encontrarEgresadePorId: async estudianteId => {
     let egresade = await Estudiante.findByPk(estudianteId, {
       where: {
-        estadoId: 3
+        estadoId: 2
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -132,7 +132,7 @@ const EstudianteService = {
   encontrarEgresadePorIdDTO: async estudianteId => {
     let egresade = await Estudiante.findByPk(estudianteId, {
       where: {
-        estadoId: 3
+        estadoId: 2
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -239,13 +239,13 @@ const EstudianteService = {
             where: {
               nombre: estudiante.nombre,
               apellido: estudiante.apellido,
-              estadoId: 3
+              estadoId: 2
             }
           });
         } else {
           await Estudiante.create(estudiante, {
             where: {
-              estadoId: 3
+              estadoId: 2
             }
           });
         }
@@ -258,7 +258,7 @@ const EstudianteService = {
     const estudiantesDTO = request.body;
     const estudiantes = await Promise.all(
       estudiantesDTO.map(async estudianteDTO => {
-        estudianteDTO.estadoId = 3;
+        estudianteDTO.estadoId = 2;
         return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
       })
     );
@@ -268,7 +268,15 @@ const EstudianteService = {
 
   actualizarEstudiante: async (request, response) => {
     try {
-      const resultado = await Estudiante.update(request.body, {
+      let body = {}
+      if(request.body.trabajaActualmente === true) {
+          body = {...request.body,
+          estadoId:3}
+      }else {
+        body = {...request.body,
+          estadoId:2}
+      }
+      const resultado = await Estudiante.update(body, {
         where: { id: request.params.id }
       });
       let estudiante = await Estudiante.findByPk(request.params.id);
@@ -388,7 +396,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        estadoId: 3
+        estadoId: 2
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -462,7 +470,9 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      where: parameters
+      where: {
+        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
+      },
     });
     return { response: todosLosEgresadesPorNombre };
   },
@@ -479,7 +489,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        estadoId: 3
+        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -506,7 +516,7 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      where: parameters
+      /* where: parameters */
     });
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
@@ -520,39 +530,29 @@ const EstudianteService = {
     var resultado = [];
     for (const estudiante of estudiantes) {
       let estudianteEncontrado = await Estudiante.findByPk(estudiante.id);
-      if (estudianteEncontrado == null) {
+      if (estudianteEncontrado === null) {
         resultado.push({
           Operacion: "El estudiante con id " + estudiante.id + " no existe"
         });
         codigo = 400;
       } else {
-        if (estudianteEncontrado.estadoId != 2) {
-          resultado.push({
-            Operacion:
-              "El estudiante " +
-              estudianteEncontrado.nombre +
-              " " +
-              estudianteEncontrado.apellido +
-              " no es un alumne"
-          });
-          codigo = 400;
-        } else {
-          estudianteActualizado = {
-            id: estudiante.id,
-            estadoId: estado
-          };
-          await Estudiante.update(estudianteActualizado, {
-            where: { id: estudianteEncontrado.id }
-          });
-          resultado.push({
-            Operacion:
-              "Se cambio el estado correctamente de estudiante: " +
-              estudianteEncontrado.nombre +
-              " " +
-              estudianteEncontrado.apellido
-          });
-          codigo = 200;
-        }
+        estado = (estudianteEncontrado.estadoId === 5 && estado === 4) ? 2 : estado; 
+        estudianteActualizado = {
+          id: estudiante.id,
+          estadoId: estado
+        };
+        await Estudiante.update(estudianteActualizado, {
+          where: { id: estudianteEncontrado.id }
+        });
+        resultado.push({
+          Operacion:
+            "Se cambio el estado correctamente de estudiante: " +
+            estudianteEncontrado.nombre +
+            " " +
+            estudianteEncontrado.apellido
+        });
+        codigo = 200;
+      
       }
     }
     return { message: resultado, result: codigo };

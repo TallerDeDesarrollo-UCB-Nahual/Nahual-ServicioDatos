@@ -1,4 +1,4 @@
-const { Curso, Nodo, Sede, Inscripto, Estudiante, NivelIngles } = require('../models');
+const { Curso, Nodo, Sede, Topico, Inscripto, Estudiante, NivelIngles } = require('../models');
 const CursoService = {
     encontrarTodosLosCursos: async(request, response) => {
         let todosLosCursos = await Curso.findAll();
@@ -6,22 +6,27 @@ const CursoService = {
         return { 'response': todosLosCursos };
     },
     
-    encontrarCursosPorPeriodo: async(parametros) => {
-        console.log(parametros.PeriodoId)
+    encontrarCursos: async(parametros) => {
+        
         let todosLosCursos = await Curso.findAll({
             where: parametros,
-            attributes: {exclude: ['PeriodoId','NodoId','SedeId']},
+            attributes: {exclude: ['NodoId','SedeId']},
             include:  [
-                {
-                    model: Nodo,
-                    as: 'nodo',
-                    attributes: {exclude: ['id']},
-                },
-                {
-                    model: Sede,
-                    as: 'sede',
-                    attributes: {exclude: ['id','NodoId']}
-                }
+              {
+                  model: Nodo,
+                  as: 'nodo',
+                  attributes: {exclude: ['id']},
+              },
+              {
+                  model: Sede,
+                  as: 'sede',
+                  attributes: {exclude: ['id','NodoId']}
+              },
+              {
+                model: Topico,
+                as: 'topico',
+                attributes: {exclude: ['id']},
+              }
             ]
         });
         todosLosCursos = todosLosCursos.map(x => x.dataValues);
@@ -37,7 +42,7 @@ const CursoService = {
               {
                 model: Estudiante,
                 as: "estudiante",
-                where: { estadoId: 2 },
+               // where: { estadoId: 1 },
                 attributes: { exclude: ["nodoId", "sedeId", "nivelInglesId"] },
                 include: [
                   {
@@ -63,21 +68,26 @@ const CursoService = {
     },
 
     encontrarCursoPorId: async(cursoId) => {
-        let curso = await Curso.findByPk(cursoId,{
-            include:  [
-                {
-                    model: Nodo,
-                    as: 'nodo',
-                    attributes: {exclude: ['id']},
-                },
-                {
-                    model: Sede,
-                    as: 'sede',
-                    attributes: {exclude: ['id','NodoId']}
-                }
-            ]
-        });
-        return { 'respuesta': curso };
+      let curso = await Curso.findByPk(cursoId,{
+        include:  [
+          {
+            model: Nodo,
+            as: 'nodo',
+            attributes: {exclude: ['id']},
+          },
+          {
+            model: Sede,
+            as: 'sede',
+            attributes: {exclude: ['id','NodoId']}
+          },
+          {
+            model: Topico,
+            as: 'topico',
+            attributes: { include: ['id'] }
+          }
+        ]
+      });
+      return { 'respuesta': curso };
     },
 
     crearCurso: async(request, response) => {
@@ -95,22 +105,25 @@ const CursoService = {
         return { message: "El curso fue editado exitosamente", Curso: curso };
     },
 
-    eliminarCursoEnPeriodo: async(idPeriodo, idCurso) => {
-        console.log(idPeriodo,idCurso);
-
-        try{
-            const cursoABorrar = await Curso.findOne({where: {id: Number(idCurso), PeriodoId: Number(idPeriodo)}})
-    
-            if(cursoABorrar){
-              const cursoEliminado = Curso.destroy({
-                where:{id:idCurso, PeriodoId: idPeriodo}
-              });
-              return {message: `El curso con id ${idCurso} y periodo con id ${idPeriodo} fue eliminado correctamente`};
-            }
-            return {message: `El curso con id ${idCurso} y periodo con id ${idPeriodo} no fue encontrado`};;
-        } catch (error) {
-            throw error;
+    eliminarCurso: async(request, response) => {
+      let message='';
+      try {
+        const resultado = await Curso.destroy({
+          where: { id: request.params.id }
+        });
+        if(resultado !== 0){
+          message= `El curso con id ${request.params.id} fue eliminado correctamente`;
         } 
+        else {
+          message= `El curso con id ${request.params.id} no fue encontrado`;
+        }
+        return {
+          message,
+          result: resultado
+        };            
+      } catch (error) {
+        throw error;
+      }
     }
 }
 

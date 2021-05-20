@@ -17,9 +17,6 @@ module.exports = {
     nivelIngles: {
         url: '/nivel-ingles'
     },
-    modulos: {
-        url: '/modulos'
-    },
     estudiantes: {
         url: '/estudiantes',
         egresades: {
@@ -29,17 +26,20 @@ module.exports = {
             }
         }
     },
-    periodos : {
-        url: '/periodos',
-    },
     cursos : {
         url: '/cursos',
         inscriptes: {
-            url: '/cursos/:cursoId/inscriptes'
+            url: '/cursos/:cursoId/inscriptes',
+            inscripte: {
+                url: '/cursos/:cursoId/inscriptes/:inscripteId',
+            }
         }
     },
     inscriptos : {
         url: '/inscriptos',
+    },
+    topicos: {
+        url: '/topicos'
     }
 
 };
