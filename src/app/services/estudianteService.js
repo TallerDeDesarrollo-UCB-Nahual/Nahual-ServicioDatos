@@ -478,6 +478,7 @@ const EstudianteService = {
   },
 
   encontrarEgresadesSinPaginacionDTO: async parameters => {
+    console.log("paramatros",parameters);
     const Op = Sequelize.Op;
     if ("nombre" in parameters && "apellido" in parameters){
       parameters.nombre = {
@@ -516,7 +517,7 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      /* where: parameters */
+       where: parameters
     });
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes

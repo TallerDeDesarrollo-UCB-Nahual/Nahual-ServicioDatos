@@ -74,7 +74,7 @@ router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, r
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
     let parameters = request.query;
-    parameters.estadoId = 2;
+    // parameters.estadoId = 2;
     const result = await estudianteService.encontrarEgresadesSinPaginacionDTO(parameters);
     response.send(result);
 });
