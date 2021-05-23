@@ -1,4 +1,4 @@
-const { Inscripto, Estudiante, Curso } = require('../models');
+const { Inscripto, Estudiante, Curso, Topico } = require('../models');
 const InscriptoService = {
 
     mostrarInscriptos: async() => {
@@ -118,6 +118,25 @@ const InscriptoService = {
         resultado.push({ Operacion: "Se elimino la inscripcion correctamente"});
         codigo = 200;
         return {message: resultado, result: codigo}; 
+    },
+    
+    obtenerCursosPorIdEstudiante: async(idEstudiante) => {
+        let todosLosCursosDeEstudiante = await Inscripto.findAll({
+            attributes: {exclude: ['estudianteId','cursoId']},
+            where: { estudianteId: Number(idEstudiante) },
+            include: [
+            {
+                model: Curso,
+                as: 'curso',
+                attributes: {exclude: ['cursoId']},
+                include: {
+                    model: Topico,
+                    as: "topico"
+                  }
+            }],
+        });
+
+        return { 'response': todosLosCursosDeEstudiante };
     }
 }
 
