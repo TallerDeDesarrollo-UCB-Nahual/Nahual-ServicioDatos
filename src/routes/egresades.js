@@ -68,14 +68,14 @@ router.get('/DTO', async(request, response) => {
 router.get(nombresRutas.estudiantes.egresades.desempleados.url, async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    const result = await estudianteService.encontrarEgresadesSinPaginacion(parameters);
+    const result = await estudianteService.encontrarEgresadesDesempleadosSinPaginacionDTO(parameters);
     response.send(result);
 });
 
 router.get(nombresRutas.estudiantes.egresades.desempleados.url + '/DTO', async(request, response) => {
     let parameters = request.query;
     parameters.estadoId = 2;
-    const result = await estudianteService.encontrarEgresadesSinPaginacionDTO(parameters);
+    const result = await estudianteService.encontrarEgresadesDesempleadosSinPaginacionDTO(parameters);
     response.send(result);
 });
 

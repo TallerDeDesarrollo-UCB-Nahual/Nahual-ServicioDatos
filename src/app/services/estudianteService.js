@@ -516,6 +516,53 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
+      //where: parameters
+    });
+    todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
+      todosLosEstudiantes
+    );
+    return { response: todosLosEstudiantes };
+  },
+
+  encontrarEgresadesDesempleadosSinPaginacionDTO: async parameters => {
+    const Op = Sequelize.Op;
+    if ("nombre" in parameters && "apellido" in parameters){
+      parameters.nombre = {
+        [Op.startsWith]: parameters.nombre
+      };
+      parameters.apellido = {
+        [Op.startsWith]: parameters.apellido
+      };
+    }
+    let todosLosEstudiantes = await Estudiante.findAll({
+      where: {
+        [Op.or]: [{estadoId: 2}, {estadoId: 5}]
+      },
+      attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
+      include: [
+        {
+          model: Sede,
+          as: "sede",
+          attributes: { exclude: ["NodoId"] }
+        },
+        {
+          model: Nodo,
+          as: "nodo",
+          include: {
+            model: Sede,
+            as: "sedes",
+            attributes: { exclude: ["NodoId"] }
+          }
+        },
+        {
+          model: Estado,
+          as: "estado"
+        },
+        {
+          model: NivelIngles,
+          as: "nivelIngles"
+        }
+      ],
       where: parameters
     });
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
