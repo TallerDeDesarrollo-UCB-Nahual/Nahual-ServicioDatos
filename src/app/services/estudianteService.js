@@ -516,7 +516,7 @@ const EstudianteService = {
           as: "nivelIngles"
         }
       ],
-      /* where: parameters */
+      where: parameters
     });
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
