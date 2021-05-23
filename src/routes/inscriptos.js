@@ -31,6 +31,13 @@ router.delete("/:id", async (request, response) => {
       console.log(error);
     }
 });
+
+router.get('/:id/cursos', async (request, response) => {
+  const inscriptos = await inscriptoService.obtenerCursosPorIdEstudiante(
+    request.params.id
+  );
+  response.send(inscriptos);
+});
   
 
 
