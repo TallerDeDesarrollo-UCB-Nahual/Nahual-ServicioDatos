@@ -11,10 +11,10 @@ module.exports = {
                 nombre: 'Testing Automation',
             },
             {
-                nombre: 'Introducción a la programación',
+                nombre: 'Introducción a la Programación',
             },
             {
-                nombre: 'Alfabetización digital',
+                nombre: 'Alfabetización Digital',
             },
         ]);
     },
