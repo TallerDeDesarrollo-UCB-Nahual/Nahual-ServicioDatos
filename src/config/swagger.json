@@ -735,6 +735,9 @@
                 "dni": {
                     "type": "string"
                 },
+                "tipoDNI": {
+                    "type": "string"
+                },
                 "nombre": {
                     "type": "string"
                 },
@@ -822,6 +825,9 @@
                 "dni": {
                     "type": "string"
                 },
+                "tipoDNI": {
+                    "type": "string"
+                },
                 "nombre": {
                     "type": "string"
                 },
@@ -907,6 +913,9 @@
                     "uniqueItems": true
                 },
                 "dni": {
+                    "type": "string"
+                },
+                "tipoDNI": {
                     "type": "string"
                 },
                 "nombre": {
