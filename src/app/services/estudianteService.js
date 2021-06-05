@@ -258,7 +258,11 @@ const EstudianteService = {
     const estudiantesDTO = request.body;
     const estudiantes = await Promise.all(
       estudiantesDTO.map(async estudianteDTO => {
-        estudianteDTO.estadoId = 2;
+        if(estudianteDTO.fechaPrimerEmpleo == "" || estudianteDTO.fechaPrimerEmpleo==null){
+          estudianteDTO.estadoId = 2;
+        }else {
+          estudianteDTO.estadoId = 3;
+        }
         return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
       })
     );
