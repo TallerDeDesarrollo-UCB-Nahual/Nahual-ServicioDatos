@@ -108,18 +108,20 @@ const CursoService = {
     eliminarCurso: async(request, response) => {
       let message='';
       try {
+        let id = request.params.id;
         const resultado = await Curso.destroy({
           where: { id: request.params.id }
         });
         if(resultado !== 0){
           message= `El curso con id ${request.params.id} fue eliminado correctamente`;
         } 
-        else {
+        else {  
           message= `El curso con id ${request.params.id} no fue encontrado`;
         }
         return {
           message,
-          result: resultado
+          result: resultado,
+          id: id,
         };            
       } catch (error) {
         throw error;
