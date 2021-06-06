@@ -83,7 +83,7 @@ module.exports = {
             },
             trabajaSistemas: {
                 type: Sequelize.STRING,
-                defaultValue: true,
+                allowNull: true,
             },
             experienciaSistemas: {
                 type: Sequelize.STRING,
