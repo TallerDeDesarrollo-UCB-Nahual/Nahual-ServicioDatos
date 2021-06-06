@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const cursoService = require('../app/services/cursoService');
+const InscriptoService = require('../app/services/inscriptoService');
 
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
@@ -12,7 +13,7 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 router.get(
-    nombresRutas.emptyUrl + "/:cursoId/inscriptes",
+    nombresRutas.emptyUrl + "/:cursoId/inscriptes", 
     async (peticion, respuesta) => {
       try {
         if (Number(peticion.params.cursoId)) {
@@ -35,6 +36,31 @@ router.get("/:id", async (request, response) => {
     response.send(curso);
   } catch (error) {
     response.status(404).send( 'Curso no encontrado' );
+  }
+});
+
+router.get("/topico/:id", async (request, response) => {
+  try {
+    const cursos = await cursoService.encontrarCursosPorTopicoId(request.params.id);
+    let estudiantes = [];
+    for(let i=0; i< cursos.respuesta.length; i++ ){
+      const inscriptes = await InscriptoService.obtenerInscriptosPorIdCurso(cursos.respuesta[i].id);
+      estudiantes=estudiantes.concat(inscriptes.response);
+      const myJSON = JSON.stringify(estudiantes);
+      console.log("fwefw",myJSON);
+    }
+    response.send(estudiantes);
+  } catch (error) {
+    response.status(404).send( 'No hay cursos con ese topico' );
+  }
+});
+
+router.get("/prueba/:id", async (request, response) => {
+  try {
+    const inscriptes = await InscriptoService.obtenerInscriptosPorIdCurso(request.params.id);
+    response.send(inscriptes);
+  } catch (error) {
+    response.status(404).send( 'Curso no encontrado22' );
   }
 });
 

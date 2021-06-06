@@ -7,6 +7,8 @@ const Sequelize = require("sequelize");
 const { nivelIngles } = require("../../resources/nombresRutas");
 const EstudianteMapper = require("../models/mappers/estudianteMapper");
 const { Nodo } = require("../models");
+const InscriptoService = require('../services/inscriptoService');
+const cursoService = require('../services/cursoService');
 
 const EstudianteService = {
   encontrarEstudiantes: async parameters => {
@@ -569,9 +571,32 @@ const EstudianteService = {
       ],
       where: parameters
     });
+    let TodesLosAlumnes= [];
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
     );
+    if(parameters.topico)
+    {
+      const cursos = await cursoService.encontrarCursosPorTopicoId(parameters.topico);
+      let estudiantes = [];
+      for(let i=0; i< cursos.respuesta.length; i++ ){
+        const inscriptes = await InscriptoService.obtenerInscriptosPorIdCurso(cursos.respuesta[i].id);
+        estudiantes=estudiantes.concat(inscriptes.response);
+      }
+      // estudiantes= estudiantes.filter(function(e){
+      //   return TodesLosAlumnes.indexOf(e.id) > -1; 
+      // });
+      // const myJSON = JSON.stringify(estudiantes);
+      TodesLosAlumnes= estudiantes.concat(todosLosEstudiantes);
+
+      console.log("todes",TodesLosAlumnes);
+      TodesLosAlumnes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
+        TodesLosAlumnes
+      );
+      return { response: TodesLosAlumnes };
+    }
+    //console.log("todos",todosLosEstudiantes);
+    
     return { response: todosLosEstudiantes };
   },
 

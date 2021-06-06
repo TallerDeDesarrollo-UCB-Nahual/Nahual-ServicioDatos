@@ -90,6 +90,13 @@ const CursoService = {
       return { 'respuesta': curso };
     },
 
+    encontrarCursosPorTopicoId: async(topicoId) => {
+      let curso = await Curso.findAll({
+        where: { TopicoId: Number(topicoId)}
+      });
+      return { 'respuesta': curso };
+    },
+
     crearCurso: async(request, response) => {
         try {
             const curso = await Curso.create(request.body);

@@ -135,9 +135,22 @@ const InscriptoService = {
                   }
             }],
         });
-
         return { 'response': todosLosCursosDeEstudiante };
+    },
+
+    obtenerInscriptosPorIdCurso: async(idCurso) => {
+        let todosLosEstudiantesDelCurso = await Inscripto.findAll({
+            attributes: {exclude: ['estudianteId','cursoId', "id"]},
+            where: { cursoId: Number(idCurso) },
+            include: [
+            {
+                model: Estudiante,
+                as: 'estudiante'
+            }],
+        });
+        return { 'response': todosLosEstudiantesDelCurso };
     }
+
 }
 
 module.exports = InscriptoService;
