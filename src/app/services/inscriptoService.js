@@ -1,4 +1,4 @@
-const { Inscripto, Estudiante, Curso, Topico } = require('../models');
+const { Inscripto, Estudiante, Curso, Topico, NivelIngles, Nodo } = require('../models');
 const InscriptoService = {
 
     mostrarInscriptos: async() => {
@@ -132,7 +132,7 @@ const InscriptoService = {
                 include: {
                     model: Topico,
                     as: "topico"
-                  }
+                }
             }],
         });
         return { 'response': todosLosCursosDeEstudiante };
@@ -145,7 +145,18 @@ const InscriptoService = {
             include: [
             {
                 model: Estudiante,
-                as: 'estudiante'
+                as: 'estudiante',
+                attributes: {exclude: ['nivelInglesId','nodoId']},
+                include: [
+                    {
+                        model: NivelIngles,
+                        as: "nivelIngles"
+                    },
+                    {
+                        model: Nodo,
+                        as: "nodo"
+                    }
+                ]
             }],
         });
         return { 'response': todosLosEstudiantesDelCurso };

@@ -9,6 +9,7 @@ const EstudianteMapper = require("../models/mappers/estudianteMapper");
 const { Nodo } = require("../models");
 const InscriptoService = require('../services/inscriptoService');
 const cursoService = require('../services/cursoService');
+const topicoService = require('../services/topicoService');
 
 const EstudianteService = {
   encontrarEstudiantes: async parameters => {
@@ -571,32 +572,42 @@ const EstudianteService = {
       ],
       where: parameters
     });
-    let TodesLosAlumnes= [];
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
     );
+    let TodesLosAlumnes= [];
     if(parameters.topico)
     {
-      const cursos = await cursoService.encontrarCursosPorTopicoId(parameters.topico);
+      todosLosTopicos = await topicoService.encontrarTodosLosTopicos();
+      todosLosTopicos = todosLosTopicos.response.filter(topico => topico.nombre == parameters.topico);
+      topicoId = todosLosTopicos[0].id
+      const cursos = await cursoService.encontrarCursosPorTopicoId(topicoId);
       let estudiantes = [];
       for(let i=0; i< cursos.respuesta.length; i++ ){
         const inscriptes = await InscriptoService.obtenerInscriptosPorIdCurso(cursos.respuesta[i].id);
         estudiantes=estudiantes.concat(inscriptes.response);
       }
-      // estudiantes= estudiantes.filter(function(e){
-      //   return TodesLosAlumnes.indexOf(e.id) > -1; 
-      // });
-      // const myJSON = JSON.stringify(estudiantes);
-      TodesLosAlumnes= estudiantes.concat(todosLosEstudiantes);
-
-      console.log("todes",TodesLosAlumnes);
+      let resultadoEstudiantes = todosLosEstudiantes;
+      estudiantes.forEach(estudiante => {
+        let existe = false;
+        todosLosEstudiantes.forEach(est => {
+          if (estudiante.id === est.id) {
+            existe = true;
+          }
+        })
+        if (!existe) {
+          const {nivelIngles, nodo, ...estudianteParseado} = estudiante.estudiante.dataValues;
+          let estudianteAGuardar = {...estudianteParseado};
+          estudianteAGuardar.nodo = nodo.nombre;
+          estudianteAGuardar.nivelIngles = nivelIngles.nombre;
+          resultadoEstudiantes.push(estudianteAGuardar);
+        }
+      });
       TodesLosAlumnes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
         TodesLosAlumnes
       );
-      return { response: TodesLosAlumnes };
+      return { response: resultadoEstudiantes };
     }
-    //console.log("todos",todosLosEstudiantes);
-    
     return { response: todosLosEstudiantes };
   },
 
