@@ -14,7 +14,7 @@ const topicoService = require('../services/topicoService');
 const EstudianteService = {
   encontrarEstudiantes: async parameters => {
     const Op = Sequelize.Op;
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -56,7 +56,7 @@ const EstudianteService = {
 
   encontrarEstudiantesDTO: async parameters => {
     const Op = Sequelize.Op;
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -261,9 +261,9 @@ const EstudianteService = {
     const estudiantesDTO = request.body;
     const estudiantes = await Promise.all(
       estudiantesDTO.map(async estudianteDTO => {
-        if(estudianteDTO.fechaPrimerEmpleo == "" || estudianteDTO.fechaPrimerEmpleo==null){
+        if (estudianteDTO.fechaPrimerEmpleo == "" || estudianteDTO.fechaPrimerEmpleo == null) {
           estudianteDTO.estadoId = 2;
-        }else {
+        } else {
           estudianteDTO.estadoId = 3;
         }
         return await EstudianteMapper.obtenerEstudianteDeDTO(estudianteDTO);
@@ -276,13 +276,15 @@ const EstudianteService = {
   actualizarEstudiante: async (request, response) => {
     try {
       let body = {}
-      if(request.body.trabajaActualmente === true) {
-          body = {...request.body,
-          estadoId:3}
-      }else {
-        body = {...request.body,
-          estadoId:2}
+      if (request.body.estadoId !== 1) {
+        if (request.body.trabajaActualmente === true)
+          body = { ...request.body, estadoId: 3 }
+        else
+          body = { ...request.body, estadoId: 2 }
       }
+      else
+        body = { ...request.body, estadoId: 1 }
+
       const resultado = await Estudiante.update(body, {
         where: { id: request.params.id }
       });
@@ -344,7 +346,7 @@ const EstudianteService = {
     const criterioDeOrden = parameters.ordenarPor || "id";
     delete parameters.ordenarPor;
     const sentidoDeOrden = criterioDeOrden === "añoGraduacion" ? "DESC" : "ASC";
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -393,7 +395,7 @@ const EstudianteService = {
     const criterioDeOrden = parameters.ordenarPor || "id";
     delete parameters.ordenarPor;
     const sentidoDeOrden = criterioDeOrden === "añoGraduacion" ? "DESC" : "ASC";
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -443,7 +445,7 @@ const EstudianteService = {
 
   encontrarEgresadesSinPaginacion: async parameters => {
     const Op = Sequelize.Op;
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -478,7 +480,7 @@ const EstudianteService = {
         }
       ],
       where: {
-        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
+        [Op.or]: [{ estadoId: 2 }, { estadoId: 3 }, { estadoId: 5 }]
       },
     });
     return { response: todosLosEgresadesPorNombre };
@@ -486,7 +488,7 @@ const EstudianteService = {
 
   encontrarEgresadesSinPaginacionDTO: async parameters => {
     const Op = Sequelize.Op;
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -496,7 +498,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        [Op.or]: [{estadoId: 2}, {estadoId: 3}, {estadoId: 5}]
+        [Op.or]: [{ estadoId: 2 }, { estadoId: 3 }, { estadoId: 5 }]
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -533,7 +535,7 @@ const EstudianteService = {
 
   encontrarEgresadesDesempleadosSinPaginacionDTO: async parameters => {
     const Op = Sequelize.Op;
-    if ("nombre" in parameters && "apellido" in parameters){
+    if ("nombre" in parameters && "apellido" in parameters) {
       parameters.nombre = {
         [Op.startsWith]: parameters.nombre
       };
@@ -543,7 +545,7 @@ const EstudianteService = {
     }
     let todosLosEstudiantes = await Estudiante.findAll({
       where: {
-        [Op.or]: [{estadoId: 2}, {estadoId: 5}]
+        [Op.or]: [{ estadoId: 2 }, { estadoId: 5 }]
       },
       attributes: { exclude: ["sedeId", "nodoId", "nivelInglesId"] },
       include: [
@@ -575,17 +577,16 @@ const EstudianteService = {
     todosLosEstudiantes = EstudianteMapper.obtenerDtoDeListaEstudiantes(
       todosLosEstudiantes
     );
-    let TodesLosAlumnes= [];
-    if(parameters.topico)
-    {
+    let TodesLosAlumnes = [];
+    if (parameters.topico) {
       todosLosTopicos = await topicoService.encontrarTodosLosTopicos();
       todosLosTopicos = todosLosTopicos.response.filter(topico => topico.nombre == parameters.topico);
       topicoId = todosLosTopicos[0].id
       const cursos = await cursoService.encontrarCursosPorTopicoId(topicoId);
       let estudiantes = [];
-      for(let i=0; i< cursos.respuesta.length; i++ ){
+      for (let i = 0; i < cursos.respuesta.length; i++) {
         const inscriptes = await InscriptoService.obtenerInscriptosPorIdCurso(cursos.respuesta[i].id);
-        estudiantes=estudiantes.concat(inscriptes.response);
+        estudiantes = estudiantes.concat(inscriptes.response);
       }
       let resultadoEstudiantes = todosLosEstudiantes;
       estudiantes.forEach(estudiante => {
@@ -596,8 +597,8 @@ const EstudianteService = {
           }
         })
         if (!existe) {
-          const {nivelIngles, nodo, ...estudianteParseado} = estudiante.estudiante.dataValues;
-          let estudianteAGuardar = {...estudianteParseado};
+          const { nivelIngles, nodo, ...estudianteParseado } = estudiante.estudiante.dataValues;
+          let estudianteAGuardar = { ...estudianteParseado };
           estudianteAGuardar.nodo = nodo.nombre;
           estudianteAGuardar.nivelIngles = nivelIngles.nombre;
           resultadoEstudiantes.push(estudianteAGuardar);
@@ -623,7 +624,7 @@ const EstudianteService = {
         });
         codigo = 400;
       } else {
-        estado = (estudianteEncontrado.estadoId === 5 && estado === 4) ? 2 : estado; 
+        estado = (estudianteEncontrado.estadoId === 5 && estado === 4) ? 2 : estado;
         estudianteActualizado = {
           id: estudiante.id,
           estadoId: estado
@@ -639,7 +640,7 @@ const EstudianteService = {
             estudianteEncontrado.apellido
         });
         codigo = 200;
-      
+
       }
     }
     return { message: resultado, result: codigo };
