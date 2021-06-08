@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const nombresRutas = require('../resources/nombresRutas');
 const cursoService = require('../app/services/cursoService');
+const InscriptoService = require('../app/services/inscriptoService');
 
 
 router.get(nombresRutas.emptyUrl, async(request, response) => {
@@ -12,7 +13,7 @@ router.get(nombresRutas.emptyUrl, async(request, response) => {
 });
 
 router.get(
-    nombresRutas.emptyUrl + "/:cursoId/inscriptes",
+    nombresRutas.emptyUrl + "/:cursoId/inscriptes", 
     async (peticion, respuesta) => {
       try {
         if (Number(peticion.params.cursoId)) {
